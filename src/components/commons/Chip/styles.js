@@ -3,7 +3,7 @@ import colors from "../../../styles/colors";
 import { fonts } from "../../../styles/fonts";
 
 const getStroke = (isChecked) => (isChecked ? "none" : `1px solid ${colors.black_30}`);
-const getBackground = (isChecked) => (isChecked ? `${colors.red_80}` : "white");
+const getBackground = (isChecked) => (isChecked ? `${colors.red_100}` : "white");
 const getTextColor = (isChecked) => (isChecked ? "white" : "black");
 
 export const RoundChipLayout = styled.div`
@@ -26,6 +26,7 @@ export const KeyWordRoundLayout = styled.div`
     border: 1px solid ${colors.black_80};
     border-radius: 50px;
     ${fonts.caption2}
+    line-height: 14px;
 `;
 
 export const CategoryRoundLayout = styled.div`
@@ -46,4 +47,24 @@ export const CategoryImg = styled.img`
     height: 12.8px;
     margin-right: 5px;
     filter: brightness(0%) contrast(80%);
+`;
+
+export const SearchRoundLayout = styled.div`
+    width: fit-content;
+    height: fit-content;
+    padding: 6px 12px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    background-color: ${colors.red_100};
+    border-radius: 200px;
+    color: ${colors.bgColor};
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    &:active {
+        filter: brightness(80%);
+    }
 `;
