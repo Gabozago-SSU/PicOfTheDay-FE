@@ -1,41 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
+import { fonts } from "../../styles/fonts";
+import colors from "../../styles/colors";
 
 const StyleOkButton = styled.button`
     border-radius: 5px;
-
     height: 45px;
     width: 321px;
-    font-size: 14px;
+    //폰트는 type별로 다 정리해 놓았으니 필요한 거를 이렇게 불러서 사용하면 끝!
+    ${fonts.button}
+    background-color: ${colors.red_80};
+    color: ${colors.bgColor};
 
-    ont-family: 'Noto Sans KR';
-    font-style: normal;
-    font-weight: 500;
-    line-height: 20px;
-    align-items: center;
-    text-align: center;
-    letter-spacing: 0.0125em;
-
-    &: disabled {
-        background: #CECECE;
-        color: #F8F8F8;
+    &:disabled {
+        //이거는 클릭을 금지하는 기능!
+        cursor: not-allowed;
+        //color도 피그마에 있는거 다 옴겨 놓았습니당
+        background-color: ${colors.black_20};
+        color: ${colors.bgColor};
     }
 
-    &: active {
-        background: #FF3358;
-        color: #F8F8F8;
+    &:active {
+        /* background-color: ${colors.red_80};
+        color: ${colors.bgColor}; */
+        //생략되어도 됨!
+
+        //뭔가 눌리는 느낌을 주고 싶다면 filter 이용하면 쉬움!
+        filter: brightness(80%);
     }
 `;
 
-function OkButton() {
-    return(
-    <StyleOkButton>
-        style = { isDisabled ? 
-        {background: '#CECECE'} : {background: '#FF3358'}
-    }
-    </StyleOkButton>
-    );
+function OkButton({ disabled }) {
+    console.log(disabled);
+    return <StyleOkButton disabled={disabled}>확인</StyleOkButton>;
 }
 
 export default OkButton;
