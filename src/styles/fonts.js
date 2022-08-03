@@ -72,4 +72,11 @@ export const fonts = {
         line-height: 14px;
         letter-spacing: 0.015em;
     `,
+    navText: css`
+        font-family: "Noto Sans KR";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 9px;
+        line-height: 20px;
+    `,
 };
