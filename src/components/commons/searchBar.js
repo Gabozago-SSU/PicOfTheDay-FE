@@ -31,20 +31,22 @@ export const MagnifierIcon = styled.img`
     background-size: contain;
     background-color: white;
     box-sizing: border-box;
-    top: 8px;
-    left: 27px;
+    position: absolute;
+    top: 5px;
+    left: 13px;
 `;
 
 export const SearchBox = styled.div`
     display: flex;
+    position: relative;
 `;
 
 const SearchBar = () => {
     return (
-        <div>
-            <StyleSearchBar placeholder="검색"></StyleSearchBar>
+        <SearchBox>
             <MagnifierIcon src={Magnifier}></MagnifierIcon>
-        </div>
+            <StyleSearchBar placeholder="검색"></StyleSearchBar>
+        </SearchBox>
     );
 };
 
