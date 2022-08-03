@@ -17,3 +17,23 @@ export const RoundChipLayout = styled.div`
     color: ${(props) => getTextColor(props.isChecked)};
     ${fonts.body2}
 `;
+
+export const KeyWordRoundLayout = styled.div`
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    padding: 6px 10px;
+    border: 1px solid ${colors.black_80};
+    border-radius: 50px;
+    ${fonts.caption2}
+`;
+
+export const CategoryRoundLayout = styled.div`
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    padding: 2px 7px;
+    border: 0.6px solid ${colors.black_80};
+    border-radius: 50px;
+    ${fonts.caption2}
+`;
