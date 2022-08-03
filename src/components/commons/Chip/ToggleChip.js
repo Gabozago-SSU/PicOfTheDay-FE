@@ -17,5 +17,6 @@ const ToggleChip = ({ isChecked, children }) => {
 };
 ToggleChip.propTypes = {
     isChecked: PropTypes.bool.isRequired,
+    children: PropTypes.string,
 };
 export default ToggleChip;
