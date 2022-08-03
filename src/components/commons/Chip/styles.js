@@ -32,8 +32,18 @@ export const CategoryRoundLayout = styled.div`
     width: fit-content;
     height: fit-content;
     align-items: center;
-    padding: 2px 7px;
+    padding: 2px 11px 2px 7px;
     border: 0.6px solid ${colors.black_80};
     border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     ${fonts.caption2}
+`;
+
+export const CategoryImg = styled.img`
+    width: 12.8px;
+    height: 12.8px;
+    margin-right: 5px;
+    filter: brightness(0%) contrast(80%);
 `;

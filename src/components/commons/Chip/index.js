@@ -1,3 +1,4 @@
 import ToggleChip from "./ToggleChip";
 import KeywordChip from "./KeywordChip";
-export default { ToggleChip, KeywordChip };
+import CategoryChip from "./CategoryChip";
+export default { ToggleChip, KeywordChip, CategoryChip };
