@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { SearchRoundLayout } from "./styles";
 import XIcon from "../../../assets/XIc.svg";
+import PropTypes from "prop-types";
 
-const SearchChip = ({ onClickDelete, children }) => {
-    return (
+const SearchChip = ({ text, onClick, children }) => {
+    const [isDeleted, setDeleted] = useState(false);
+    const onClickHandler = () => {
+        onClick(text);
+        setDeleted(true);
+    };
+    return isDeleted ? (
+        <></>
+    ) : (
         <SearchRoundLayout>
+            {text}
             {children}
-            <img src={XIcon} style={{ marginLeft: "5px" }} onClick={onClickDelete}></img>
+            <img src={XIcon} style={{ marginLeft: "5px" }} onClick={onClickHandler}></img>
         </SearchRoundLayout>
     );
+};
+
+SearchChip.prototypes = {
+    text: PropTypes.string.isRequired,
 };
 
 export default SearchChip;
