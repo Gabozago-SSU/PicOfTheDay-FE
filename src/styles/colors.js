@@ -7,7 +7,7 @@ const colors = {
     black_20: "#CECECE",
     black_10: "#E7E7E7",
     red_100: "#E5475A",
-    read_80: "#FD5978",
+    red_80: "#FD5978",
     red_60: "#FB7F98",
     red_40: "#F9A5B9",
     red_20: "#F7CBD9",
