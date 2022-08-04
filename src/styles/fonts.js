@@ -64,6 +64,14 @@ export const fonts = {
         line-height: 17px;
         letter-spacing: 0.004em;
     `,
+    caption2: css`
+        font-family: "Noto Sans KR";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 14px;
+        letter-spacing: 0.004em;
+    `,
     overline: css`
         font-family: "Noto Sans KR";
         font-style: normal;
