@@ -67,6 +67,9 @@ const customReset = css`
         -webkit-transition: background-color 9999s ease-out;
         -webkit-box-shadow: 0 0 0px 1000px transparent inset;
     }
+    body: {
+        height: 100vh;
+    }
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -86,6 +89,8 @@ const GlobalStyle = createGlobalStyle`
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color:rgba(255,255,255,0);
     color: ${colors.black_100};
+
+
   }
 
   .container {
