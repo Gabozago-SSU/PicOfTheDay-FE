@@ -1,8 +1,9 @@
 import React from "react";
 import * as S from "./styles";
 import StarIc from "../../assets/SmallStarIc.svg";
+import { PropTypes } from "prop-types";
 
-const PhotoCard = ({ img, category, rating, placeName }) => {
+const PhotoCard = ({ id, img, category, rating, placeName }) => {
     return (
         <S.PhotoLayout>
             <S.PhotoImg img={img} />
@@ -17,3 +18,11 @@ const PhotoCard = ({ img, category, rating, placeName }) => {
 };
 
 export default PhotoCard;
+
+PhotoCard.propTypes = {
+    id: PropTypes.number,
+    img: PropTypes.string,
+    category: PropTypes.string.isRequired,
+    rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    placeName: PropTypes.string.isRequired,
+};

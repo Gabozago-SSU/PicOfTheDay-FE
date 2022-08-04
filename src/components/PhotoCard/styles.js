@@ -6,11 +6,6 @@ const getPlaceImg = (img) => {
     return img ? img : Logo;
 };
 
-const getPlaceImgSize = (img) => {
-    console.log(img);
-    return "contain";
-};
-
 export const PhotoLayout = styled.div`
     display: flex;
     justify-content: left;
@@ -21,7 +16,7 @@ export const PhotoLayout = styled.div`
 
 export const PhotoImg = styled.div`
     background-image: url(${(props) => getPlaceImg(props.img)});
-    background-size: ${(props) => (props.img !== undefined ? "cover" : "auto")};
+    background-size: ${(props) => (props.img ? "cover" : "auto")};
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 5px;
