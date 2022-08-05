@@ -7,6 +7,7 @@ const getPlaceImg = (img) => {
 };
 
 export const PhotoLayout = styled.div`
+    padding: 2px;
     display: flex;
     justify-content: left;
     flex-direction: column;
@@ -20,15 +21,15 @@ export const PhotoImg = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 5px;
-    background-color: "#DDDDDD";
+    background-color: ${colors.black_80};
     width: 140px;
     height: 140px;
     resize: both;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px, rgba(0, 0, 0, 0.05) 0px 2px 2px, rgba(0, 0, 0, 0.05) 0px 4px 4px,
         rgba(0, 0, 0, 0.05) 0px 5px 5px, rgba(0, 0, 0, 0.05) 0px 4px 4px;
     &:active {
-        background-color: ${colors.black_10};
-        filter: brightness(90%);
+        background-color: ${colors.black_30};
+        filter: brightness(30%);
     }
 `;
 
