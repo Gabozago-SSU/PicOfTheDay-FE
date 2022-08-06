@@ -1,5 +1,5 @@
 import React from 'react'
-import OkButton from 'components/commons/okButton';
+import OkButton from 'components/commons/Button/okButton';
 import { InputNikname, NiknameDiv, OkNikname, WriteNikname } from './NiknameStyle';
 
 function Nikname() {
