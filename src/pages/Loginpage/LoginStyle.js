@@ -62,7 +62,7 @@ export const LoginDiv = styled.div`
     padding-top: 142px;
     padding-bottom: 275px;
     margin: 0 auto;
-    background-color: white;
+    background-color: ${colors.bgColor};
 
     padding-left: 37px;
     padding-right: 37px;

@@ -9,8 +9,8 @@ function App() {
         <div className="App">
             <GlobalStyle />
             <MediaDiv>
-                {/* <Login /> */}
-                <Nikname />
+                <Login />
+                {/* <Nikname /> */}
             </MediaDiv>
         </div>
     );
