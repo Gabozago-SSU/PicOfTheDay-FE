@@ -7,12 +7,14 @@ export const HeaderLayout = styled.div`
     width: 100%;
     height: 50px;
     float: top;
+    position: fixed;
     background-color: white;
     background-image: url(${Logo});
     background-size: auto;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: 0px 3px 5px ${colors.black_10};
+    z-index: 998;
+    //box-shadow: 0px 3px 5px ${colors.black_10};
 `;
 
 export const SearchIc = styled.div`
