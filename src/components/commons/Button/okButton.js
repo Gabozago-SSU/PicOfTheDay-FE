@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { fonts } from "../../styles/fonts";
-import colors from "../../styles/colors";
+import { fonts } from "styles/fonts";
+import colors from "styles/colors";
 
 const StyleOkButton = styled.button`
     border-radius: 5px;
