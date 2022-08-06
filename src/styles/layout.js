@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { StyledDiv } from "pages/Home/styles";
 
 const DefaultDiv = styled.div`
-    //height: 100vh;
+    display: flex;
+    justify-content: center;
     height: calc(var(--vh) * 1 * 100 - 54px);
     width: 100%;
     background-color: transparent;
