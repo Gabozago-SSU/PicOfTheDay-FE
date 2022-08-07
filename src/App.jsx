@@ -5,10 +5,11 @@ import Login from "./pages/Loginpage/Login";
 import Nikname from "./pages/Niknamepage/Nikname";
 
 import BottomNav from "./components/BottomNav";
-import HomePage from "pages/Home";
+import HomePage from "pages/Home/homePage";
 import MapPage from "./pages/Map";
 import FeedPage from "./pages/Feed";
 import ReviewPage from "./pages/Review";
+import PlacePage from "./pages/Home/Place/placePage";
 
 function App() {
     return (
@@ -16,7 +17,8 @@ function App() {
             <GlobalStyle />
             <MediaDiv>
                 <Routes>
-                    <Route exact={true} path="*" element={<HomePage />}></Route>
+                    <Route exact={true} path="/" element={<HomePage />}></Route>
+                    <Route exact={true} path="/place" element={<PlacePage />}></Route>
                     <Route exact={true} path="/map" element={<MapPage />}></Route>
                     <Route exact={true} path="/feed" element={<FeedPage />}></Route>
                     <Route exact={true} path="/review" element={<ReviewPage />}></Route>
