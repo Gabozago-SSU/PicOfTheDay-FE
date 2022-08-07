@@ -16,6 +16,7 @@ export const RoundChipLayout = styled.div`
     background-color: ${(props) => getBackground(props.isChecked)};
     color: ${(props) => getTextColor(props.isChecked)};
     ${fonts.body2}
+    white-space: nowrap;
 `;
 
 export const KeyWordRoundLayout = styled.div`
@@ -27,6 +28,7 @@ export const KeyWordRoundLayout = styled.div`
     border-radius: 50px;
     ${fonts.caption2}
     line-height: 14px;
+    white-space: nowrap;
 `;
 
 export const CategoryRoundLayout = styled.div`
@@ -40,6 +42,7 @@ export const CategoryRoundLayout = styled.div`
     flex-direction: row;
     justify-content: center;
     ${fonts.caption2}
+    white-space: nowrap;
 `;
 
 export const CategoryImg = styled.img`

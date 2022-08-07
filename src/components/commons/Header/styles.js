@@ -4,7 +4,9 @@ import SearchIcon from "../../../assets/SearchFillIc.svg";
 import ActiveSearchIcon from "../../../assets/SearchPinkIc.svg";
 import colors from "../../../styles/colors";
 export const HeaderLayout = styled.div`
+    position: relative;
     width: 100%;
+    max-width: 768px;
     height: 50px;
     float: top;
     position: fixed;

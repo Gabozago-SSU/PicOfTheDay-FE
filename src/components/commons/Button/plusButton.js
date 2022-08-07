@@ -4,17 +4,17 @@ import styled from "styled-components";
 const StylePlusButton = styled.button`
     border-radius: 5px;
     border-style: solid;
-    border-color: #9D9D9D;
+    border-color: #9d9d9d;
     color: white;
     margin-top: 10px;
 
     height: 45px;
-    width: 321px;
+    width: 100%;
     font-size: 14px;
 
-    background: #9D9D9D;
+    background: #9d9d9d;
 
-    font-family: 'Noto Sans KR';
+    font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -22,12 +22,14 @@ const StylePlusButton = styled.button`
     align-items: center;
     text-align: center;
     letter-spacing: 0.0125em;
+
+    :active {
+        filter: brightness(0.8);
+    }
 `;
 
-function PlusButton() {
-    return(
-    <StylePlusButton>더 보기</StylePlusButton>
-    );
+function PlusButton({ onClick }) {
+    return <StylePlusButton onClick={onClick}>더 보기</StylePlusButton>;
 }
 
 export default PlusButton;
