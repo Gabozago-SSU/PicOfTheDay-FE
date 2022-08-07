@@ -42,10 +42,10 @@ const PlaceBanner = ({ banners }) => {
                     </S.StyledSlider>
                 </S.BannerContainer>
 
-                <S.CounterDiv>
+                {/* <S.CounterDiv>
                     <p style={{ color: "white" }}>{(currentSlide + 1).toString().padStart(2, "0")}</p>
                     <p style={{ color: "#CDCDCD" }}> / {banners.length.toString().padStart(2, "0")}</p>
-                </S.CounterDiv>
+                </S.CounterDiv> */}
             </S.BannerLayout>
         </>
     );

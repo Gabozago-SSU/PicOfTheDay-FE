@@ -57,7 +57,7 @@ const PlaceDetail = ({ id, profile, nickName, rating, address, img, content, tag
             ) : null}
             <S.HelpTextBox>{helpNum ? helpNum : 0}명에게 도움이 되었어요</S.HelpTextBox>
 
-            <div style={{ paddingLeft: "10px", paddingRight: "10px", paddingBottom: "40px" }}>
+            <div style={{ paddingLeft: "10px", paddingRight: "10px", paddingBottom: "30px" }}>
                 <HelpButton onClick={onClickHelpBtn}></HelpButton>
             </div>
         </S.StyledLayout>

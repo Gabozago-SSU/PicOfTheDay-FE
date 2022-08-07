@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
 export const ScrollDiv = styled.div`
+    width: 100%;
     height: fit-content;
-    overflow: scroll;
     margin-bottom: 30px;
 `;
 

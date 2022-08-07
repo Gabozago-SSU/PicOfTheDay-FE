@@ -15,8 +15,8 @@ const PlaceInfo = ({ category, phone, name, address, rating, reviewNum }) => {
         <S.PlaceinfoLayout>
             <CategoryChip type={category} />
             <S.ButtonWrapper>
-                <img src={Heart}></img>
                 <img src={Phone}></img>
+                <img src={Heart} style={{ marginRight: "17px" }}></img>
             </S.ButtonWrapper>
             <h1 style={{ fontWeight: 700, fontSize: "24px", lineHeight: "35px", paddingTop: "6px" }}>{name}</h1>
             <S.InfoWrapper style={{ marginTop: "9px" }}>
@@ -34,11 +34,9 @@ const PlaceInfo = ({ category, phone, name, address, rating, reviewNum }) => {
                 <div style={{ height: "14px", marginRight: "4px" }}>
                     <img src={StarIc} style={{ width: "11px", alignSelf: "center", margin: "0 auto" }}></img>
                 </div>
-                <S.RatingText>{parseFloat({ rating }).toFixed(1)}</S.RatingText>
+                <S.RatingText>{parseFloat(rating).toFixed(1)}</S.RatingText>
                 <p style={{ fontSize: "12px", marginLeft: "6px" }}>후기 ({reviewNum ? reviewNum : 0})</p>
-                <div style={{ height: "17px" }}>
-                    <img src={NextIc} style={{ width: "14px", alignSelf: "center" }}></img>
-                </div>
+                <img src={NextIc} style={{ width: "14px", alignSelf: "center" }}></img>
             </S.InfoWrapper>
         </S.PlaceinfoLayout>
     );

@@ -56,7 +56,7 @@ export const InfoWrapper = styled.div`
     align-items: center;
     width: 100%;
     height: fit-content;
-    justify-items: center;
+
     align-items: center;
 `;
 export const RatingText = styled.div`

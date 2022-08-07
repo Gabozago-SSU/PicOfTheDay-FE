@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PlaceDetail from "components/PlaceDetail";
 import { DefaultLayout } from "styles/layout";
 import * as S from "./styles";
 import CardList from "../../components/CardList/CardList";
