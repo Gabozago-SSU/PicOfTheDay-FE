@@ -6,7 +6,7 @@ const colors = {
     black_30: "#B6B6B6",
     black_20: "#CECECE",
     black_10: "#E7E7E7",
-    red_100: "#E5475A",
+    red_100: "#FF3358",
     red_80: "#FD5978",
     red_60: "#FB7F98",
     red_40: "#F9A5B9",
