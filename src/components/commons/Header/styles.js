@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Logo from "../../../assets/HeaderLogo.svg";
 import SearchIcon from "../../../assets/SearchFillIc.svg";
 import ActiveSearchIcon from "../../../assets/SearchPinkIc.svg";
+import BackIcon from "../../../assets/BackIc.svg";
 import colors from "../../../styles/colors";
 export const HeaderLayout = styled.div`
     position: relative;
@@ -34,4 +35,16 @@ export const SearchIc = styled.div`
     &:active {
         background-image: url(${ActiveSearchIcon});
     }
+`;
+
+export const BackHeaderLayout = styled.div`
+    position: relative;
+    width: 100%;
+    max-width: 768px;
+    height: 50px;
+    float: top;
+    position: fixed;
+    background-repeat: no-repeat;
+    z-index: 998;
+    //box-shadow: 0px 3px 5px ${colors.black_10};
 `;

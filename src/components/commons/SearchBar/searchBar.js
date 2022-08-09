@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Magnifier from './assets/magnifier.svg';
+import Magnifier from "../../../assets/magnifier.svg";
 
 export const StyleSearchBar = styled.input`
     width: 100%;
@@ -20,17 +20,17 @@ export const StyleSearchBar = styled.input`
 
 export const MagnifierIcon = styled.img`
     background-size: contain;
-    background-color: white;
+    background-color: transparent;
     width: 20px;
     height: 20px;
 `;
 
 export const SearchBox = styled.div`
-    width: 346px;
+    width: 100%;
     height: 30px;
     padding: 5px 12px;
     border-radius: 88px;
-    background-color: white;
+    background-color: transparent;
     border: 1px solid #cecece;
     display: flex;
     flex-direction: row;

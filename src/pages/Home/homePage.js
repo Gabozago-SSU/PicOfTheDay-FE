@@ -6,6 +6,7 @@ import CardList from "../../components/CardList/CardList";
 import Header from "../../components/commons/Header";
 import Banner from "../../components/Banner";
 import StarRating from "components/Star/StarRating";
+import BackHeader from "components/commons/BackHeader";
 
 const HomePage = () => {
     const onClickStar = (value) => {
@@ -13,7 +14,7 @@ const HomePage = () => {
     };
     return (
         <>
-            <Header></Header>
+            <BackHeader />
             <S.ScrollDiv>
                 <Banner
                     banners={[
