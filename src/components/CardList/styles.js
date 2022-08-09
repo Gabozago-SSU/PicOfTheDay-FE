@@ -13,6 +13,9 @@ export const LabelLayout = styled.div`
     width: 100%;
     height: fit-content;
     margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `;
 
 export const LabelTextBox = styled.div`
@@ -21,7 +24,6 @@ export const LabelTextBox = styled.div`
     line-height: 20px;
     letter-spacing: 0.001em;
     color: #0a0a0a;
-    float: left;
 `;
 
 export const NextIcon = styled.img`

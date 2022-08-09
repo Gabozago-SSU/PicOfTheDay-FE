@@ -4,7 +4,7 @@ import BalloonImg from "../assets/Balloon.svg";
 import colors from "../styles/colors";
 import { fonts } from "../styles/fonts";
 
-const BallonTag = ({ text }) => {
+const BalloonTag = ({ text }) => {
     return (
         <BalloonDiv>
             <BalloonContent>{text}</BalloonContent>
@@ -12,7 +12,7 @@ const BallonTag = ({ text }) => {
     );
 };
 
-export default BallonTag;
+export default BalloonTag;
 
 const BalloonDiv = styled.div`
     background-image: url(${BalloonImg});

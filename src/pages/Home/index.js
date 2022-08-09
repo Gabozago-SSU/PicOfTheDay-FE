@@ -1,2 +1,4 @@
 import HomePage from "./homePage";
-export default HomePage;
+import PlacePage from "./placePage";
+
+export default { HomePage, PlacePage };

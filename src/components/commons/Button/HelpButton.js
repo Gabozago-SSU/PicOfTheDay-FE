@@ -1,18 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import colors from "../../../styles/colors";
 
 const StyleHelpButton = styled.button`
     border-radius: 5px;
     border-style: solid;
-    border-color: #E5475A;
-    color: #E5475A;
+    border-color: #e5475a;
+    color: #e5475a;
 
     height: 45px;
-    width: 321px;
+    width: 100%;
 
     background: white;
 
-    font-family: 'Noto Sans KR';
+    font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -20,12 +21,15 @@ const StyleHelpButton = styled.button`
     align-items: center;
     text-align: center;
     letter-spacing: 0.0125em;
+
+    &:active {
+        background-color: #e5475a;
+        color: white;
+    }
 `;
 
-function HelpButton() {
-    return(
-    <StyleHelpButton>도움이 돼요</StyleHelpButton>
-    );
+function HelpButton({ onClick }) {
+    return <StyleHelpButton onClick={onClick}>도움이 돼요</StyleHelpButton>;
 }
 
 export default HelpButton;
