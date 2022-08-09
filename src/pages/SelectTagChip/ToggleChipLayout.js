@@ -1,55 +1,67 @@
 import React from 'react'
 import ToggleChip from '../../components/commons/Chip/ToggleChip';
-import { ChipButtonContainer1, ChipButtonContainer2, ChipButtonContainer3, ChipButtonContainer4, ChipButtonContainer5, ChipButtonContainer6, ChipButtonContainer7, ChipButtonContainer8 } from './StyleToggleChipLayout';
+import { ChipButtonContainer1 } from './StyleToggleChipLayout';
+import OkButton from '../../components/commons/Button/okButton';
 
-function ToggleChipLayout() {
+const ArrayKeyword = [
+  "러블리한",
+  "시크한",
+  "자연친화적인",
+  "감성있는",
+  "시골의",
+  "화려한",
+  "밝은",
+  "따뜻한",
+  "시원한",
+  "아기자기한",
+  "힙한",
+  "트렌디",
+  "배경이중심",
+  "깔끔한",
+  "알록달록",
+  "사람중심",
+  "어두운",
+  "심플한",
+  "도시의",
+  "앤틱한",
+  "코지한",
+  "키치",
+  "귀여운",
+  "댄디한",
+  "단색의",
+  "자연스러운",
+  "고급스러운",
+]
+
+
+function KeywordChipButton() {
+  const clickedKeys = [];
+  const clickHandler = (keyword) => {
+    console.log(keyword);
+
+    const findIndex = clickedKeys.indexOf(keyword);
+    
+    if(findIndex == -1) {
+      clickedKeys.push(keyword);
+    } 
+    else {
+    clickedKeys.splice(findIndex, 1)
+    }
+    console.log(clickedKeys);
+    
+  };
+
   return (
-      <>
-        <ChipButtonContainer1>
-          <ToggleChip>러블리한</ToggleChip>
-          <ToggleChip>시크한</ToggleChip>
-          <ToggleChip>자연친화적인</ToggleChip>
-        </ChipButtonContainer1>
-        <ChipButtonContainer2>
-          <ToggleChip>감성있는</ToggleChip>
-          <ToggleChip>시골의</ToggleChip>
-          <ToggleChip>화려한</ToggleChip>
-          <ToggleChip>밝은</ToggleChip>
-        </ChipButtonContainer2>
-        <ChipButtonContainer3>
-          <ToggleChip>따뜻한</ToggleChip>
-          <ToggleChip>시원한</ToggleChip>
-          <ToggleChip>아기자기한</ToggleChip>
-        </ChipButtonContainer3>
-        <ChipButtonContainer4>
-          <ToggleChip>힙한</ToggleChip>
-          <ToggleChip>트렌디</ToggleChip>
-          <ToggleChip>배경이중심</ToggleChip>
-          <ToggleChip>깔끔한</ToggleChip>
-        </ChipButtonContainer4>
-        <ChipButtonContainer5>
-          <ToggleChip>알록달록</ToggleChip>
-          <ToggleChip>사람중심</ToggleChip>
-          <ToggleChip>어두운</ToggleChip>
-        </ChipButtonContainer5>
-        <ChipButtonContainer6>
-          <ToggleChip>심플한</ToggleChip>
-          <ToggleChip>도시의</ToggleChip>
-          <ToggleChip>앤틱한</ToggleChip>
-        </ChipButtonContainer6>
-        <ChipButtonContainer7>
-          <ToggleChip>코지한</ToggleChip>
-          <ToggleChip>키치</ToggleChip>
-          <ToggleChip>귀여운</ToggleChip>
-          <ToggleChip>댄디한</ToggleChip>
-        </ChipButtonContainer7>
-        <ChipButtonContainer8>
-          <ToggleChip>단색의</ToggleChip>
-          <ToggleChip>자연스러운</ToggleChip>
-          <ToggleChip>고급스러운</ToggleChip>
-        </ChipButtonContainer8>
-      </>
+    <div>
+      <ChipButtonContainer1>
+        {ArrayKeyword.map((a)=>
+          <ToggleChip key={a} isChecked={false} clickHandler={clickHandler}>
+          {a.toString()}
+          </ToggleChip>
+        )}
+      </ChipButtonContainer1>
+    </div>
   )
 }
 
-export default ToggleChipLayout
+export default KeywordChipButton;
