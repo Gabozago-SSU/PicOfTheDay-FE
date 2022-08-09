@@ -1,19 +1,41 @@
+import UploadBanner from "components/UploadBanner";
 import React, { useState } from "react";
 import colors from "styles/colors";
-import UploadIc from "../../assets/attachment.svg";
-import { ImgLayout, ImgWrapper, PhotoImg } from "./styles";
+import { ImgLayout, ImgWrapper, PhotoImg, ImguploadIcon } from "./styles";
 
-const UploadImg = () => {
-    const [imgFile, setImgFile] = useState("");
+const UploadImg = ({ imgHandler }) => {
+    const [imgFile, setImgFile] = useState([]);
+
+    const saveFileImg = (e) => {
+        const result = [];
+        for (let file = 0; file < e.target.files.length; file++) {
+            console.log(file);
+            result.push(URL.createObjectURL(e.target.files[file]));
+        }
+        console.log(result);
+        setImgFile(result);
+        imgHandler(result);
+    };
     return (
         <ImgLayout>
             <ImgWrapper>
-                <p style={{ height: "24px" }}>사진</p>
-                <img style={{ width: "24px" }} src={UploadIc} onClick={() => setImgFile("feijfiefj")} />
+                <label style={{ height: "24px" }} htmlFor="input-file">
+                    사진{" "}
+                </label>
+
+                <ImguploadIcon htmlFor="input-file" />
+                <input
+                    type="file"
+                    accept="image/*"
+                    id="input-file"
+                    onChange={saveFileImg}
+                    multiple={true}
+                    style={{ display: "none" }}
+                />
             </ImgWrapper>
-            {imgFile ? (
+            {imgFile.length !== 0 ? (
                 <div style={{ display: "flex", justifyContent: "center", padding: 0, margin: 0 }}>
-                    <PhotoImg />
+                    <UploadBanner banners={imgFile} />
                 </div>
             ) : null}
             <hr

@@ -9,7 +9,7 @@ const StyleOkButton = styled.button`
     width: 100%;
     //폰트는 type별로 다 정리해 놓았으니 필요한 거를 이렇게 불러서 사용하면 끝!
     ${fonts.button}
-    background-color: ${colors.red_80};
+    background-color: ${colors.red_100};
     color: ${colors.bgColor};
 
     &:disabled {
@@ -30,9 +30,12 @@ const StyleOkButton = styled.button`
     }
 `;
 
-function OkButton({ disabled }) {
-    console.log(disabled);
-    return <StyleOkButton disabled={disabled}>확인</StyleOkButton>;
+function OkButton({ disabled, onClick }) {
+    return (
+        <StyleOkButton disabled={disabled} onClick={onClick}>
+            확인
+        </StyleOkButton>
+    );
 }
 
 export default OkButton;

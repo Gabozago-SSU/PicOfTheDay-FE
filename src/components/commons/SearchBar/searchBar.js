@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Magnifier from "../../../assets/magnifier.svg";
 
@@ -14,8 +14,10 @@ export const StyleSearchBar = styled.input`
     align-items: center;
     letter-spacing: 0.004em;
 
-    color: #b6b6b6;
     background-position: 5px center;
+    ::placeholder {
+        color: #b6b6b6;
+    }
 `;
 
 export const MagnifierIcon = styled.img`
@@ -38,11 +40,45 @@ export const SearchBox = styled.div`
     position: relative;
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ submitHandler }) => {
+    const [content, setContent] = useState("");
+    const input = useRef();
+
+    const onChange = (e) => {
+        setContent(e.target.value);
+    };
     return (
         <SearchBox>
-            <MagnifierIcon src={Magnifier}></MagnifierIcon>
-            <StyleSearchBar placeholder="검색"></StyleSearchBar>
+            <MagnifierIcon
+                src={Magnifier}
+                onClick={() => {
+                    input.current.focus();
+                    submitHandler(content);
+                    setContent("");
+                    input.current.value = "";
+                }}
+            ></MagnifierIcon>
+            <StyleSearchBar
+                ref={input}
+                value={content}
+                placeholder="검색"
+                onKeyDown={(e) => {
+                    if (e.keyCode === 13) {
+                        input.current.focus();
+                        submitHandler(content);
+                        setContent("");
+                        input.current.value = "";
+                    }
+                }}
+                onSubmit={(e) => {
+                    submitHandler(content);
+                    setContent("");
+                    input.current.value = "";
+                }}
+                onChange={(e) => {
+                    onChange(e);
+                }}
+            ></StyleSearchBar>
         </SearchBox>
     );
 };

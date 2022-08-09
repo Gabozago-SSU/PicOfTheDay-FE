@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import colors from "styles/colors";
 import Logo from "../../assets/PinkLogo.svg";
+import UploadIc from "../../assets/attachment.svg";
+import { css } from "styled-components";
 
 export const ImgLayout = styled.div`
     width: 100%;
@@ -18,18 +20,15 @@ export const ImgWrapper = styled.div`
     align-items: center;
     background: transparent;
     padding: 0 22px;
-    p {
+    label {
         margin-top: 22px;
         font-weight: 500;
         font-size: 16px;
         color: black;
         text-align: center;
-        padding: 4px 0px;
+        align-items: center;
         line-height: 24px;
         margin-right: 8px;
-    }
-    img {
-        margin-top: 22px;
     }
 `;
 
@@ -49,6 +48,10 @@ export const PhotoImg = styled.div`
         rgba(0, 0, 0, 0.05) 0px 5px 5px, rgba(0, 0, 0, 0.05) 0px 7px 7px;
 `;
 
-const getPlaceImg = (img) => {
-    return img ? img : Logo;
-};
+export const ImguploadIcon = styled.label`
+    width: 24px;
+    height: 24px;
+    background-image: url(${UploadIc});
+    background-repeat: no-repeat;
+    background-size: cover;
+`;

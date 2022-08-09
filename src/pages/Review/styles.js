@@ -6,7 +6,7 @@ export const ScrollDiv = styled.div`
     height: fit-content;
     margin-bottom: 30px;
 
-    div {
+    h2 {
         font-weight: 500;
         font-size: 16px;
         line-height: 23px;
@@ -22,6 +22,22 @@ export const SearchWrapper = styled.div`
     flex-direction: column;
     padding: 17px 22px;
     gap: 18px;
+`;
+
+export const KewordsWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    height: fit-content;
+    flex-direction: row;
+    gap: 7px;
+    overflow-x: scroll;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 17px;
+    scrollbar-width: none; /* Firefox */
+    ::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
 `;
 
 export const DefaultLine = styled.hr`

@@ -55,7 +55,7 @@ export const CategoryImg = styled.img`
 export const SearchRoundLayout = styled.div`
     width: fit-content;
     height: fit-content;
-    padding: 6px 12px;
+    padding: 4px 12px;
     font-weight: 500;
     font-size: 12px;
     line-height: 17px;
@@ -66,6 +66,7 @@ export const SearchRoundLayout = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    white-space: nowrap;
 
     &:active {
         filter: brightness(80%);

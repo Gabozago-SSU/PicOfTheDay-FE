@@ -14,7 +14,7 @@ export const BackHeaderLayout = styled.div`
     float: top;
     position: fixed;
     background-repeat: no-repeat;
-    background-color: white;
+    background-color: ${colors.bgColor};
     z-index: 998;
     box-shadow: 0px 3px 5px ${colors.black_10};
     padding: 0;

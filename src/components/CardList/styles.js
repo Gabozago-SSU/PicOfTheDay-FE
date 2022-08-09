@@ -40,11 +40,10 @@ export const CardWrapper = styled.div`
     flex-direction: row;
     overflow-x: scroll;
     gap: 12px;
-    scroll-snap-type: x mandatory;
     margin-bottom: 10px;
-    -ms-overflow-style: none; /* IE, Edge */
-    scrollbar-width: none; /* Firefox */
     ::-webkit-scrollbar {
         display: none; /* Chrome, Safari, Opera */
     }
+    -ms-overflow-style: none; /* IE, Edge */
+    scrollbar-width: none; /* Firefox */
 `;
