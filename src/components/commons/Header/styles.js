@@ -4,15 +4,19 @@ import SearchIcon from "../../../assets/SearchFillIc.svg";
 import ActiveSearchIcon from "../../../assets/SearchPinkIc.svg";
 import colors from "../../../styles/colors";
 export const HeaderLayout = styled.div`
+    position: relative;
     width: 100%;
+    max-width: 768px;
     height: 50px;
     float: top;
+    position: fixed;
     background-color: white;
     background-image: url(${Logo});
     background-size: auto;
     background-position: center;
     background-repeat: no-repeat;
-    box-shadow: 0px 3px 5px ${colors.black_10};
+    z-index: 998;
+    //box-shadow: 0px 3px 5px ${colors.black_10};
 `;
 
 export const SearchIc = styled.div`

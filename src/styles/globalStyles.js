@@ -1,4 +1,6 @@
 import styled, { createGlobalStyle, css } from "styled-components";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import reset from "styled-reset";
 import colors from "./colors";
 
