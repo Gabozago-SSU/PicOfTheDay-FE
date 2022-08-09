@@ -10,6 +10,7 @@ import MapPage from "./pages/Map";
 import FeedPage from "./pages/Feed";
 import ReviewPage from "./pages/Review";
 import PlacePage from "./pages/Home/Place/placePage";
+import MyPage from "pages/Mypage";
 
 function App() {
     return (
@@ -22,7 +23,7 @@ function App() {
                     <Route exact={true} path="/map" element={<MapPage />}></Route>
                     <Route exact={true} path="/feed" element={<FeedPage />}></Route>
                     <Route exact={true} path="/review" element={<ReviewPage />}></Route>
-                    <Route exact={true} path="/mypage" element={<MapPage />}></Route>
+                    <Route exact={true} path="/mypage" element={<MyPage />}></Route>
                     <Route exact={true} path="/login" element={<Login />}></Route>
                     <Route exact={true} path="/signup" element={<Nikname />}></Route>
                 </Routes>
