@@ -11,6 +11,7 @@ import FeedPage from "./pages/Feed";
 import ReviewPage from "./pages/Review";
 import PlacePage from "./pages/Home/Place/placePage";
 import SelectChip from "pages/SelectTagChip/SelectChip";
+import MyPage from "pages/Mypage";
 
 function App() {
     return (
