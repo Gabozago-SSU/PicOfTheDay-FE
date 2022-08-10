@@ -6,10 +6,10 @@ import colors from "styles/colors";
 const StyleOkButton = styled.button`
     border-radius: 5px;
     height: 45px;
-    width: 321px;
+    width: 100%;
     //폰트는 type별로 다 정리해 놓았으니 필요한 거를 이렇게 불러서 사용하면 끝!
     ${fonts.button}
-    background-color: ${colors.red_80};
+    background-color: ${colors.red_100};
     color: ${colors.bgColor};
 
     &:disabled {
@@ -31,7 +31,15 @@ const StyleOkButton = styled.button`
 `;
 
 function OkButton({ disabled }) {
-    console.log(disabled);
+    // const isEmptyArr = () => {
+    //     clickedKeys.length === 0 ? ( <div>
+    //       <OkButton disabled={true} />
+    //     </div>)  : (<div>
+    //       <OkButton disabled={false} />
+    //     </div>)
+    //   console.log(isEmptyArr);
+    //   };
+    // console.log(disabled);
     return <StyleOkButton disabled={disabled}>확인</StyleOkButton>;
 }
 
