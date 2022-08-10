@@ -10,7 +10,7 @@ import MapPage from "./pages/Map";
 import FeedPage from "./pages/Feed";
 import ReviewPage from "./pages/Review";
 import PlacePage from "./pages/Home/Place/placePage";
-import MyPage from "pages/Mypage";
+import SelectChip from "pages/SelectTagChip/SelectChip";
 
 function App() {
     return (
@@ -18,6 +18,7 @@ function App() {
             <GlobalStyle />
             <MediaDiv>
                 <Routes>
+                    <Route exact={true} path="/onboarding" element={<SelectChip />}></Route>
                     <Route exact={true} path="/" element={<HomePage />}></Route>
                     <Route exact={true} path="/place" element={<PlacePage />}></Route>
                     <Route exact={true} path="/map" element={<MapPage />}></Route>

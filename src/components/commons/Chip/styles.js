@@ -3,7 +3,7 @@ import colors from "../../../styles/colors";
 import { fonts } from "../../../styles/fonts";
 
 const getStroke = (isChecked) => (isChecked ? "none" : `1px solid ${colors.black_30}`);
-const getBackground = (isChecked) => (isChecked ? `${colors.red_100}` : "white");
+const getBackground = (isChecked) => (isChecked ? `#FF3358` : "white");
 const getTextColor = (isChecked) => (isChecked ? "white" : "black");
 
 export const RoundChipLayout = styled.div`
