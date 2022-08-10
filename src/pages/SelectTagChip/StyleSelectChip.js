@@ -41,13 +41,9 @@ export const PickKeyword = styled.div`
 
 export const ToggleChipPick = styled.div`
     padding-top: 32px;
-    padding-bottom: 50px;
 `;
 
 export const OkChipPickButton = styled.div`
+    padding-top: 50px;
     padding-bottom: 188px;
-`;
-
-export const SelectChipDiv = styled.div`
-
 `;

@@ -30,16 +30,16 @@ const StyleOkButton = styled.button`
     }
 `;
 
-function OkButton({ disabled }, clickedKeys) {
-    const isEmptyArr = () => {
-        clickedKeys.length === 0 ? ( <div>
-          <OkButton disabled={true} />
-        </div>)  : (<div>
-          <OkButton disabled={false} />
-        </div>)
-      console.log(isEmptyArr);
-      };
-    console.log(disabled);
+function OkButton({ disabled }) {
+    // const isEmptyArr = () => {
+    //     clickedKeys.length === 0 ? ( <div>
+    //       <OkButton disabled={true} />
+    //     </div>)  : (<div>
+    //       <OkButton disabled={false} />
+    //     </div>)
+    //   console.log(isEmptyArr);
+    //   };
+    // console.log(disabled);
     return <StyleOkButton disabled={disabled}>확인</StyleOkButton>;
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Magnifier from './assets/magnifier.svg';
+import Magnifier from '../../../assets/magnifier.svg';
 
 export const StyleSearchBar = styled.input`
     width: 100%;
