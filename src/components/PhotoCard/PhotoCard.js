@@ -3,10 +3,10 @@ import * as S from "./styles";
 import StarIc from "../../assets/SmallStarIc.svg";
 import { PropTypes } from "prop-types";
 
-const PhotoCard = ({ id, img, category, rating, placeName }) => {
+const PhotoCard = ({ id, img, category, rating, placeName, onClick }) => {
     return (
         <S.PhotoLayout>
-            <S.PhotoImg img={img} />
+            <S.PhotoImg img={img} onClick={() => onClick(id)} />
             <S.InfoWrapper>
                 <S.CategoryText>{category} |</S.CategoryText>
                 <img src={StarIc} style={{ width: "10px" }}></img>

@@ -18,6 +18,6 @@ export const StarContainer = styled.div`
 export const StarIcon = styled.div`
     background-image: url(${(props) => getIcon(props.isChecked)});
     background-size: contain;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
 `;

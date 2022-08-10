@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
-import PlaceDetail from "components/PlaceDetail";
-import { DefaultLayout } from "styles/layout";
+
 import * as S from "./styles";
 import CardList from "../../components/CardList/CardList";
 import Header from "../../components/commons/Header";
 import Banner from "../../components/Banner";
-import StarRating from "components/Star/StarRating";
 
 const HomePage = () => {
-    const onClickStar = (value) => {
-        console.log("value ; " + value);
-    };
     return (
         <>
-            <Header></Header>
+            <Header />
             <S.ScrollDiv>
                 <Banner
                     banners={[
