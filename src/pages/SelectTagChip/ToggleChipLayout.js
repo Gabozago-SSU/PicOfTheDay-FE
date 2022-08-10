@@ -1,9 +1,8 @@
 import React from 'react'
 import ToggleChip from '../../components/commons/Chip/ToggleChip';
 import { ChipButtonContainer1 } from './StyleToggleChipLayout';
-import OkButton from '../../components/commons/Button/okButton';
 
-const ArrayKeyword = [
+export const ArrayKeyword = [
   "러블리한",
   "시크한",
   "자연친화적인",
@@ -34,31 +33,19 @@ const ArrayKeyword = [
 ]
 
 
-function KeywordChipButton() {
-  const clickedKeys = [];
+function KeywordChipButton({chipHandler}) {
   const clickHandler = (keyword) => {
-    console.log(keyword);
-
-    const findIndex = clickedKeys.indexOf(keyword);
-    
-    if(findIndex == -1) {
-      clickedKeys.push(keyword);
-    } 
-    else {
-    clickedKeys.splice(findIndex, 1)
-    }
-    console.log(clickedKeys);
-    
+    chipHandler(keyword);
   };
 
   return (
     <div>
       <ChipButtonContainer1>
-        {ArrayKeyword.map((a)=>
-          <ToggleChip key={a} isChecked={false} clickHandler={clickHandler}>
-          {a.toString()}
-          </ToggleChip>
-        )}
+          {ArrayKeyword.map((a)=>
+            <ToggleChip key={a} isChecked={false} clickHandler={clickHandler}>
+            {a.toString()}
+            </ToggleChip>
+          )}
       </ChipButtonContainer1>
     </div>
   )
