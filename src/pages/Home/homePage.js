@@ -4,8 +4,13 @@ import * as S from "./styles";
 import CardList from "../../components/CardList/CardList";
 import Header from "../../components/commons/Header";
 import Banner from "../../components/Banner";
-
+import { loginUser } from "../../recoil/userState";
+import { useRecoilValue } from "recoil";
 const HomePage = () => {
+    const user = useRecoilValue(loginUser);
+    useEffect(() => {
+        console.log(user);
+    }, []);
     return (
         <>
             <Header />

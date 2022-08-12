@@ -67,7 +67,7 @@ export const SearchRoundLayout = styled.div`
     flex-direction: row;
     justify-content: center;
     white-space: nowrap;
-
+    box-sizing: border-box;
     &:active {
         filter: brightness(80%);
     }

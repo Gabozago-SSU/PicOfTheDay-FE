@@ -23,7 +23,7 @@ const StyleHelpButton = styled.button`
     letter-spacing: 0.0125em;
 
     &:active {
-        background-color: #e5475a;
+        background-color: ${colors.red_100};
         color: white;
     }
 `;
