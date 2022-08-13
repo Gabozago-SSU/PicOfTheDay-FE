@@ -42,10 +42,6 @@ export const SearchBox = styled.div`
     position: relative;
 `;
 
-export const SearchBoxDiv = styled.div`
-    padding-top: 57px;
-`;
-
 const SearchBar = ({ submitHandler }) => {
     const [content, setContent] = useState("");
 
@@ -55,8 +51,7 @@ const SearchBar = ({ submitHandler }) => {
         setContent(e.target.value);
     };
     return (
-        <SearchBoxDiv>
-            <SearchBox>
+        <SearchBox>
             <MagnifierIcon
                 src={Magnifier}
                 onClick={() => {
@@ -84,8 +79,7 @@ const SearchBar = ({ submitHandler }) => {
                     onChange(e);
                 }}
             ></StyleSearchBar>
-            </SearchBox>
-        </SearchBoxDiv>
+        </SearchBox>
     );
 };
 

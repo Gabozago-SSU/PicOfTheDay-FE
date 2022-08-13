@@ -59,7 +59,6 @@ const ReviewPage = () => {
     };
 
     function tipHandler(content) {
-        console.log("tip", content);
         setContent(content);
     }
 
@@ -147,7 +146,10 @@ const ReviewPage = () => {
                 <StarRating style={{ width: "100%" }} starHandler={ratingHandler} />
             </RatingWrapper>
             <ReviewLabel>
-                <OkButton disabled={!validaton()} onClick={onClickSubmit} />
+                <OkButton
+                    disabled={!(imgs.length > 0 && place && keywords.length > 0 && content)}
+                    onClick={onClickSubmit}
+                />
             </ReviewLabel>
             <StyledToastContainer
                 position="bottom-center"
