@@ -28,6 +28,8 @@ export const MagnifierIcon = styled.img`
 `;
 
 export const SearchBox = styled.div`
+    margin: 0 auto;
+    width: 346px;
     width: 100%;
     height: 30px;
     padding: 5px 12px;
@@ -40,6 +42,10 @@ export const SearchBox = styled.div`
     position: relative;
 `;
 
+export const SearchBoxDiv = styled.div`
+    padding-top: 57px;
+`;
+
 const SearchBar = ({ submitHandler }) => {
     const [content, setContent] = useState("");
 
@@ -49,7 +55,8 @@ const SearchBar = ({ submitHandler }) => {
         setContent(e.target.value);
     };
     return (
-        <SearchBox>
+        <SearchBoxDiv>
+            <SearchBox>
             <MagnifierIcon
                 src={Magnifier}
                 onClick={() => {
@@ -77,7 +84,8 @@ const SearchBar = ({ submitHandler }) => {
                     onChange(e);
                 }}
             ></StyleSearchBar>
-        </SearchBox>
+            </SearchBox>
+        </SearchBoxDiv>
     );
 };
 
