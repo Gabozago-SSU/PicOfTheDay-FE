@@ -8,7 +8,8 @@ import KeyWordTab from "../../../components/KeyWordTab/index";
 import colors from "../../../styles/colors";
 import PostTab from "./PostTab";
 import PhotoCard from "components/PhotoCard";
-import PlusButton from "../../../components/commons/Button/plusButton";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PlacePage = () => {
     const places = [1, 2, 3, 4, 5, 6, 7, 8];

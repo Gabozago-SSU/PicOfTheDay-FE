@@ -6,7 +6,7 @@ import colors from "styles/colors";
 const BackHeader = ({ title, clickHandler }) => {
     const [isClicked, setClicked] = useState(false);
     return (
-        <BackHeaderLayout style={{ backgroundColor: "white", height: "53px" }}>
+        <BackHeaderLayout style={{ backgroundColor: `${colors.bgColor}`, height: "53px" }}>
             <BackIc onMouseEnter={() => setClicked(true)} onMouseLeave={() => setClicked(false)} onClick={clickHandler}>
                 <ActivatedBackIc isClicked={isClicked} activeColor={colors.red_100} />
             </BackIc>

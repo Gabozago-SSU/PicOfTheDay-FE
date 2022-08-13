@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import BalloonImg from "../assets/Balloon.svg";
-import colors from "../styles/colors";
-import { fonts } from "../styles/fonts";
+import BalloonImg from "../../assets/Balloon.svg";
+import colors from "styles/colors";
+import { fonts } from "styles/fonts";
 
 const BalloonTag = ({ text }) => {
     return (

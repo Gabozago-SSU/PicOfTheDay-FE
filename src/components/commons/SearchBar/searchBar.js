@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import styled from "styled-components";
 import Magnifier from "../../../assets/magnifier.svg";
 
@@ -13,7 +13,7 @@ export const StyleSearchBar = styled.input`
     line-height: 17px;
     align-items: center;
     letter-spacing: 0.004em;
-
+    -webkit-user-select: text;
     background-position: 5px center;
     ::placeholder {
         color: #b6b6b6;
@@ -42,6 +42,7 @@ export const SearchBox = styled.div`
 
 const SearchBar = ({ submitHandler }) => {
     const [content, setContent] = useState("");
+
     const input = useRef();
 
     const onChange = (e) => {
@@ -52,7 +53,6 @@ const SearchBar = ({ submitHandler }) => {
             <MagnifierIcon
                 src={Magnifier}
                 onClick={() => {
-                    input.current.focus();
                     submitHandler(content);
                     setContent("");
                     input.current.value = "";
@@ -64,10 +64,8 @@ const SearchBar = ({ submitHandler }) => {
                 placeholder="검색"
                 onKeyDown={(e) => {
                     if (e.keyCode === 13) {
-                        input.current.focus();
                         submitHandler(content);
                         setContent("");
-                        input.current.value = "";
                     }
                 }}
                 onSubmit={(e) => {
