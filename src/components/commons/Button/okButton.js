@@ -31,6 +31,15 @@ const StyleOkButton = styled.button`
 `;
 
 function OkButton({ disabled, onClick }) {
+    // const isEmptyArr = () => {
+    //     clickedKeys.length === 0 ? ( <div>
+    //       <OkButton disabled={true} />
+    //     </div>)  : (<div>
+    //       <OkButton disabled={false} />
+    //     </div>)
+    //   console.log(isEmptyArr);
+    //   };
+    // console.log(disabled);
     return (
         <StyleOkButton disabled={disabled} onClick={onClick}>
             확인

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "styles/colors";
+import { ToastContainer } from "react-toastify";
 
 export const ScrollDiv = styled.div`
     width: 100%;
@@ -85,5 +86,54 @@ export const ReviewEditBox = styled.textarea`
         top: 50%;
         transform: translate(-50%, -50%);
         color: ${colors.black_40};
+    }
+`;
+
+export const StyledToastContainer = styled(ToastContainer).attrs({
+    className: "toast-container",
+    toastClassName: "toast",
+    bodyClassName: "body",
+    progressClassName: "progress",
+})`
+    &&&.Toastify__toast-container {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 17px;
+        color: red !important;
+        padding: 12px;
+    }
+    .Toastify__toast {
+        background: #f6e2e6;
+        border: 1px solid #ff3358;
+        box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.15);
+        border-radius: 5px;
+        color: ${colors.red_100};
+    }
+    .Toastify__toast-body {
+    }
+    .Toastify__progress-bar {
+    }
+    .Toastify__toast-theme--colored {
+        color: ${colors.red_100};
+    }
+    .Toastify__toast-theme--dark {
+        color: ${colors.red_100};
+    }
+    .Toastify__toast-theme--light {
+        color: ${colors.red_100};
+    }
+    .toast {
+        background: #f6e2e6;
+        border: 1px solid #ff3358;
+        box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.15);
+        border-radius: 5px;
+        color: ${colors.red_100};
+    }
+    .body {
+        color: ${colors.red_100};
+    }
+
+    .Toastify__close-button > svg {
+        display: none;
     }
 `;

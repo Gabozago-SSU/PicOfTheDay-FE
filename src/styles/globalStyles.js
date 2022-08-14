@@ -59,6 +59,7 @@ const customReset = css`
         background-color: transparent;
         -webkit-box-shadow: none;
         box-shadow: none;
+        -webkit-user-select: text;
     }
     /* Chrome autofill 스타일 제거, 커스텀 */
     input:-webkit-autofill,
@@ -90,8 +91,6 @@ const GlobalStyle = createGlobalStyle`
     user-select: none;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color:rgba(255,255,255,0);
-    color: ${colors.black_100};
-
 
   }
 
