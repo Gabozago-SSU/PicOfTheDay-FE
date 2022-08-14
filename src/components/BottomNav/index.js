@@ -1,17 +1,21 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Nav, NavItem } from "reactstrap";
 import { Router, useLocation } from "react-router-dom";
+import { bottomState } from "recoil/bottom";
 
 import * as S from "./styles";
 import colors from "../../styles/colors";
+import { useRecoilState } from "recoil";
 
 const BottomNav = () => {
     const location = useLocation();
+    const [bottom, setBottomState] = useRecoilState(bottomState);
 
     const navHandler = (path) => {
         console.log(path);
-        if (path === "/login" || path.includes("signup")) return null;
+        if (path === "/login" || path.includes("signup") || bottom === "Notfound" || path === "/onboarding")
+            return null;
         else
             return (
                 <S.BottomNav ref={navbar}>

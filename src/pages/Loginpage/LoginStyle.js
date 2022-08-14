@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import colors from '../../styles/colors';
+import styled from "styled-components";
+import colors from "../../styles/colors";
 
 export const SlogunDiv = styled.div`
     width: 300px;
@@ -8,8 +8,7 @@ export const SlogunDiv = styled.div`
     top: 142px;
     font-size: 24px;
     line-height: 38px;
-    color: #0A0A0A;
-
+    color: #0a0a0a;
 `;
 
 export const SlogunBold = styled.div`
@@ -28,6 +27,12 @@ export const FirstSlogun = styled.div`
 
 export const LoginButtonDiv = styled.div`
     margin-top: 95px;
+
+    & .buttonImg {
+        :active {
+            filter: brightness(80%);
+        }
+    }
 `;
 
 export const LoginButton = styled.div`
@@ -54,9 +59,9 @@ export const SignUpDiv = styled.div`
 export const SignupButton = styled.div`
     margin-left: 6px;
     text-decoration-line: underline;
-    color: #FF3358;
+    color: #ff3358;
     font-weight: 700;
-`
+`;
 
 export const LoginDiv = styled.div`
     padding-top: 142px;
