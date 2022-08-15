@@ -6,6 +6,7 @@ export const ScrollDiv = styled.div`
     width: 100%;
     height: fit-content;
     margin-bottom: 30px;
+    overflow: scroll;
 
     h2 {
         font-weight: 500;
@@ -19,6 +20,7 @@ export const ReviewLabel = styled.div`
 
 export const SearchWrapper = styled.div`
     width: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     padding: 17px 22px;

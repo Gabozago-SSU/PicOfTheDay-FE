@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BackHeaderLayout } from "../Header/styles";
-import { BackIc, ActivatedBackIc, TitleBox } from "./styles";
+import { BackIc, ActivatedBackIc, TitleBox, LogoImg } from "./styles";
+import Logo from "../../../assets/HeaderLogo.svg";
 import colors from "styles/colors";
 
 const BackHeader = ({ title, clickHandler }) => {
@@ -10,7 +11,7 @@ const BackHeader = ({ title, clickHandler }) => {
             <BackIc onMouseEnter={() => setClicked(true)} onMouseLeave={() => setClicked(false)} onClick={clickHandler}>
                 <ActivatedBackIc isClicked={isClicked} activeColor={colors.red_100} />
             </BackIc>
-            <TitleBox>{title}</TitleBox>
+            {title ? <TitleBox>{title}</TitleBox> : <LogoImg src={Logo}></LogoImg>}
             <hr
                 style={{
                     position: "absolute",

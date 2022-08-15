@@ -16,12 +16,11 @@ import {
 import { DefaultLayout } from "styles/layout";
 import { Link, useNavigate } from "react-router";
 import { KAKAO_AUTH_URL, GOOGLE_CLIENT_KEY } from "../../privateKey";
-import { GoogleLogin } from "@react-oauth/google";
 import { userState, userPlatform } from "recoil/userState";
 
 import { useGoogleLogin } from "@react-oauth/google";
 import { useRecoilValue, useRecoilState } from "recoil";
-import Authentication, { DecryptAuth } from "utils/ encryption";
+import { DecryptAuth } from "utils/ encryption";
 
 function Login() {
     const navigate = useNavigate();
@@ -56,8 +55,8 @@ function Login() {
 
     const onClickKaKaoLogin = useCallback(() => {
         const auths = _userState !== null ? _userState.map((a) => DecryptAuth(a)) : [];
-        const kakao = "kakao";
-        setPlatform(kakao);
+
+        setPlatform("kakao");
         if (
             auths.find(function (data) {
                 return data.platforms === "kakao";
@@ -65,8 +64,7 @@ function Login() {
         ) {
             window.location.href = KAKAO_AUTH_URL;
         } else {
-            const kakao = "kakao";
-            setPlatform(kakao);
+            setPlatform("kakao");
             navigate("/");
         }
     }, []);

@@ -48,9 +48,9 @@ function SelectChip() {
         //TODO API 연결
         setModalOpen(true);
     };
-    const onClickCloseModal = () => {
+    const onClickCloseModal = (value) => {
         setModalOpen((prev) => !prev);
-        navigate("/");
+        if (value) navigate("/");
     };
 
     return (

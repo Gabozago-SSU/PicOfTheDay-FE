@@ -13,11 +13,14 @@ import CopyIc from "../../assets/copyIc.svg";
 import CategoryChip from "../commons/Chip/CategoryChip";
 import StarIc from "../../assets/SmallStarIc.svg";
 import { requestLikePlace, requestDisikePlace } from "../../apis/index";
+import useCopyClipBoard from "utils/useCopyClipBoard";
 
 const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum, isLike }) => {
     const [onClickCopy, setOnClickCopy] = useState(false);
     const [toastCnt, setToastCnt] = useState(0);
     const [likeState, setLikeState] = useState(isLike ? true : false);
+
+    const [isCopy, onCopy] = useCopyClipBoard();
 
     const onClickHeartHandler = () => {
         try {
@@ -28,11 +31,11 @@ const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum,
                 });
             } else {
                 requestLikePlace({ userId: 1, placeId: placeId }).then((res) => {
-                    console.log(res);
                     setLikeState(true);
                 });
             }
         } catch (err) {
+            //오류가 잡히면 콘솔에 출력하게처리
             console.log(err);
         }
     };
@@ -56,7 +59,6 @@ const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum,
                     setTimeout(() => {
                         setOnClickCopy(false);
                         setToastCnt(0);
-                        console.log("after 1---");
                     }, 1200);
                 }
             }, 90);
@@ -101,7 +103,7 @@ const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum,
                             pointerEvents: `${onClickCopy ? "none" : "auto"}`,
                         }}
                         onClick={() => {
-                            console.log("coclick", onClickCopy);
+                            onCopy(address);
                             if (onClickCopy === false) setOnClickCopy(true);
                         }}
                     ></img>

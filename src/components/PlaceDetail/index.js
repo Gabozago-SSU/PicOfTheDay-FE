@@ -11,15 +11,23 @@ import KeywordChip from "../commons/Chip/KeywordChip";
 import HelpButton from "../commons/Button/HelpButton";
 
 import { PropTypes } from "prop-types";
+import { requestLikeReview } from "apis";
 
 const PlaceDetail = ({ id, profile, nickName, rating, address, img, content, tags, helpNum }) => {
     const [isLike, setLike] = useState(false);
 
     const onClickHelpBtn = () => {
-        setLike(true);
-        setTimeout(() => {
-            setLike(false);
-        }, 500);
+        try {
+            requestLikeReview({ userId: 1, reviewId: id }).then((res) => {
+                console.log(res);
+                setLike(true);
+                setTimeout(() => {
+                    setLike(false);
+                }, 500);
+            });
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
