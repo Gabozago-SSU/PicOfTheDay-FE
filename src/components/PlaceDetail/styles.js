@@ -53,6 +53,7 @@ export const ImgBox = styled.div`
     background-image: url(${(props) => props.img});
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px, rgba(0, 0, 0, 0.05) 0px 2px 2px, rgba(0, 0, 0, 0.05) 0px 4px 4px,
         rgba(0, 0, 0, 0.05) 0px 5px 5px, rgba(0, 0, 0, 0.05) 0px 7px 7px;

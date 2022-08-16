@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const CardList = ({ title, places }) => {
     const navigate = useNavigate();
     const onClickHandler = (id) => {
-        console.log(id);
+        console.log("card", id);
         navigate("/place", { state: id });
     };
     return (
@@ -21,6 +21,7 @@ const CardList = ({ title, places }) => {
                     return (
                         <PhotoCard
                             key={index}
+                            id={index}
                             category={"자연"}
                             rating={5}
                             placeName={"장소 이름"}

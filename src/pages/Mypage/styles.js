@@ -36,6 +36,6 @@ export const MenuBox = styled.div`
     height: 12px;
     background-image: url(${MenuIc});
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     margin-right: 15px;
 `;

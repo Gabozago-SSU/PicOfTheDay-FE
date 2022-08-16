@@ -74,6 +74,7 @@ const PostListWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
+    transform: translate(0, -1px);
 `;
 
 const PostContent = styled.div`

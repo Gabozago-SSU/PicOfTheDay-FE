@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import * as S from "./styles";
 import CardList from "../../components/CardList/CardList";
@@ -6,9 +7,21 @@ import Header from "../../components/commons/Header";
 import Banner from "../../components/Banner";
 
 const HomePage = () => {
+    const navigate = useNavigate();
+    const searchHandler = (submit) => {
+        console.log("home", submit);
+        //TODO 장소 검색 API 호출
+        // if (submit !== null) {
+        //     //결과 있음
+        //     navigate("/place", { state: 1 });
+        // } else {
+        //     navigate("/search-fail", { state: 1 });
+        // }
+        navigate("/search/notfound", { state: submit });
+    };
     return (
         <>
-            <Header />
+            <Header searchHandler={searchHandler} />
             <S.ScrollDiv>
                 <Banner
                     banners={[

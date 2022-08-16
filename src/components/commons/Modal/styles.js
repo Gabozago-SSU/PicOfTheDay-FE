@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "styles/colors";
+import CloseIc from "../../../assets/PinkXIc.svg";
 
 export const ModalLayout = styled.div`
     z-index: 3;
@@ -45,6 +46,27 @@ export const ModalButton = styled.div`
     font-size: 14px;
 
     line-height: 4rem;
+
+    &:active {
+        filter: brightness(80%);
+    }
+`;
+
+export const ModalCloseButton = styled.div`
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-image: url(${CloseIc});
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 1.2rem;
+
+    &:active {
+        background-color: white;
+        filter: brightness(80%);
+    }
 `;
 
 export const Background = styled.div`

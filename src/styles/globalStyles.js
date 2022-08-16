@@ -60,6 +60,7 @@ const customReset = css`
         -webkit-box-shadow: none;
         box-shadow: none;
         -webkit-user-select: text;
+        font-size: 16px;
     }
     /* Chrome autofill 스타일 제거, 커스텀 */
     input:-webkit-autofill,

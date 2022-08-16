@@ -4,6 +4,7 @@ import colors from "../../../styles/colors";
 export const ScrollDiv = styled.div`
     height: fit-content;
     margin-bottom: 30px;
+    z-index: 1;
 `;
 
 export const BannerDiv = styled.div`
@@ -56,6 +57,7 @@ export const CardWrapper = styled.div`
 export const RecomandBox = styled.div`
     padding-left: 17px;
     color: ${colors.black_100};
+
     h1 {
         font-weight: 700;
         font-size: 16px;

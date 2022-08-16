@@ -39,6 +39,13 @@ export const BackIc = styled.div`
     margin-left: 24px;
 `;
 
+export const LogoImg = styled.img`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
+
 export const ActivatedBackIc = ({ isClicked, activeColor }) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -5,16 +5,41 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Heart from "../../assets/HeartCircleIc.svg";
+import EmptyHeart from "../../assets/EmptyHeartIc.svg";
 import Phone from "../../assets/TelePhoneCircleIc.svg";
 import NextIc from "../../assets/BlackNextIc.svg";
 import PlaceIc from "../../assets/PlaceIc.svg";
 import CopyIc from "../../assets/copyIc.svg";
 import CategoryChip from "../commons/Chip/CategoryChip";
 import StarIc from "../../assets/SmallStarIc.svg";
+import { requestLikePlace, requestDisikePlace } from "../../apis/index";
+import useCopyClipBoard from "utils/useCopyClipBoard";
 
-const PlaceInfo = ({ category, phone, name, address, rating, reviewNum }) => {
+const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum, isLike }) => {
     const [onClickCopy, setOnClickCopy] = useState(false);
     const [toastCnt, setToastCnt] = useState(0);
+    const [likeState, setLikeState] = useState(isLike ? true : false);
+
+    const [isCopy, onCopy] = useCopyClipBoard();
+
+    const onClickHeartHandler = () => {
+        try {
+            if (likeState) {
+                requestDisikePlace({ userId: 1, placeId: placeId }).then((res) => {
+                    console.log(res);
+                    setLikeState(false);
+                });
+            } else {
+                requestLikePlace({ userId: 1, placeId: placeId }).then((res) => {
+                    setLikeState(true);
+                });
+            }
+        } catch (err) {
+            //오류가 잡히면 콘솔에 출력하게처리
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
         // eslint-disable-next-line no-lone-blocks
         {
@@ -34,7 +59,6 @@ const PlaceInfo = ({ category, phone, name, address, rating, reviewNum }) => {
                     setTimeout(() => {
                         setOnClickCopy(false);
                         setToastCnt(0);
-                        console.log("after 1---");
                     }, 1200);
                 }
             }, 90);
@@ -56,7 +80,11 @@ const PlaceInfo = ({ category, phone, name, address, rating, reviewNum }) => {
             <CategoryChip type={category} />
             <S.ButtonWrapper>
                 <img src={Phone}></img>
-                <img src={Heart} style={{ marginRight: "17px" }}></img>
+                <img
+                    src={likeState ? Heart : EmptyHeart}
+                    style={{ marginRight: "17px" }}
+                    onClick={onClickHeartHandler}
+                ></img>
             </S.ButtonWrapper>
             <h1 style={{ fontWeight: 700, fontSize: "24px", lineHeight: "35px", paddingTop: "6px" }}>{name}</h1>
             <S.InfoWrapper style={{ marginTop: "9px" }}>
@@ -75,7 +103,7 @@ const PlaceInfo = ({ category, phone, name, address, rating, reviewNum }) => {
                             pointerEvents: `${onClickCopy ? "none" : "auto"}`,
                         }}
                         onClick={() => {
-                            console.log("coclick", onClickCopy);
+                            onCopy(address);
                             if (onClickCopy === false) setOnClickCopy(true);
                         }}
                     ></img>
