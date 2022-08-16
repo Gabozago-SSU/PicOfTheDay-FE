@@ -19,7 +19,7 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
                 .then((res) => {
                     if (res.data === []) setIsSuccess(false);
                     else setIsSuccess(true);
-                    console.log(res.data);
+
                     setResults(res.data);
                 })
                 .catch((e) => {
@@ -29,7 +29,6 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
         } catch (err) {
             console.log(err);
         } finally {
-            console.log(isSuccess);
         }
     };
 

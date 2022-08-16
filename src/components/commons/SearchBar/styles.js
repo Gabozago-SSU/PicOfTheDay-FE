@@ -7,6 +7,8 @@ export const SearchBarLayout = styled.div`
     margin: 0;
     display: flex;
     flex-direction: column;
+    z-index: 995;
+    background-color: ${colors.bgColor};
 `;
 
 export const SearchNotfoundBox = styled.div`

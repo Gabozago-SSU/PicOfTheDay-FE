@@ -68,6 +68,7 @@ const PostPoPularList = ({ placeId, totPost }) => {
                         <PlaceDetail
                             key={index}
                             id={index}
+                            userId={p.userId}
                             profile={
                                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLmOQYNXeFqlSq-DIIXj23q2YnEkBpbgIW3w&usqp=CAU"
                             }
@@ -77,7 +78,7 @@ const PostPoPularList = ({ placeId, totPost }) => {
                             nickName={p.userName}
                             rating={p.rating ? p.rating : 0}
                             address={null}
-                            content={"어디든 사실 가고 싶어요"}
+                            content={p.content}
                             helpNum={p.likeCnt}
                         ></PlaceDetail>
                     );

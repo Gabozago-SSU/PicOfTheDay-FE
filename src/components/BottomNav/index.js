@@ -17,7 +17,7 @@ const BottomNav = () => {
             return null;
         else
             return (
-                <S.BottomNav ref={navbar}>
+                <S.BottomNav ref={navbar} className={"bottom-navigator"}>
                     <Nav className="nav-container">
                         <NavItem>
                             <NavLink to="/" className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}>

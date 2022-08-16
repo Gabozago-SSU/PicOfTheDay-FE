@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./styles";
@@ -11,10 +11,27 @@ import Banner2 from "../../assets/bannerImg2.svg";
 import Banner3 from "../../assets/bannerImg3.svg";
 import Banner4 from "../../assets/bannerImg4.svg";
 import { useUserRecoilValue } from "recoil/userState";
+import { requestCurations } from "apis";
 
 const HomePage = () => {
     const navigate = useNavigate();
     const user = useUserRecoilValue();
+    const [currations, setCurrations] = useState([]);
+
+    useEffect(() => {
+        initCuration();
+    }, []);
+
+    const initCuration = () => {
+        try {
+            requestCurations().then((res) => {
+                setCurrations(res.data);
+                console.log(res.data);
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const searchHandler = (value) => {
         //TODO 장소 검색 API 호출
@@ -30,9 +47,9 @@ const HomePage = () => {
             <Header searchHandler={searchHandler} />
             <S.ScrollDiv>
                 <Banner banners={[Banner1, Banner2, Banner3, Banner4]} />
-                <CardList title={"여름이었다"} places={[1, 2, 3, 4, 5, 6, 7, 8]}></CardList>
-                <CardList title={"여름이었다"} places={[1, 2, 3, 4, 5, 6, 7, 8]}></CardList>
-                <CardList title={"여름이었다"} places={[1, 2, 3, 4, 5, 6, 7, 8]}></CardList>
+                {currations.map((c, index) => {
+                    return <CardList key={index} id={c.id} title={c.subtitle} places={c.places}></CardList>;
+                })}
             </S.ScrollDiv>
         </>
     );

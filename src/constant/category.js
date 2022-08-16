@@ -14,7 +14,7 @@ export const getIconByType = (type) => {
             return CafeIc;
         case "전시회":
             return ExhibitionIc;
-        case "페스티벌":
+        case "축제":
             return FestivalIc;
         case "자연":
             return NatureIc;
