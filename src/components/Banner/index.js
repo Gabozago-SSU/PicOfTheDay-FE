@@ -22,30 +22,28 @@ const Banner = ({ banners }) => {
     };
 
     return (
-        <>
-            <S.BannerLayout>
-                <S.BannerContainer>
-                    <S.StyledSlider
-                        {...settings}
-                        initialSlide={0}
-                        beforeChange={(slide, newSlide) => setCurrentSlide(newSlide)}
-                    >
-                        {banners.map((banner) => {
-                            return (
-                                <div key={banner}>
-                                    <S.BannerWrapper img={banner}></S.BannerWrapper>
-                                </div>
-                            );
-                        })}
-                    </S.StyledSlider>
-                </S.BannerContainer>
+        <S.BannerLayout>
+            <S.BannerContainer>
+                <S.StyledSlider
+                    {...settings}
+                    initialSlide={0}
+                    beforeChange={(slide, newSlide) => setCurrentSlide(newSlide)}
+                >
+                    {banners.map((banner) => {
+                        return (
+                            <div key={banner}>
+                                <S.BannerWrapper img={banner}></S.BannerWrapper>
+                            </div>
+                        );
+                    })}
+                </S.StyledSlider>
+            </S.BannerContainer>
 
-                <S.CounterDiv>
-                    <p style={{ color: "white" }}>{(currentSlide + 1).toString().padStart(2, "0")}</p>
-                    <p style={{ color: "#CDCDCD" }}> / {banners.length.toString().padStart(2, "0")}</p>
-                </S.CounterDiv>
-            </S.BannerLayout>
-        </>
+            <S.CounterDiv>
+                <p style={{ color: "white" }}>{(currentSlide + 1).toString().padStart(2, "0")}</p>
+                <p style={{ color: "#CDCDCD" }}> / {banners.length.toString().padStart(2, "0")}</p>
+            </S.CounterDiv>
+        </S.BannerLayout>
     );
 };
 

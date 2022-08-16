@@ -33,7 +33,6 @@ export const placeValue = selectorFamily({
 export const popularPlaceListQuery = selectorFamily({
     key: "placePopularValue",
     get: (id) => async () => {
-        console.log("popular", id);
         try {
             const response = await requestPopularPlace(id);
             return response.data;
@@ -52,7 +51,6 @@ export const recentPlaceListQuery = selectorFamily({
     key: "placeCurrentValue",
     get: (id) => async () => {
         try {
-            console.log("recent", id);
             const response = await requestRecentPlace(id);
             return response.data;
         } catch (error) {

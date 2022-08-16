@@ -6,12 +6,15 @@ export const BannerLayout = styled.div`
     position: relative;
     margin-top: 53px;
     width: 100%;
-    min-height: 210px;
+    height: 12.875rem;
     padding: 0;
     margin-bottom: 0;
     background-color: ${colors.black_100};
     display: flex;
     flex-direction: column;
+    @media screen and (min-width: 768px) {
+        height: 415px;
+    }
 `;
 
 export const StyledSlider = styled(Slider)`
@@ -21,9 +24,13 @@ export const StyledSlider = styled(Slider)`
     .slick-slide div {
         outline: none;
         width: 100%;
-        min-height: 230px;
+        height: 12.875rem;
         padding: 0;
         margin: 0;
+
+        @media screen and (min-width: 768px) {
+            height: 415px;
+        }
     }
     .slick-prev::before,
     .slick-next::before {
@@ -41,13 +48,14 @@ export const BannerContainer = styled.div`
 
 export const BannerWrapper = styled.div`
     width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    height: 12.875rem;
     background-image: url(${(props) => props.img});
-    background-size: cover;
-    background-repeat: no-repeat;
     background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    @media screen and (min-width: 768px) {
+        height: 415px;
+    }
 `;
 export const BannerImg = styled.img`
     width: 100vw;
