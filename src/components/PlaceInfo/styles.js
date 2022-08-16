@@ -81,6 +81,8 @@ export const StyledToastContainer = styled(ToastContainer).attrs({
         line-height: 17px;
         color: red !important;
         padding: 12px;
+        z-index: 999;
+        padding-bottom: 70px;
     }
     .Toastify__toast {
         background: #f6e2e6;

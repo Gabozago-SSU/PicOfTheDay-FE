@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import colors from "styles/colors";
+import { useNavigate } from "react-router-dom";
 
 export const feedArray1 = [
     {
@@ -102,11 +103,19 @@ export const PostlistBox = styled.div`
 `;
 
 function BestFeedPost() {
+    const navigate = useNavigate();
     return (
         <>
             <PostlistBox>
                 {feedArray1.map(({ reviewid, image }) => (
-                    <StyleBox key={reviewid} image={image}></StyleBox>
+                    <StyleBox
+                        key={reviewid}
+                        image={image}
+                        // 저기 id 에 1대신 리뷰아이디 넘겨주기!
+                        onClick={() => {
+                            navigate("/feed/detail", { state: { id: 1 } });
+                        }}
+                    ></StyleBox>
                 ))}
             </PostlistBox>
         </>

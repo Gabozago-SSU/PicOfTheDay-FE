@@ -19,8 +19,8 @@ const Header = ({ searchHandler }) => {
             ) : (
                 <SearchHeaderLayout>
                     <SearchBar submitHandler={onClickSearch} />
-                    <p onClick={() => setDefault((prev) => !prev)}>cancel</p>
-                    {/* <img src={Back} onClick={() => setDefault((prev) => !prev)}></img> */}
+                    {/* <p onClick={() => setDefault((prev) => !prev)}>cancel</p> */}
+                    <img src={Back} onClick={() => setDefault((prev) => !prev)}></img>
                 </SearchHeaderLayout>
             )}
         </>

@@ -14,7 +14,7 @@ export const requestSearchPlace = (search) => instance.get(`/search?placename=${
 export const requestPlace = (placeId) => instance.get(`/place?placeId=${placeId}`);
 export const requestLikePlace = (params) => instance.post(`/place/like`, params);
 /* userId, placeId */
-export const requestDisikePlace = (params) => instance.post(`/place/unlike`, params);
+export const requestDisikePlace = (params) => instance.delete(`/place/unlike`, params);
 /* userId, placeId */
 export const requestPopularPlace = (placeId) => instance.get(`/place/popular?placeId=${placeId}`);
 export const requestRecentPlace = (placeId) => instance.get(`/place/popular?placeId=${placeId}`);

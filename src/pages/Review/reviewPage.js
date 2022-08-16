@@ -21,7 +21,7 @@ import OkButton from "components/commons/Button/okButton";
 import SearchChip from "components/commons/Chip/SearchChip";
 import BalloonTag from "components/BalloonTag";
 import Modal from "components/commons/Modal";
-import { requestPostReview } from "apis";
+import { requestPostReview, requestSearchFeed } from "apis";
 
 const ReviewPage = () => {
     const inputTip = useRef();
@@ -131,6 +131,14 @@ const ReviewPage = () => {
         if (imgs.length > 0 && place && keywords.length > 0 && content) return true;
         else return false;
     };
+
+    useEffect(() => {
+        try {
+            requestSearchFeed("피크닉<꾸까,꽃과의 공존>").then((res) => console.log("search result : ", res));
+        } catch (err) {
+            console.log(err);
+        }
+    }, []);
 
     return (
         <ScrollDiv>

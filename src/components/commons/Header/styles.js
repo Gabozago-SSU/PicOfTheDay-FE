@@ -16,6 +16,7 @@ export const HeaderLayout = styled.div`
     background-size: auto;
     background-position: center;
     background-repeat: no-repeat;
+
     z-index: 998;
     //box-shadow: 0px 3px 5px ${colors.black_10};
 `;
