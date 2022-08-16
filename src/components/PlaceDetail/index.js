@@ -13,7 +13,7 @@ import HelpButton from "../commons/Button/HelpButton";
 import { PropTypes } from "prop-types";
 import { requestLikeReview } from "apis";
 
-const PlaceDetail = ({ id, profile, nickName, rating, address, img, content, tags, helpNum }) => {
+const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, content, tags, helpNum }) => {
     const [isLike, setLike] = useState(false);
 
     const onClickHelpBtn = () => {
@@ -54,13 +54,7 @@ const PlaceDetail = ({ id, profile, nickName, rating, address, img, content, tag
                     </div>
                 </S.InfoWrapper>
             ) : null}
-            <S.ImgBox
-                img={
-                    "http://storage.enuri.info/pic_upload/knowbox2/202003/05524434720200328b50ba606-bf91-4c55-92df-3aecbc1c37e5.jpg"
-                }
-            >
-                {isLike ? <S.HeartBox isLiked={isLike}></S.HeartBox> : null}
-            </S.ImgBox>
+            <S.ImgBox img={img}>{isLike ? <S.HeartBox isLiked={isLike}></S.HeartBox> : null}</S.ImgBox>
             <S.ContentBox>{content}</S.ContentBox>
             {tags ? (
                 <S.TagWrapper>

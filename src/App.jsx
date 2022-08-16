@@ -15,6 +15,7 @@ import SelectChip from "pages/SelectTagChip/SelectChip";
 import ProfilePage from "./pages/Profile/profilePage";
 import NotFound from "pages/NotFound";
 import SearchNotFoundPage from "pages/SearchNotFound";
+import FeedDetailPage from "pages/Feed/feedDetailPage";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
                     <Route exact={true} path="/search/notfound" element={<SearchNotFoundPage />}></Route>
                     <Route exact={true} path="/map" element={<MapPage />}></Route>
                     <Route exact={true} path="/feed" element={<FeedPage />}></Route>
+                    <Route exact={true} path="/feed/detail" element={<FeedDetailPage />}></Route>
                     <Route exact={true} path="/review" element={<ReviewPage />}></Route>
                     <Route exact={true} path="/mypage" element={<MyPage />}></Route>
                     <Route exact={true} path="/login" element={<Login />}></Route>
