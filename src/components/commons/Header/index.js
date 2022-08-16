@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import SearchBar from "../SearchBar/searchBar";
+
 import { HeaderLayout, SearchHeaderLayout } from "./styles";
 import { SearchIc } from "./styles";
 import Back from "../../../assets/PinkXIc.svg";
+import ResultSearchBar from "../SearchBar/ResultSearchBar";
 
 const Header = ({ searchHandler }) => {
     const [isDefault, setDefault] = useState(true);
-    const onClickSearch = (text) => {
-        searchHandler(text);
+    const onClickSearch = (value) => {
+        searchHandler(value);
     };
-
+    const contentHandler = (text) => {
+        console.log("입력", text);
+    };
     return (
         <>
             {isDefault ? (
@@ -18,9 +21,9 @@ const Header = ({ searchHandler }) => {
                 </HeaderLayout>
             ) : (
                 <SearchHeaderLayout>
-                    <SearchBar submitHandler={onClickSearch} />
+                    <ResultSearchBar itemClickHandler={onClickSearch} contentHandler={contentHandler} />
                     {/* <p onClick={() => setDefault((prev) => !prev)}>cancel</p> */}
-                    <img src={Back} onClick={() => setDefault((prev) => !prev)}></img>
+                    <img src={Back} onClick={() => setDefault((prev) => !prev)} className={"header-back"}></img>
                 </SearchHeaderLayout>
             )}
         </>

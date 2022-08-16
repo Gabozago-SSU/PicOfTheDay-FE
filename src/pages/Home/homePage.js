@@ -15,18 +15,15 @@ import { useUserRecoilValue } from "recoil/userState";
 const HomePage = () => {
     const navigate = useNavigate();
     const user = useUserRecoilValue();
-    console.log(user.authId);
-    const searchHandler = (submit) => {
-        console.log("home", submit);
-        //TODO 장소 검색 API 호출
-        // if (submit !== null) {
-        //     //결과 있음
-        //     navigate("/place", { state: 1 });
-        // } else {
-        //     navigate("/search-fail", { state: 1 });
-        // }
 
-        navigate("/search/notfound", { state: submit });
+    const searchHandler = (value) => {
+        //TODO 장소 검색 API 호출
+        if (value !== null) {
+            //결과 있음
+            navigate("/place", { state: value.placeId });
+        } else {
+            navigate("/search/notfound", { state: 1 });
+        }
     };
     return (
         <>

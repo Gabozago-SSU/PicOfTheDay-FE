@@ -13,7 +13,6 @@ const BottomNav = () => {
     const [bottom, setBottomState] = useRecoilState(bottomState);
 
     const navHandler = (path) => {
-        console.log(path);
         if (path === "/login" || path.includes("signup") || bottom === "Notfound" || path === "/onboarding")
             return null;
         else
@@ -34,7 +33,9 @@ const BottomNav = () => {
                         </NavItem>
                         <NavItem>
                             <NavLink to="/feed" className={`nav-link ${location.pathname === "/feed" ? "active" : ""}`}>
-                                <S.FeedIcon color={location.pathname === "/feed" ? colors.red_80 : colors.black_80} />
+                                <S.FeedIcon
+                                    color={location.pathname.includes("/feed") ? colors.red_80 : colors.black_80}
+                                />
                                 <span>피드</span>
                             </NavLink>
                         </NavItem>

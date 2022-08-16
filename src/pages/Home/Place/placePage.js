@@ -22,7 +22,6 @@ const PlacePage = () => {
     const { state } = useLocation();
     const placeId = state;
     const user = useUserRecoilValue();
-    console.log(user);
 
     const places = [1, 2, 3, 4, 5, 6, 7, 8];
     const keywords = [
@@ -45,7 +44,7 @@ const PlacePage = () => {
     switch (placeLoadable.state) {
         case "hasValue":
             place = placeLoadable.contents;
-            console.log(place);
+
             break;
         case "hasError":
             place = placeLoadable.contents.message;

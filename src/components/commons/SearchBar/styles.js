@@ -9,6 +9,30 @@ export const SearchBarLayout = styled.div`
     flex-direction: column;
 `;
 
+export const SearchNotfoundBox = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    h1 {
+        padding: 12px;
+        font-size: 12px;
+        color: ${colors.black_30};
+    }
+
+    p {
+        text-decoration: underline;
+        color: ${colors.red_100};
+        padding: 12px 0px;
+        font-size: 12px;
+
+        &:active {
+            filter: brightness(80%);
+        }
+    }
+`;
+
 export const StyleSearchBar = styled.input`
     width: 100%;
     box-sizing: border-box;
@@ -52,17 +76,20 @@ export const SearchBox = styled.div`
 export const SearchListWrapper = styled.ul`
     width: 85%;
     list-style: none;
-    max-height: 4rem;
+    max-height: 6rem;
     margin: 0 auto;
     border-radius: 0 0 4px 4px;
     overflow-y: scroll;
+
     li {
-        font-size: 14px;
+        font-size: 13px;
         padding: 6px;
-        background-color: ${colors.bgColor};
+        font-weight: 400;
+        color: ${colors.black_80};
 
         &:active {
             filter: brightness(90%);
+            color: ${colors.red_100};
         }
     }
 `;

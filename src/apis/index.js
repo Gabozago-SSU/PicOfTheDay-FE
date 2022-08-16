@@ -8,7 +8,7 @@ export const requestLogin = (platform) => instance.post(`/oauth2/authorization/$
 /*홈*/
 export const requestBanner = () => instance.get("/banner");
 export const requestCurations = () => instance.get("/curation");
-export const requestSearchPlace = (search) => instance.get(`/search?placename=${search}`);
+export const requestSearchPlace = (search) => instance.get(`/search?search=${search}`);
 
 /*장소상세*/
 export const requestPlace = (placeId) => instance.get(`/place?placeId=${placeId}`);
