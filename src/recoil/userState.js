@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom, selector, useRecoilValue } from "recoil";
 import { recoilPersist } from "recoil-persist";
 import { DecryptAuth } from "utils/ encryption";
 
@@ -32,7 +32,9 @@ export const loginUser = selector({
         const platform = get(userPlatform);
         const auths = list.map((a) => DecryptAuth(a));
 
-        if (platform === "google") return auths.filter((i) => i.platforms === "google");
-        else return auths.filter((i) => i.platforms === "kakao");
+        if (platform === "google") return auths.filter((i) => i.platforms === "google")[0];
+        else return auths.filter((i) => i.platforms === "kakao")[0];
     },
 });
+
+export const useUserRecoilValue = () => useRecoilValue(loginUser);

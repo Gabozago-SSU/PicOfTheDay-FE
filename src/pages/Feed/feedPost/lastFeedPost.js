@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import colors from "styles/colors";
 
@@ -103,11 +104,16 @@ export const PostlistBox = styled.div`
 `;
 
 function LastFeedPost() {
+    const navigate = useNavigate();
     return (
         <>
             <PostlistBox>
                 {feedArray2.map(({ reviewid, image }) => (
-                    <StyleBox key={reviewid} image={image}></StyleBox>
+                    <StyleBox
+                        key={reviewid}
+                        image={image}
+                        onClick={() => navigate("/feed/detail", { state: { id: 1 } })}
+                    ></StyleBox>
                 ))}
             </PostlistBox>
         </>

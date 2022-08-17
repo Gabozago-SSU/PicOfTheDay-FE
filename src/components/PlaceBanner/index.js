@@ -32,13 +32,15 @@ const PlaceBanner = ({ banners }) => {
                         initialSlide={0}
                         beforeChange={(slide, newSlide) => setCurrentSlide(newSlide)}
                     >
-                        {banners.map((banner) => {
-                            return (
-                                <div key={banner}>
-                                    <S.BannerWrapper img={banner}></S.BannerWrapper>
-                                </div>
-                            );
-                        })}
+                        {banners
+                            ? banners.map((banner) => {
+                                  return (
+                                      <div key={banner}>
+                                          <S.BannerWrapper img={banner}></S.BannerWrapper>
+                                      </div>
+                                  );
+                              })
+                            : null}
                     </S.StyledSlider>
                 </S.BannerContainer>
 

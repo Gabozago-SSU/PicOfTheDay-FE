@@ -16,6 +16,7 @@ export const HeaderLayout = styled.div`
     background-size: auto;
     background-position: center;
     background-repeat: no-repeat;
+
     z-index: 998;
     //box-shadow: 0px 3px 5px ${colors.black_10};
 `;
@@ -47,4 +48,36 @@ export const BackHeaderLayout = styled.div`
     background-repeat: no-repeat;
     z-index: 998;
     //box-shadow: 0px 3px 5px ${colors.black_10};
+`;
+
+export const SearchHeaderLayout = styled.div`
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 768px;
+    height: fit-content;
+    float: top;
+    position: fixed;
+    background-color: white;
+    z-index: 998;
+    padding: 11px;
+    justify-content: center;
+    gap: 4px;
+    //box-shadow: 0px 3px 5px ${colors.black_10};
+    p {
+        padding: 5px;
+        text-align: center;
+        font-size: 13px;
+
+        &:active {
+            color: ${colors.red_100};
+        }
+    }
+
+    .header-back {
+        height: 30px;
+        top: 0;
+        right: 0;
+        padding: 4px;
+    }
 `;

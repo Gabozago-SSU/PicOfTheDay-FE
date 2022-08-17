@@ -1,12 +1,32 @@
-import React from "react";
-import { HeaderLayout } from "./styles";
-import { SearchIc } from "./styles";
+import React, { useState } from "react";
 
-const Header = () => {
+import { HeaderLayout, SearchHeaderLayout } from "./styles";
+import { SearchIc } from "./styles";
+import Back from "../../../assets/PinkXIc.svg";
+import ResultSearchBar from "../SearchBar/ResultSearchBar";
+
+const Header = ({ searchHandler }) => {
+    const [isDefault, setDefault] = useState(true);
+    const onClickSearch = (value) => {
+        searchHandler(value);
+    };
+    const contentHandler = (text) => {
+        console.log("입력", text);
+    };
     return (
-        <HeaderLayout>
-            <SearchIc />
-        </HeaderLayout>
+        <>
+            {isDefault ? (
+                <HeaderLayout>
+                    <SearchIc onClick={() => setDefault((prev) => !prev)} />
+                </HeaderLayout>
+            ) : (
+                <SearchHeaderLayout>
+                    <ResultSearchBar itemClickHandler={onClickSearch} contentHandler={contentHandler} />
+                    {/* <p onClick={() => setDefault((prev) => !prev)}>cancel</p> */}
+                    <img src={Back} onClick={() => setDefault((prev) => !prev)} className={"header-back"}></img>
+                </SearchHeaderLayout>
+            )}
+        </>
     );
 };
 export default React.memo(Header);

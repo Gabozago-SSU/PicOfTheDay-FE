@@ -8,7 +8,7 @@ export const BannerLayout = styled.div`
     width: 100%;
     height: 320px;
 
-    background-color: ${colors.black_40};
+    background-color: ${colors.black_30};
     display: flex;
     flex-direction: column;
 `;
@@ -86,4 +86,3 @@ export const NextArrowIcon = styled.div`
 export const ArrowIcon = styled(NextArrowIcon)`
     left: 6px;
 `;
-

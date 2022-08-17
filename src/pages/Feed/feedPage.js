@@ -1,17 +1,23 @@
 import React from "react";
-import SearchBar from "components/commons/SearchBar/searchBar";
+import ResultSearchBar from "components/commons/SearchBar/ResultSearchBar";
 import TabList from "./feedTab/tablist";
 import { ScrollDiv } from "./styles";
+import { SearchHeaderLayout } from "./styles";
 
 const FeedPage = () => {
+    const onClickSearch = (value) => {};
+    const contentHandler = (text) => {
+        console.log("입력", text);
+    };
     return (
-        <ScrollDiv>
-            <div style={{ width: "100%", padding: "  14px" }}>
-                <SearchBar />
-            </div>
-
-            <TabList />
-        </ScrollDiv>
+        <>
+            <ScrollDiv>
+                <SearchHeaderLayout>
+                    <ResultSearchBar itemClickHandler={onClickSearch} contentHandler={contentHandler} />
+                </SearchHeaderLayout>
+                <TabList />
+            </ScrollDiv>
+        </>
     );
 };
 

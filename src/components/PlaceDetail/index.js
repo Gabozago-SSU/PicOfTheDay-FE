@@ -11,21 +11,35 @@ import KeywordChip from "../commons/Chip/KeywordChip";
 import HelpButton from "../commons/Button/HelpButton";
 
 import { PropTypes } from "prop-types";
+import { requestLikeReview } from "apis";
+import { useNavigate } from "react-router-dom";
 
-const PlaceDetail = ({ id, profile, nickName, rating, address, img, content, tags, helpNum }) => {
+const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, content, tags, helpNum }) => {
     const [isLike, setLike] = useState(false);
+    const navigate = useNavigate();
 
     const onClickHelpBtn = () => {
-        setLike(true);
-        setTimeout(() => {
-            setLike(false);
-        }, 500);
+        try {
+            requestLikeReview({ userId: 1, reviewId: id }).then((res) => {
+                console.log(res);
+                setLike(true);
+                setTimeout(() => {
+                    setLike(false);
+                }, 500);
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const onClickProfile = () => {
+        navigate("/profile", { state: { id: userId } });
     };
 
     return (
         <S.StyledLayout>
             <S.InfoWrapper>
-                <ProfileImg img={profile}></ProfileImg>
+                <ProfileImg img={profile} onClick={onClickProfile}></ProfileImg>
                 <S.NameBox>{nickName}</S.NameBox>
                 <div style={{ height: "20px" }}>
                     <img src={StarIc} style={{ width: "16px", alignSelf: "center" }}></img>
