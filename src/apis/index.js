@@ -20,6 +20,7 @@ export const requestPopularPlace = (placeId) => instance.get(`/place/popular?pla
 export const requestRecentPlace = (placeId) => instance.get(`/place/popular?placeId=${placeId}`);
 export const requestSimilarPlace = (placeId) => instance.get(`/place/popular?placeId=${placeId}`);
 export const requestLikeReview = (params) => instance.post("/review/like", params);
+export const requestDislikeReview = (params) => instance.delete("/review/unlike", params);
 
 /*피드*/
 export const requestSearchFeed = (search) => instance.get(`/feed/search?search=${search}`);
