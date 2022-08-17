@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as S from "./styles";
@@ -11,31 +11,45 @@ import Banner2 from "../../assets/bannerImg2.svg";
 import Banner3 from "../../assets/bannerImg3.svg";
 import Banner4 from "../../assets/bannerImg4.svg";
 import { useUserRecoilValue } from "recoil/userState";
+import { requestCurations } from "apis";
 
 const HomePage = () => {
     const navigate = useNavigate();
     const user = useUserRecoilValue();
-    console.log(user.authId);
-    const searchHandler = (submit) => {
-        console.log("home", submit);
-        //TODO 장소 검색 API 호출
-        // if (submit !== null) {
-        //     //결과 있음
-        //     navigate("/place", { state: 1 });
-        // } else {
-        //     navigate("/search-fail", { state: 1 });
-        // }
+    const [currations, setCurrations] = useState([]);
 
-        navigate("/search/notfound", { state: submit });
+    useEffect(() => {
+        initCuration();
+    }, []);
+
+    const initCuration = () => {
+        try {
+            requestCurations().then((res) => {
+                setCurrations(res.data);
+                console.log(res.data);
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const searchHandler = (value) => {
+        //TODO 장소 검색 API 호출
+        if (value !== null) {
+            //결과 있음
+            navigate("/place", { state: value.placeId });
+        } else {
+            navigate("/search/notfound", { state: 1 });
+        }
     };
     return (
         <>
             <Header searchHandler={searchHandler} />
             <S.ScrollDiv>
                 <Banner banners={[Banner1, Banner2, Banner3, Banner4]} />
-                <CardList title={"여름이었다"} places={[1, 2, 3, 4, 5, 6, 7, 8]}></CardList>
-                <CardList title={"여름이었다"} places={[1, 2, 3, 4, 5, 6, 7, 8]}></CardList>
-                <CardList title={"여름이었다"} places={[1, 2, 3, 4, 5, 6, 7, 8]}></CardList>
+                {currations.map((c, index) => {
+                    return <CardList key={index} id={c.id} title={c.subtitle} places={c.places}></CardList>;
+                })}
             </S.ScrollDiv>
         </>
     );

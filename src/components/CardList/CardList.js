@@ -4,7 +4,7 @@ import NextIc from "../../assets/NextIc.svg";
 import PhotoCard from "../PhotoCard";
 import { useNavigate } from "react-router-dom";
 
-const CardList = ({ title, places }) => {
+const CardList = ({ id, title, places }) => {
     const navigate = useNavigate();
     const onClickHandler = (id) => {
         console.log("card", id);
@@ -21,10 +21,11 @@ const CardList = ({ title, places }) => {
                     return (
                         <PhotoCard
                             key={index}
-                            id={index}
-                            category={"자연"}
-                            rating={5}
-                            placeName={"장소 이름"}
+                            id={place.placeId}
+                            img={place.image}
+                            category={place.category}
+                            rating={place.rate}
+                            placeName={"이름을 깜빡했군요"}
                             onClick={onClickHandler}
                         />
                     );

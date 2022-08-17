@@ -28,6 +28,7 @@ const ReviewPage = () => {
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState("");
     const [place, setPlace] = useState("");
+    const [tempPlace, setTempPlace] = useState("");
     const [keywords, setKeywords] = useState([]);
     const [imgs, setImgs] = useState([]);
     const [toastCnt, setToastCnt] = useState(0);
@@ -44,12 +45,8 @@ const ReviewPage = () => {
 
     function placeHandler(content) {
         console.log("location", content);
+        setTempPlace(content);
         //TODO API 장소 확인
-        setPlace(content);
-        const apiResult = false;
-        if (!apiResult) {
-            setModalOpen(true);
-        }
     }
 
     const keywordsHandler = (content) => {
@@ -74,8 +71,12 @@ const ReviewPage = () => {
 
     const onClickCloseModal = (value) => {
         setModalOpen((prev) => !prev);
+
+        console.log(value);
         if (value === false) {
             setPlace("");
+        } else {
+            setPlace(tempPlace);
         }
     };
 
@@ -125,34 +126,36 @@ const ReviewPage = () => {
             });
     };
 
-    const onClickItemHandler = () => {};
+    const onClickItemHandler = (e) => {
+        console.log(e);
+        //여기 아이디 값들어옴
+        setPlace(tempPlace);
+    };
 
     const validaton = () => {
         if (imgs.length > 0 && place && keywords.length > 0 && content) return true;
         else return false;
     };
 
-    useEffect(() => {
-        try {
-            requestSearchFeed("피크닉<꾸까,꽃과의 공존>").then((res) => console.log("search result : ", res));
-        } catch (err) {
-            console.log(err);
-        }
-    }, []);
-
     return (
         <ScrollDiv>
             <BackHeader title={"후기 작성"} />
             {isModalOpen ? (
                 <Modal closeModal={onClickCloseModal} buttonText={"요청하기"}>
-                    <h1 style={{ marginBottom: "13px" }}> '{place}' 는 등록되지 않은 장소 입니다.</h1>
+                    <h1 style={{ marginBottom: "13px" }}> '{tempPlace}' 는 등록되지 않은 장소 입니다.</h1>
                     <p>장소 등록을 요청해주세요!</p>
                 </Modal>
             ) : null}
             <UploadImg imgHandler={imgHandler} />
             <SearchWrapper>
                 <div>위치</div>
-                <SearchBar submitHandler={placeHandler} isFocus={true} />
+                <ResultSearchBar
+                    itemClickHandler={onClickItemHandler}
+                    contentHandler={placeHandler}
+                    type={"button"}
+                    requestHandler={() => setModalOpen(true)}
+                />
+
                 {place ? <SearchChip onClick={removePlaceHandler}>{place}</SearchChip> : null}
             </SearchWrapper>
             <DefaultLine />
@@ -161,16 +164,7 @@ const ReviewPage = () => {
                     <div>키워드</div>
                     <BalloonTag text={"사진과 어울리는 태그를 달아보세요!"}></BalloonTag>
                 </div>
-
-                <ResultSearchBar
-                    submitHandler={keywordsHandler}
-                    list={[
-                        { keyword: "keyword1", id: 1 },
-                        { keyword: "keyword2", id: 2 },
-                        { keyword: "keyword3", id: 3 },
-                    ]}
-                    itemHandler={onClickItemHandler}
-                />
+                <SearchBar submitHandler={keywordsHandler} isFocus={true} />
                 <KewordsWrapper>
                     {keywords.map((keyword, index) => {
                         return (

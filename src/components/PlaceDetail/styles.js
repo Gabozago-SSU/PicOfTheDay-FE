@@ -101,7 +101,7 @@ const fadeOut = keyframes`
 export const ContentBox = styled.div`
     width: 100%;
     height: fit-content;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 10px;
 
     font-weight: 400;
