@@ -9,7 +9,7 @@ export const BannerLayout = styled.div`
     height: 12.875rem;
     padding: 0;
     margin-bottom: 0;
-    background-color: ${colors.black_100};
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     @media screen and (min-width: 768px) {
