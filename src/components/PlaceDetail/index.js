@@ -10,21 +10,29 @@ import NextIc from "../../assets/PinkNextIc.svg";
 import KeywordChip from "../commons/Chip/KeywordChip";
 import HelpButton from "../commons/Button/HelpButton";
 
-import { PropTypes } from "prop-types";
 import { requestLikeReview } from "apis";
 import { useNavigate } from "react-router-dom";
 import { requestDislikeReview } from "../../apis/index";
+import { DefaultLayout } from "../../styles/layout";
+import Modal from "components/commons/Modal";
+import { useUserRecoilValue } from "recoil/userState";
 
 const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, content, tags, helpNum, like }) => {
     const [isLike, setLike] = useState(false);
     const [helpState, setHelpState] = useState(like);
     const navigate = useNavigate();
-    console.log(tags);
+    const user = useUserRecoilValue();
+    const [isAuthModalOpen, setAuthtModalOpen] = useState(false);
 
     const onClickHelpBtn = () => {
+        if (!user) {
+            setAuthtModalOpen(true);
+            console.log("not user");
+            return;
+        }
         try {
             if (!helpState)
-                requestLikeReview({ userId: 1, reviewId: id }).then((res) => {
+                requestLikeReview({ userId: user.authId, reviewId: id }).then((res) => {
                     console.log(res);
                     setLike(true);
                     setHelpState(true);
@@ -33,7 +41,7 @@ const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, cont
                     }, 500);
                 });
             else {
-                requestDislikeReview({ userId: 1, reviewId: id }).then((res) => {
+                requestDislikeReview({ userId: user.authId, reviewId: id }).then((res) => {
                     setLike(false);
                     setHelpState(false);
                     console.log(res);
@@ -48,8 +56,24 @@ const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, cont
         navigate("/profile", { state: { id: userId } });
     };
 
+    const onClickAuthModal = (value) => {
+        if (value) {
+            setAuthtModalOpen(false);
+        } else {
+            setAuthtModalOpen(false);
+        }
+    };
+
     return (
         <S.StyledLayout>
+            {isAuthModalOpen ? (
+                <DefaultLayout>
+                    <Modal closeModal={onClickAuthModal} buttonText={"로그인 하러가기 "}>
+                        <h1 style={{ marginBottom: "13px" }}> 아직 회원이 아니시군요!</h1>
+                        <p style={{ fontSize: "13px", marginTop: "5px" }}>로그인 후 후기를 작성해 주세요</p>
+                    </Modal>
+                </DefaultLayout>
+            ) : null}
             <S.InfoWrapper>
                 <ProfileImg img={profile} onClick={onClickProfile}></ProfileImg>
                 <S.NameBox>{nickName}</S.NameBox>
@@ -84,11 +108,10 @@ const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, cont
             <S.HelpTextBox>{helpNum ? helpNum : 0}명에게 도움이 되었어요</S.HelpTextBox>
 
             <div style={{ paddingLeft: "10px", paddingRight: "10px", paddingBottom: "0px" }}>
-                <HelpButton onClick={onClickHelpBtn} disabled={helpState}></HelpButton>
+                <HelpButton onClick={onClickHelpBtn} isChecked={helpState}></HelpButton>
             </div>
         </S.StyledLayout>
     );
 };
 
 export default PlaceDetail;
-
