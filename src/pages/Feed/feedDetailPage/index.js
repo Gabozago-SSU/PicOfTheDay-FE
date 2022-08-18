@@ -1,15 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollDiv, FeedLayout } from "./styles";
 import PlaceDetail from "components/PlaceDetail";
 import BackHeader from "components/commons/BackHeader";
 import { useLocation, useNavigate } from "react-router-dom";
-import { requestDetailFeed } from 'apis';
+import { requestDetailFeed } from "apis";
 
 const FeedDetailPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [recentFeedDetail, setRecentFeedDetail] = useState([]);
 
+    useEffect(() => {
+        requestDetailFeed({ reviewId: feedId, userId: 1 });
+    }, []);
 
     const detailfeedPostList = () => {
         try {
@@ -23,7 +26,7 @@ const FeedDetailPage = () => {
     };
 
     const feedId = location.state.id;
-    console.log(feedId);
+
     return (
         <>
             <BackHeader
@@ -33,20 +36,17 @@ const FeedDetailPage = () => {
                 }}
             />
             <FeedLayout>
-            {recentFeedDetail.map(({reviewid}) => {
+                {recentFeedDetail.map(({ reviewid }) => {
                     return (
-                        <PlaceDetail onClick = {detailfeedPostList}
+                        <PlaceDetail
+                            onClick={detailfeedPostList}
                             id={reviewid}
                             userId={reviewid}
-                            profile={
-                                reviewid.profile
-                            }
+                            profile={reviewid.profile}
                             nickName={reviewid.nickName}
                             rating={reviewid.rating}
                             address={reviewid.address}
-                            img={
-                                reviewid.img
-                            }
+                            img={reviewid.img}
                             content={reviewid.content}
                             tags={reviewid.tag}
                             helpNum={reviewid.helpNum}

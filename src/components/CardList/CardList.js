@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as S from "./styles";
 import NextIc from "../../assets/NextIc.svg";
 import PhotoCard from "../PhotoCard";
@@ -6,26 +6,36 @@ import { useNavigate } from "react-router-dom";
 
 const CardList = ({ id, title, places }) => {
     const navigate = useNavigate();
-    const onClickHandler = (id) => {
-        console.log("card", id);
-        navigate("/place", { state: id });
+    const [xPos, setXpos] = useState(0);
+    const container = useRef(null);
+    const onClickHandler = (card) => {
+        if (card.type === "place") navigate("/place", { state: card.id });
+        else navigate("/feed/detail", { state: card.id });
     };
+    useEffect(() => {}, [xPos]);
     return (
         <S.CardListLayout>
             <S.LabelLayout>
                 <S.LabelTextBox>{title}</S.LabelTextBox>
-                <S.NextIcon src={NextIc}></S.NextIcon>
+                <S.NextIcon
+                    src={NextIc}
+                    onClick={() => {
+                        container.current.scrollLeft += 140;
+                    }}
+                ></S.NextIcon>
             </S.LabelLayout>
-            <S.CardWrapper>
+
+            <S.CardWrapper ref={container}>
                 {places.map((place, index) => {
                     return (
                         <PhotoCard
                             key={index}
-                            id={place.placeId}
+                            reviewId={place.reviewId}
+                            placeId={place.placeId}
                             img={place.image}
                             category={place.category}
                             rating={place.rate}
-                            placeName={"이름을 깜빡했군요"}
+                            placeName={place.title}
                             onClick={onClickHandler}
                         />
                     );

@@ -15,9 +15,11 @@ const KeyWordTab = ({ keywords }) => {
             </S.KeywordLayout>
             <S.KeywordScrollLayout>
                 <S.KeyWordWrapper>
-                    {keywords.map((keyword, index) => {
-                        return <KeywordChip key={index}>{keyword}</KeywordChip>;
-                    })}
+                    {keywords
+                        ? keywords.map((keyword, index) => {
+                              return <KeywordChip key={index + keyword}>{keyword}</KeywordChip>;
+                          })
+                        : null}
                 </S.KeyWordWrapper>
             </S.KeywordScrollLayout>
         </div>

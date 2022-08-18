@@ -14,7 +14,7 @@ const { persistAtom } = recoilPersist({
 
 export const userState = atom({
     key: "user",
-    default: null,
+    default: [],
     // effects: [localStorageEffect("user"), sessionStorageEffect("user")],
     effects_UNSTABLE: [persistAtom],
 });
@@ -28,7 +28,8 @@ export const loginUser = selector({
     key: "filteredUserState",
     get: ({ get }) => {
         const list = get(userState);
-        if (list === null) return null;
+        console.log(list);
+        if (list === undefined || list === []) return null;
         const platform = get(userPlatform);
         const auths = list.map((a) => DecryptAuth(a));
 

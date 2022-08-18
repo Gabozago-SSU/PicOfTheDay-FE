@@ -44,7 +44,7 @@ const PlacePage = () => {
     switch (placeLoadable.state) {
         case "hasValue":
             place = placeLoadable.contents;
-
+            console.log(place);
             break;
         case "hasError":
             place = placeLoadable.contents.message;
@@ -73,10 +73,10 @@ const PlacePage = () => {
                 name={place.name}
                 address={place.address}
                 rating={place.rate}
-                reviewNum={99}
+                reviewNum={place.reviewCnt}
             />
             <hr style={{ height: "0.5px", border: `0.5px solid ${colors.black_30}` }} />
-            <KeyWordTab keywords={keywords} />
+            <KeyWordTab keywords={place.keywords} />
             <hr style={{ height: "0.5px", border: `0.5px solid ${colors.black_30}`, margin: 0 }} />
 
             <PostTab placeId={placeId} />

@@ -44,7 +44,7 @@ function LastFeedPost() {
                     return (
                         <StyleBox
                             key={index}
-                            image={i.image}
+                            image={i.image[0]}
                             onClick={() => navigate("/feed/detail", { state: { id: i.reviewId } })}
                         ></StyleBox>
                     );

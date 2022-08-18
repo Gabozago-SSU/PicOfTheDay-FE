@@ -7,6 +7,7 @@ export const CardListLayout = styled.div`
     display: flex;
     flex-direction: column;
     padding: 14px 17px;
+    overflow: scroll;
 `;
 
 export const LabelLayout = styled.div`

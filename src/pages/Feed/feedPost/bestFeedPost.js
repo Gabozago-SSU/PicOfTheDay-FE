@@ -49,7 +49,7 @@ function BestFeedPost() {
                     popularFeed.map((i, index) => (
                         <StyleBox
                             key={index}
-                            image={i.image} // 아이템에서 꺼내쓰기
+                            image={i.image[0]} // 아이템에서 꺼내쓰기
                             // 저기 id 에 1대신 리뷰아이디 넘겨주기!
                             onClick={() => {
                                 navigate("/feed/detail", { state: { id: i.reviewId } });

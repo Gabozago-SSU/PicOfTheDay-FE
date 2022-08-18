@@ -14,15 +14,18 @@ import { PropTypes } from "prop-types";
 import { requestLikeReview } from "apis";
 import { useNavigate } from "react-router-dom";
 
-const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, content, tags, helpNum }) => {
-    const [isLike, setLike] = useState(false);
+const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, content, tags, helpNum, like }) => {
+    const [isLike, setLike] = useState(like);
+    const [helpState, setHelpState] = useState(like);
     const navigate = useNavigate();
+    console.log(tags);
 
     const onClickHelpBtn = () => {
         try {
             requestLikeReview({ userId: 1, reviewId: id }).then((res) => {
                 console.log(res);
                 setLike(true);
+                setHelpState((prev) => !prev);
                 setTimeout(() => {
                     setLike(false);
                 }, 500);
@@ -65,14 +68,14 @@ const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, cont
             {tags ? (
                 <S.TagWrapper>
                     {tags.map((t, index) => (
-                        <KeywordChip key={index}>{t}</KeywordChip>
+                        <KeywordChip key={index + t}>{t.name}</KeywordChip>
                     ))}
                 </S.TagWrapper>
             ) : null}
             <S.HelpTextBox>{helpNum ? helpNum : 0}명에게 도움이 되었어요</S.HelpTextBox>
 
             <div style={{ paddingLeft: "10px", paddingRight: "10px", paddingBottom: "0px" }}>
-                <HelpButton onClick={onClickHelpBtn}></HelpButton>
+                <HelpButton onClick={onClickHelpBtn} disabled={helpState}></HelpButton>
             </div>
         </S.StyledLayout>
     );

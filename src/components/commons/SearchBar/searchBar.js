@@ -14,18 +14,18 @@ const SearchBar = ({ submitHandler }) => {
     return (
         <S.SearchBarLayout>
             <S.SearchBox>
-                <S.MagnifierIcon
+                {/* <S.MagnifierIcon
                     src={Magnifier}
                     onClick={() => {
                         submitHandler(content);
                         setContent("");
                         input.current.value = "";
                     }}
-                ></S.MagnifierIcon>
+                ></S.MagnifierIcon> */}
                 <S.StyleSearchBar
                     ref={input}
                     value={content}
-                    placeholder="검색"
+                    placeholder="ex) 바다"
                     onKeyDown={(e) => {
                         if (e.keyCode === 13) {
                             submitHandler(content);

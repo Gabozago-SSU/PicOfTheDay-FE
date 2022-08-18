@@ -3,7 +3,7 @@ import colors from "styles/colors";
 import CloseIc from "../../../assets/PinkXIc.svg";
 
 export const ModalLayout = styled.div`
-    z-index: 3;
+    z-index: 999;
     position: fixed;
     left: 50%;
     top: 50%;
@@ -75,6 +75,7 @@ export const Background = styled.div`
     left: 0;
     bottom: 0;
     right: 0;
+
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
 `;

@@ -38,7 +38,7 @@ export const StyleSearchBar = styled.input`
     width: 100%;
     box-sizing: border-box;
     background-size: contain;
-
+    outline: none;
     font-family: "Noto Sans KR";
     font-weight: 400;
     font-size: 16px;
@@ -48,8 +48,10 @@ export const StyleSearchBar = styled.input`
     -webkit-user-select: text;
     background-position: 5px center;
     line-height: 30px;
+    z-index: 1;
     ::placeholder {
         color: #b6b6b6;
+        font-size: 14px;
     }
 `;
 
