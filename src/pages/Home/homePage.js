@@ -47,9 +47,11 @@ const HomePage = () => {
             <Header searchHandler={searchHandler} />
             <S.ScrollDiv>
                 <Banner banners={[Banner1, Banner2, Banner3, Banner4]} />
-                {currations.map((c, index) => {
-                    return <CardList key={index} id={c.id} title={c.subtitle} places={c.places}></CardList>;
-                })}
+                {currations
+                    ? currations.map((c, index) => {
+                          return <CardList key={index} id={c.id} title={c.subtitle} places={c.places}></CardList>;
+                      })
+                    : null}
             </S.ScrollDiv>
         </>
     );
