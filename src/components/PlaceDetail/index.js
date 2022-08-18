@@ -13,23 +13,32 @@ import HelpButton from "../commons/Button/HelpButton";
 import { PropTypes } from "prop-types";
 import { requestLikeReview } from "apis";
 import { useNavigate } from "react-router-dom";
+import { requestDislikeReview } from "../../apis/index";
 
 const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, content, tags, helpNum, like }) => {
-    const [isLike, setLike] = useState(like);
+    const [isLike, setLike] = useState(false);
     const [helpState, setHelpState] = useState(like);
     const navigate = useNavigate();
     console.log(tags);
 
     const onClickHelpBtn = () => {
         try {
-            requestLikeReview({ userId: 1, reviewId: id }).then((res) => {
-                console.log(res);
-                setLike(true);
-                setHelpState((prev) => !prev);
-                setTimeout(() => {
+            if (!helpState)
+                requestLikeReview({ userId: 1, reviewId: id }).then((res) => {
+                    console.log(res);
+                    setLike(true);
+                    setHelpState(true);
+                    setTimeout(() => {
+                        setLike(false);
+                    }, 500);
+                });
+            else {
+                requestDislikeReview({ userId: 1, reviewId: id }).then((res) => {
                     setLike(false);
-                }, 500);
-            });
+                    setHelpState(false);
+                    console.log(res);
+                });
+            }
         } catch (err) {
             console.log(err);
         }
@@ -82,14 +91,3 @@ const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, cont
 };
 
 export default PlaceDetail;
-PlaceDetail.propTypes = {
-    id: PropTypes.number,
-    profile: PropTypes.string,
-    nickName: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    address: PropTypes.string,
-    img: PropTypes.string,
-    content: PropTypes.string,
-    tags: PropTypes.array,
-    helpNum: PropTypes.number.isRequired,
-};

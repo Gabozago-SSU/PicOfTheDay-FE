@@ -2,7 +2,7 @@ import axios from "axios";
 import { BaseUrl } from "privateKey";
 const instance = axios.create({ baseURL: BaseUrl });
 
-export const requestSignup = (token) => instance.post(`/user`, token);
+export const requestSignup = (nickname) => instance.post(`/auth/nickname`, { nickname: nickname });
 export const requestLogin = (platform) => instance.post(`/oauth2/authorization/${platform}`, "");
 
 /*홈*/
@@ -14,7 +14,8 @@ export const requestSearchPlace = (search) => instance.get(`/search?search=${sea
 export const requestPlace = (params) => instance.get(`/place?placeId=${params.placeId}&userId=${params.userId}`);
 export const requestLikePlace = (params) => instance.post(`/place/like`, params);
 /* userId, placeId */
-export const requestDisikePlace = (params) => instance.delete(`/place/unlike`, params);
+export const requestDisikePlace = (params) =>
+    instance.delete(`/place/unlike`, { data: { placeId: params.placeId, userId: params.userId } });
 /* userId, placeId */
 export const requestPopularPlace = (params) =>
     instance.get(`/place/popular?placeId=${params.placeId}&userId=${params.userId}`);
@@ -22,7 +23,8 @@ export const requestRecentPlace = (params) =>
     instance.get(`/place/recent?placeId=${params.placeId}&userId=${params.userId}`);
 export const requestSimilarPlace = (placeId) => instance.get(`/place/similar?placeId=${placeId}`);
 export const requestLikeReview = (params) => instance.post("/review/like", params);
-export const requestDislikeReview = (params) => instance.delete("/review/unlike", params);
+export const requestDislikeReview = (params) =>
+    instance.delete("/review/unlike", { data: { placeId: params.placeId, userId: params.userId } });
 
 /*피드*/
 export const requestSearchFeed = (search) => instance.get(`/feed/search?search=${search}`);

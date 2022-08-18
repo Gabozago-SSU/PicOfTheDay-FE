@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Heart from "../../assets/HeartIc.svg";
 import colors from "styles/colors";
 import styled from "styled-components";
 
@@ -32,7 +33,11 @@ const MyContentTab = () => {
                           return <PostContent key={index} img={p}></PostContent>;
                       })
                     : likePosts.map((p, index) => {
-                          return <PostContent key={index} img={p}></PostContent>;
+                          return (
+                              <PostContent key={index} img={p}>
+                                  <HeartIcon onClick={() => {}} />
+                              </PostContent>
+                          );
                       })}
             </PostListWrapper>
         </div>
@@ -80,8 +85,19 @@ const PostListWrapper = styled.div`
 const PostContent = styled.div`
     width: 100;
     padding-top: 100%;
-
+    background-position: center;
+    position: relative;
     ${(props) => setImg(props.img)}
+`;
+
+const HeartIcon = styled.div`
+    width: 28px;
+    height: 28px;
+    background-image: url(${Heart});
+    background-size: cover;
+    right: 10px;
+    bottom: 10px;
+    position: absolute;
 `;
 const getTextColor = (focused) => {
     return focused ? `${colors.black_80}` : `${colors.black_40}`;
