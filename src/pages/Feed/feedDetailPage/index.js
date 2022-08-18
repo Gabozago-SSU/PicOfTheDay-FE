@@ -8,7 +8,7 @@ import { requestDetailFeed } from "apis";
 const FeedDetailPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [feedDetail, setFeedDetail] = useState([]);
+    const [feedDetail, setFeedDetail] = useState(null);
 
     const feedId = location.state.id;
     console.log(feedId);
@@ -30,21 +30,21 @@ const FeedDetailPage = () => {
                     navigate("/feed");
                 }}
             />
-            <FeedLayout>
-                        <PlaceDetail
-                            id={feedDetail.reviewId}
-                            userId={feedDetail.userId}
-                            profile={
-                                feedDetail.profile
-                            }
-                            nickName={feedDetail.userName}
-                            rating={feedDetail.rate ? feedDetail.rate : 0}
-                            address={feedDetail.address}
-                            img={feedDetail.image}
-                            content={feedDetail.content}
-                            tags={feedDetail.keywords}
-                            helpNum={feedDetail.reviewLikeCnt}
-                        ></PlaceDetail>
+            <FeedLayout>{feedDetail?
+                    <PlaceDetail
+                    id={feedDetail.reviewId}
+                    userId={feedDetail.userId}
+                    profile={feedDetail.profile}
+                    nickName={feedDetail.userName}
+                    rating={feedDetail.rate ? feedDetail.rate : 0}
+                    address={feedDetail.address}
+                    img={(feedDetail.image === null||feedDetail.image.length === 0) ? null : feedDetail.image[0]}
+                    content={feedDetail.content}
+                    tags={feedDetail.keywords}
+                    helpNum={feedDetail.reviewLikeCnt}
+                    ></PlaceDetail> : null
+            }
+                       
             </FeedLayout>
         </>
     );
