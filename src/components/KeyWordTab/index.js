@@ -10,7 +10,6 @@ const KeyWordTab = ({ keywords }) => {
                     <div>
                         <p>키워드</p>
                     </div>
-                    <S.KeyWordTabNextIc />
                 </S.KeyWordTabBanner>
             </S.KeywordLayout>
             <S.KeywordScrollLayout>

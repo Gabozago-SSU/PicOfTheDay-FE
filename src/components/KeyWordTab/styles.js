@@ -24,13 +24,13 @@ export const KeyWordTabBanner = styled.div`
     padding: 0;
 `;
 
-export const KeyWordTabNextIc = styled.div`
-    width: 24px;
-    height: 24px;
-    margin-right: 7px;
-    background-image: url(${NextIc});
-    background-size: cover;
-`;
+// export const KeyWordTabNextIc = styled.div`
+//     width: 24px;
+//     height: 24px;
+//     margin-right: 7px;
+//     background-image: url(${NextIc});
+//     background-size: cover;
+// `;
 
 export const KeyWordWrapper = styled.div`
     max-width: 768px;

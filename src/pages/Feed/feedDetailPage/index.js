@@ -36,7 +36,7 @@ const FeedDetailPage = () => {
             <FeedLayout>
                 {feedDetail ? (
                     <PlaceDetail
-                        id={feedDetail.reviewId}
+                        id={feedId}
                         userId={feedDetail.userId}
                         profile={feedDetail.profile}
                         nickName={feedDetail.userName}
@@ -46,6 +46,7 @@ const FeedDetailPage = () => {
                         content={feedDetail.content}
                         tags={feedDetail.keywords}
                         helpNum={feedDetail.reviewLikeCnt}
+                        like={feedDetail.like}
                     ></PlaceDetail>
                 ) : null}
             </FeedLayout>
