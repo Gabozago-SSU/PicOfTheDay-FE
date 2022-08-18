@@ -44,7 +44,7 @@ const PlacePage = () => {
     switch (placeLoadable.state) {
         case "hasValue":
             place = placeLoadable.contents;
-            console.log(place);
+            console.log("place", place.like);
             break;
         case "hasError":
             place = placeLoadable.contents.message;
@@ -65,16 +65,20 @@ const PlacePage = () => {
             <BackHeader clickHandler={onClickBackHandler} />
 
             <PlaceBanner banners={place.images} />
+            {place !== "Loading..." ? (
+                <PlaceInfo
+                    like={place.like}
+                    place={place}
+                    placeId={placeId}
+                    category={place.category}
+                    phone={place.phoneNumber}
+                    name={place.name}
+                    address={place.address}
+                    rating={place.rate}
+                    reviewNum={place.reviewCnt}
+                />
+            ) : null}
 
-            <PlaceInfo
-                placeId={placeId}
-                category={place.category}
-                phone={place.phoneNumber}
-                name={place.name}
-                address={place.address}
-                rating={place.rate}
-                reviewNum={place.reviewCnt}
-            />
             <hr style={{ height: "0.5px", border: `0.5px solid ${colors.black_30}` }} />
             <KeyWordTab keywords={place.keywords} />
             <hr style={{ height: "0.5px", border: `0.5px solid ${colors.black_30}`, margin: 0 }} />

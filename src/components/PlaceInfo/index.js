@@ -12,25 +12,30 @@ import PlaceIc from "../../assets/PlaceIc.svg";
 import CopyIc from "../../assets/copyIc.svg";
 import CategoryChip from "../commons/Chip/CategoryChip";
 import StarIc from "../../assets/SmallStarIc.svg";
-import { requestLikePlace, requestDisikePlace } from "../../apis/index";
+import { requestLikePlace, requestDisikePlace, requestDeleteReview } from "../../apis/index";
 import useCopyClipBoard from "utils/useCopyClipBoard";
+import { PropTypes } from "prop-types";
 
-const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum, isLike }) => {
+const PlaceInfo = ({ like, place, placeId, category, phone, name, address, rating, reviewNum }) => {
     const [onClickCopy, setOnClickCopy] = useState(false);
     const [toastCnt, setToastCnt] = useState(0);
-    const [likeState, setLikeState] = useState(isLike ? true : false);
+    const [likeState, setLikeState] = useState(place.like);
 
     const [isCopy, onCopy] = useCopyClipBoard();
 
     const onClickHeartHandler = () => {
         try {
             if (likeState) {
+                const obj = { userId: 1, placeId: 2 };
+                console.log("obj", obj);
                 requestDisikePlace({ userId: 1, placeId: placeId }).then((res) => {
                     console.log(res);
                     setLikeState(false);
                 });
+                // requestDeleteReview(31).then((res) => console.log(res));
             } else {
                 requestLikePlace({ userId: 1, placeId: placeId }).then((res) => {
+                    console.log(res);
                     setLikeState(true);
                 });
             }
@@ -39,6 +44,10 @@ const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum,
             console.log(err);
         }
     };
+
+    useEffect(() => {
+        console.log("rend", place);
+    }, [likeState]);
 
     useEffect(() => {
         // eslint-disable-next-line no-lone-blocks
@@ -129,3 +138,7 @@ function success(nodeOrMsg) {
     );
 }
 export default PlaceInfo;
+
+PlaceInfo.propTypes = {
+    like: PropTypes.bool.isRequired,
+};
