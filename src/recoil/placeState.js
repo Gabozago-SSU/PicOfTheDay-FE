@@ -3,6 +3,7 @@ import { DefaultValue, atom, atomFamily, selector, useRecoilValueLoadable, selec
 import { requestPlace } from "apis";
 import { requestPopularPlace, requestRecentPlace } from "../apis/index";
 import { loginUser } from "./userState";
+import { useUserRecoilValue } from "recoil/userState";
 
 export const placeIdState = atom({
     key: "placeIdState",
@@ -15,8 +16,9 @@ export const placeValue = selectorFamily({
         (id) =>
         async ({ get }) => {
             get(placeIdState);
+            const user = useUserRecoilValue();
             try {
-                const response = await requestPlace({ placeId: id, userId: 1 });
+                const response = await requestPlace({ placeId: id, userId: user.authId });
                 return response.data;
             } catch (error) {
                 throw error;
@@ -35,7 +37,8 @@ export const popularPlaceListQuery = selectorFamily({
     key: "placePopularValue",
     get: (id) => async () => {
         try {
-            const response = await requestPopularPlace({ placeId: id, userId: 1 });
+            const user = useUserRecoilValue();
+            const response = await requestPopularPlace({ placeId: id, userId: user.authId });
             return response.data;
         } catch (error) {
             throw error;
@@ -53,7 +56,7 @@ export const recentPlaceListQuery = selectorFamily({
     get: (id) => async () => {
         try {
             const user = loginUser;
-            const response = await requestRecentPlace({ placeId: id, userId: 1 });
+            const response = await requestRecentPlace({ placeId: id, userId: user.authId });
             return response.data;
         } catch (error) {
             throw error;

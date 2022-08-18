@@ -89,7 +89,7 @@ const ReviewPage = () => {
             setPlace("");
         } else {
             setPlace({ placeName: tempPlace, placeId: null });
-            requestAddReviewPlace({ place: tempPlace, userId: 1 })
+            requestAddReviewPlace({ place: tempPlace, userId: user.authId })
                 .then((res) => {
                     console.log(res);
                 })
