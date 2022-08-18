@@ -5,7 +5,9 @@ import { ScrollDiv } from "./styles";
 import { SearchHeaderLayout } from "./styles";
 
 const FeedPage = () => {
-    const onClickSearch = (value) => {};
+    const onClickSearch = (value) => {
+        
+    };
     const contentHandler = (text) => {
         console.log("입력", text);
     };

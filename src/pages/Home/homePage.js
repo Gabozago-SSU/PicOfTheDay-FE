@@ -12,6 +12,7 @@ import Banner3 from "../../assets/bannerImg3.svg";
 import Banner4 from "../../assets/bannerImg4.svg";
 import { useUserRecoilValue } from "recoil/userState";
 import { requestCurations } from "apis";
+import { requestSignup } from "../../apis/index";
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -41,6 +42,13 @@ const HomePage = () => {
         } else {
             navigate("/search/notfound", { state: 1 });
         }
+
+        // if (value.type === "keyword") {
+        //     //결과 있음
+        //     navigate("/search/keyword", { state: value });
+        // } else {
+        //     navigate("/search", { state: value });
+        // }
     };
     return (
         <>

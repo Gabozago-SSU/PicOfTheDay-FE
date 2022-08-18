@@ -15,26 +15,26 @@ import StarIc from "../../assets/SmallStarIc.svg";
 import { requestLikePlace, requestDisikePlace, requestDeleteReview } from "../../apis/index";
 import useCopyClipBoard from "utils/useCopyClipBoard";
 import { PropTypes } from "prop-types";
+import { useUserRecoilValue } from "recoil/userState";
 
 const PlaceInfo = ({ like, place, placeId, category, phone, name, address, rating, reviewNum }) => {
     const [onClickCopy, setOnClickCopy] = useState(false);
     const [toastCnt, setToastCnt] = useState(0);
     const [likeState, setLikeState] = useState(place.like);
+    const user = useUserRecoilValue();
 
     const [isCopy, onCopy] = useCopyClipBoard();
 
     const onClickHeartHandler = () => {
         try {
             if (likeState) {
-                const obj = { userId: 1, placeId: 2 };
-                console.log("obj", obj);
-                requestDisikePlace({ userId: 1, placeId: placeId }).then((res) => {
+                requestDisikePlace({ userId: user.authId, placeId: placeId }).then((res) => {
                     console.log(res);
                     setLikeState(false);
                 });
                 // requestDeleteReview(31).then((res) => console.log(res));
             } else {
-                requestLikePlace({ userId: 1, placeId: placeId }).then((res) => {
+                requestLikePlace({ userId: user.authId, placeId: placeId }).then((res) => {
                     console.log(res);
                     setLikeState(true);
                 });
