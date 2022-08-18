@@ -4,17 +4,37 @@ import Magnifier from "../../../assets/magnifier.svg";
 import colors from "styles/colors";
 import { requestSearchPlace } from "apis";
 
-const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandler }) => {
+const MultiSearchBar = ({ itemClickHandler, contentHandler }) => {
     const [content, setContent] = useState("");
     const [results, setResults] = useState([]);
     const [isSuccess, setIsSuccess] = useState(true);
-    const [isHideTip, setHideTip] = useState(type !== undefined ? true : false);
+    const [isKeyword, setIsKeyword] = useState(null);
 
     const input = useRef();
 
     const searchQuery = (query) => {
         if (query === "") return;
         try {
+            console.log("placeSearch");
+            requestSearchPlace(query)
+                .then((res) => {
+                    if (res.data === []) setIsSuccess(false);
+                    else setIsSuccess(true);
+                    setResults(res.data);
+                })
+                .catch((e) => {
+                    setResults([]);
+                    setIsSuccess(false);
+                });
+        } catch (err) {
+            console.log(err);
+        } finally {
+        }
+    };
+    const searchKeywordQuery = (query) => {
+        if (query === "") return;
+        try {
+            console.log("keywordSearch");
             requestSearchPlace(query)
                 .then((res) => {
                     if (res.data === []) setIsSuccess(false);
@@ -31,19 +51,17 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
         } finally {
         }
     };
-
     const onChange = (e) => {
         setContent(e.target.value);
         setTimeout(() => {
-            searchQuery(e.target.value); //api
-
             //TODO
-            if (e.target.value.include("#")) {
-                //searchKeyword
+            if (e.target.value.includes("#")) {
+                setIsKeyword(false);
+                searchKeywordQuery(e.target.value);
             } else {
-                //searchPlace
+                setIsKeyword(false);
+                searchQuery(e.target.value);
             }
-
             contentHandler(e.target.value); //text 보내기용
         }, 200);
     };
@@ -64,12 +82,10 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
                     placeholder="검색"
                     onKeyDown={(e) => {
                         if (e.keyCode === 13) {
-                            searchQuery(content);
                             setContent("");
                         }
                     }}
                     onSubmit={(e) => {
-                        searchQuery(content);
                         setContent("");
                         input.current.value = "";
                     }}
@@ -88,8 +104,11 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
                                     key={index}
                                     onClick={() => {
                                         setResults([]);
-                                        setHideTip(false);
-                                        itemClickHandler(i);
+                                        itemClickHandler(
+                                            isKeyword
+                                                ? { type: "keyword", id: null, name: i.keyword }
+                                                : { type: "place", id: i.placeId, name: i.placeName },
+                                        );
                                         setContent("");
                                     }}
                                 >
@@ -100,7 +119,7 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
                     </S.SearchListWrapper>
                 </>
             ) : null}
-            {type === undefined && results.length === 0 && content !== "" ? (
+            {results.length === 0 && content !== "" ? (
                 <h1
                     style={{
                         margin: "0 auto",
@@ -111,23 +130,8 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
                     검색결과 없음
                 </h1>
             ) : null}
-            {isHideTip && content !== "" && results.length === 0 ? (
-                <S.SearchNotfoundBox>
-                    <h1>등록되지 않은 장소입니다! </h1>
-                    <p
-                        onClick={() => {
-                            input.current.blur();
-                            setHideTip(true);
-                            requestHandler();
-                            setContent("");
-                        }}
-                    >
-                        요청하기
-                    </p>
-                </S.SearchNotfoundBox>
-            ) : null}
         </S.SearchBarLayout>
     );
 };
 
-export default ResultSearchBar;
+export default MultiSearchBar;

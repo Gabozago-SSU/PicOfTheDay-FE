@@ -47,6 +47,7 @@ const FeedDetailPage = () => {
                         tags={feedDetail.keywords}
                         helpNum={feedDetail.reviewLikeCnt}
                         like={feedDetail.like}
+                        placeId={feedDetail.placeId}
                     ></PlaceDetail>
                 ) : null}
             </FeedLayout>

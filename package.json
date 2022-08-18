@@ -58,5 +58,5 @@
         "react-slick": "^0.29.0",
         "slick-carousel": "^1.8.1"
     },
-    "proxy": "http://13.125.213.188"
+    "proxy": "https://port-0-picoftheday-be-5cw30n24l6z23lf5.gksl1.cloudtype.app"
 }

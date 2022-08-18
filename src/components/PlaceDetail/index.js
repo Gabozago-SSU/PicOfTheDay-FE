@@ -17,7 +17,20 @@ import { DefaultLayout } from "../../styles/layout";
 import Modal from "components/commons/Modal";
 import { useUserRecoilValue } from "recoil/userState";
 
-const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, content, tags, helpNum, like }) => {
+const PlaceDetail = ({
+    id,
+    userId,
+    profile,
+    nickName,
+    rating,
+    address,
+    img,
+    content,
+    tags,
+    helpNum,
+    like,
+    placeId,
+}) => {
     const [isLike, setLike] = useState(false);
     const [helpState, setHelpState] = useState(like);
     const navigate = useNavigate();
@@ -30,25 +43,30 @@ const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, cont
             console.log("not user");
             return;
         }
-        try {
-            if (!helpState)
-                requestLikeReview({ userId: user.authId, reviewId: id }).then((res) => {
-                    console.log(res);
-                    setLike(true);
-                    setHelpState(true);
-                    setTimeout(() => {
+        console.log(id);
+        if (id) {
+            try {
+                if (!helpState)
+                    requestLikeReview({ userId: user.authId, reviewId: id }).then((res) => {
+                        console.log(res);
+                        setLike(true);
+                        setHelpState(true);
+                        setTimeout(() => {
+                            setLike(false);
+                        }, 500);
+                    });
+                else {
+                    requestDislikeReview({ userId: user.authId, reviewId: id }).then((res) => {
                         setLike(false);
-                    }, 500);
-                });
-            else {
-                requestDislikeReview({ userId: user.authId, reviewId: id }).then((res) => {
-                    setLike(false);
-                    setHelpState(false);
-                    console.log(res);
-                });
+                        setHelpState(false);
+                        console.log(res);
+                    });
+                }
+            } catch (err) {
+                console.log(err);
             }
-        } catch (err) {
-            console.log(err);
+        } else {
+            console.log("no id!", id);
         }
     };
 
@@ -90,7 +108,13 @@ const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, cont
                     <S.AddressTextBox>
                         <p>{address}</p>
                     </S.AddressTextBox>
-                    <S.PhotoZonWrapper>포토존 보러가기</S.PhotoZonWrapper>
+                    <S.PhotoZonWrapper
+                        onClick={() => {
+                            navigate("/place", { state: placeId });
+                        }}
+                    >
+                        포토존 보러가기
+                    </S.PhotoZonWrapper>
                     <div style={{ height: "14px" }}>
                         <img src={NextIc} style={{ width: "14px", alignSelf: "center" }}></img>
                     </div>

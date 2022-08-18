@@ -36,19 +36,14 @@ const HomePage = () => {
 
     const searchHandler = (value) => {
         //TODO 장소 검색 API 호출
-        if (value !== null) {
-            //결과 있음
-            navigate("/place", { state: value.placeId });
-        } else {
-            navigate("/search/notfound", { state: 1 });
-        }
-
-        // if (value.type === "keyword") {
+        // if (value !== null) {
         //     //결과 있음
-        //     navigate("/search/keyword", { state: value });
+        //     navigate("/place", { state: value.placeId });
         // } else {
-        //     navigate("/search", { state: value });
+        //     navigate("/search/notfound", { state: 1 });
         // }
+
+        navigate("/search", { state: value });
     };
     return (
         <>
