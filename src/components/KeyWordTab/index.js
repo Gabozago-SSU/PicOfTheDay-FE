@@ -8,7 +8,8 @@ const KeyWordTab = ({ keywords }) => {
             <S.KeywordLayout>
                 <S.KeyWordTabBanner>
                     <div>
-                        <p>키워드</p>
+                        <p>키워드
+                        </p>
                     </div>
                 </S.KeyWordTabBanner>
             </S.KeywordLayout>
