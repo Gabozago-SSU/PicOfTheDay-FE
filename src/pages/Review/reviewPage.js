@@ -21,7 +21,6 @@ import SearchChip from "components/commons/Chip/SearchChip";
 import BalloonTag from "components/BalloonTag";
 import Modal from "components/commons/Modal";
 import { requestPostReview } from "apis";
-import FocusTrap from "focus-trap-react";
 import { requestAddReviewPlace } from "../../apis/index";
 import { useNavigate } from "react-router-dom";
 import { useUserRecoilValue } from "recoil/userState";
