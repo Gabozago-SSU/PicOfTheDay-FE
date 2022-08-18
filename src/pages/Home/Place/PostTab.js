@@ -66,20 +66,18 @@ const PostPoPularList = ({ placeId, totPost }) => {
                 if (index < totPost)
                     return (
                         <PlaceDetail
-                            key={index}
-                            id={index}
+                            key={"recent" + p.reviewId}
+                            id={p.reviewId}
                             userId={p.userId}
-                            profile={
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLmOQYNXeFqlSq-DIIXj23q2YnEkBpbgIW3w&usqp=CAU"
-                            }
-                            img={
-                                "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/3d281f7d-6b44-4550-ab20-856a1a8e0fc1.jpeg"
-                            }
+                            profile={p.profile}
+                            img={p.img}
                             nickName={p.userName}
                             rating={p.rating ? p.rating : 0}
                             address={null}
                             content={p.content}
                             helpNum={p.likeCnt}
+                            like={p.like}
+                            tags={p.keywords}
                         ></PlaceDetail>
                     );
             });
@@ -107,18 +105,18 @@ const PostRecentList = ({ placeId, totPost }) => {
                 if (index < totPost)
                     return (
                         <PlaceDetail
-                            key={index}
-                            profile={
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLmOQYNXeFqlSq-DIIXj23q2YnEkBpbgIW3w&usqp=CAU"
-                            }
-                            img={
-                                "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/3d281f7d-6b44-4550-ab20-856a1a8e0fc1.jpeg"
-                            }
+                            key={"pop" + p.reviewId}
+                            id={p.reviewId}
+                            userId={p.userId}
+                            profile={p.profile}
+                            img={p.img}
                             nickName={p.userName}
                             rating={p.rating ? p.rating : 0}
                             address={null}
-                            content={"어디든 사실 가고 싶어요"}
+                            content={p.content}
                             helpNum={p.likeCnt}
+                            like={p.like}
+                            tags={p.keywords}
                         ></PlaceDetail>
                     );
             });

@@ -2,6 +2,7 @@ import { DefaultValue, atom, atomFamily, selector, useRecoilValueLoadable, selec
 
 import { requestPlace } from "apis";
 import { requestPopularPlace, requestRecentPlace } from "../apis/index";
+import { loginUser } from "./userState";
 
 export const placeIdState = atom({
     key: "placeIdState",
@@ -15,7 +16,7 @@ export const placeValue = selectorFamily({
         async ({ get }) => {
             get(placeIdState);
             try {
-                const response = await requestPlace(id);
+                const response = await requestPlace({ placeId: id, userId: 1 });
                 return response.data;
             } catch (error) {
                 throw error;
@@ -34,7 +35,7 @@ export const popularPlaceListQuery = selectorFamily({
     key: "placePopularValue",
     get: (id) => async () => {
         try {
-            const response = await requestPopularPlace(id);
+            const response = await requestPopularPlace({ placeId: id, userId: 1 });
             return response.data;
         } catch (error) {
             throw error;
@@ -51,7 +52,8 @@ export const recentPlaceListQuery = selectorFamily({
     key: "placeCurrentValue",
     get: (id) => async () => {
         try {
-            const response = await requestRecentPlace(id);
+            const user = loginUser;
+            const response = await requestRecentPlace({ placeId: id, userId: 1 });
             return response.data;
         } catch (error) {
             throw error;

@@ -26,6 +26,11 @@ const StyleHelpButton = styled.button`
         background-color: ${colors.red_100};
         color: white;
     }
+    &:disabled {
+        cursor: not-allowed;
+        background-color: ${colors.red_100};
+        color: white;
+    }
 `;
 
 function HelpButton({ onClick }) {

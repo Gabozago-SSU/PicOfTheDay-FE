@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import colors from "styles/colors";
-import { requestRecentFeed } from '../../../apis/index';
+import { requestRecentFeed } from "../../../apis/index";
+import axios from "axios";
 
 export const StyleBox = styled.div`
     width: 100%;
@@ -25,26 +26,29 @@ function LastFeedPost() {
     const navigate = useNavigate();
 
     const [recentFeed, setRecentFeed] = useState([]);
-
-    try{
-        requestRecentFeed().then((res) => {
-            setRecentFeed();
-            console.log(res);
-        });
-    } catch (err) {
-        console.log(err);
-    }
+    useEffect(() => {
+        try {
+            requestRecentFeed().then((res) => {
+                setRecentFeed(res.data);
+                console.log(res.data);
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }, []);
 
     return (
         <>
             <PostlistBox>
-                {recentFeed.map(({ reviewid, image }) => (
-                    <StyleBox
-                        key={reviewid}
-                        image={image}
-                        onClick={() => navigate("/feed/detail", { state: { id: reviewid } })}
-                    ></StyleBox>
-                ))}
+                {recentFeed.map((i, index) => {
+                    return (
+                        <StyleBox
+                            key={index}
+                            image={i.image[0]}
+                            onClick={() => navigate("/feed/detail", { state: { id: i.reviewId } })}
+                        ></StyleBox>
+                    );
+                })}
             </PostlistBox>
         </>
     );
