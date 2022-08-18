@@ -30,7 +30,7 @@ export const requestDislikeReview = (params) =>
 export const requestSearchFeed = (search) => instance.get(`/feed/search?search=${search}`);
 export const requestPopularFeed = () => instance.get("/feed/popular", { withCredentials: true });
 export const requestRecentFeed = () => instance.get("/feed/recent", { withCredentials: true });
-export const requestDetailFeed = (params) => instance.get(`/review?reviewId=${params.reviewId}`);
+export const requestDetailFeed = (params) => instance.get(`/review?reviewId=${params.reviewId}&userId=${params.userId}`);
 
 /*후기*/
 export const requestPostReview = (formData) => {

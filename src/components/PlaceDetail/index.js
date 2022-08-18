@@ -91,3 +91,4 @@ const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, cont
 };
 
 export default PlaceDetail;
+
