@@ -17,7 +17,7 @@ import { DefaultLayout } from "../../styles/layout";
 import Modal from "components/commons/Modal";
 import { useUserRecoilValue } from "recoil/userState";
 
-const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, content, tags, helpNum, like }) => {
+const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, content, tags, helpNum, like, placeId }) => {
     const [isLike, setLike] = useState(false);
     const [helpState, setHelpState] = useState(like);
     const navigate = useNavigate();

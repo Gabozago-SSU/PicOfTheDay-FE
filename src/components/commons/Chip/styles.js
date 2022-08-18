@@ -72,3 +72,16 @@ export const SearchRoundLayout = styled.div`
         filter: brightness(80%);
     }
 `;
+
+export const KeywordSearchLayout = styled.div`
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    padding: 6px 10px;
+    border: 1px solid ${colors.black_30};
+    border-radius: 50px;
+    ${fonts.caption2}
+    line-height: 14px;
+    white-space: nowrap;
+`;
+

@@ -43,3 +43,14 @@ export const SearchHeaderLayout = styled.div`
         padding: 11px;
     }
 `;
+
+
+export const KeywordSearchLayout = styled.div`
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    padding: 6px 0px;
+    display: flex;
+    line-height: 14px;
+    gap:6px
+`;

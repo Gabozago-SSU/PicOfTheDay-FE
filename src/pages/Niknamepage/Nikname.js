@@ -39,7 +39,7 @@ function Nikname() {
     };
     const onClickSubmit = () => {
         console.log(_userState, platform);
-        const newAuth = Authentication(-1, userName, platform);
+        const newAuth = Authentication(1, userName, platform);
         const list = Object.assign([], _userState === null ? [] : _userState);
         list.push(newAuth);
         setUserState(list);

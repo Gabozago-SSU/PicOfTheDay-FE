@@ -24,7 +24,7 @@ export const requestRecentPlace = (params) =>
 export const requestSimilarPlace = (placeId) => instance.get(`/place/similar?placeId=${placeId}`);
 export const requestLikeReview = (params) => instance.post("/review/like", params);
 export const requestDislikeReview = (params) =>
-    instance.delete("/review/unlike", { data: { placeId: params.placeId, userId: params.userId } });
+    instance.delete("/review/unlike", { data: { reviewId: params.reviewId, userId: params.userId } });
 
 /*피드*/
 export const requestSearchFeed = (search) => instance.get(`/feed/search?search=${search}`);
