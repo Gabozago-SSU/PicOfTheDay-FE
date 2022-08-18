@@ -8,24 +8,19 @@ import { requestDetailFeed } from "apis";
 const FeedDetailPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [recentFeedDetail, setRecentFeedDetail] = useState([]);
-
-    useEffect(() => {
-        requestDetailFeed({ reviewId: feedId, userId: 1 });
-    }, []);
-
-    const detailfeedPostList = () => {
-        try {
-            requestDetailFeed().then((res) => {
-                setRecentFeedDetail(res.data);
-                console.log(res.data);
-            });
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    const [feedDetail, setFeedDetail] = useState([]);
 
     const feedId = location.state.id;
+    console.log(feedId);
+
+    useEffect(() => {
+        requestDetailFeed({reviewId: feedId, userId: 1}).then((res) => {
+            setFeedDetail(res.data);
+            console.log(res.data);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }, [])
 
     return (
         <>
@@ -36,23 +31,20 @@ const FeedDetailPage = () => {
                 }}
             />
             <FeedLayout>
-                {recentFeedDetail.map(({ reviewid }) => {
-                    return (
                         <PlaceDetail
-                            onClick={detailfeedPostList}
-                            id={reviewid}
-                            userId={reviewid}
-                            profile={reviewid.profile}
-                            nickName={reviewid.nickName}
-                            rating={reviewid.rating}
-                            address={reviewid.address}
-                            img={reviewid.img}
-                            content={reviewid.content}
-                            tags={reviewid.tag}
-                            helpNum={reviewid.helpNum}
+                            id={feedDetail.reviewId}
+                            userId={feedDetail.userId}
+                            profile={
+                                feedDetail.profile
+                            }
+                            nickName={feedDetail.userName}
+                            rating={feedDetail.rate ? feedDetail.rate : 0}
+                            address={feedDetail.address}
+                            img={feedDetail.image}
+                            content={feedDetail.content}
+                            tags={feedDetail.keywords}
+                            helpNum={feedDetail.reviewLikeCnt}
                         ></PlaceDetail>
-                    );
-                })}
             </FeedLayout>
         </>
     );

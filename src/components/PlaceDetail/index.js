@@ -82,14 +82,4 @@ const PlaceDetail = ({ id, userId, profile, nickName, rating, address, img, cont
 };
 
 export default PlaceDetail;
-PlaceDetail.propTypes = {
-    id: PropTypes.number,
-    profile: PropTypes.string,
-    nickName: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    address: PropTypes.string,
-    img: PropTypes.string,
-    content: PropTypes.string,
-    tags: PropTypes.array,
-    helpNum: PropTypes.number.isRequired,
-};
+
