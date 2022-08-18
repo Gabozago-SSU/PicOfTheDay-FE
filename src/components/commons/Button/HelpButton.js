@@ -18,21 +18,20 @@ const StyleHelpButton = styled.button`
     align-items: center;
     text-align: center;
     letter-spacing: 0.0125em;
-    background-color: ${colors.red_100};
-    color: white;
-    &:active {
-        background: white;
-        color: #e5475a;
-    }
-    &:disabled {
-        background: white;
-        color: #e5475a;
-    }
+
+    ${(props) => setChecked(props.isChecked)}
 `;
 
-function HelpButton({ onClick, disabled }) {
+const setChecked = (isChecked) => {
+    console.log(isChecked);
+    return isChecked
+        ? `background-color : white; color :  ${colors.red_100}`
+        : `background-color : ${colors.red_100} ; color:white`;
+};
+
+function HelpButton({ onClick, isChecked }) {
     return (
-        <StyleHelpButton onClick={onClick} disabled={disabled}>
+        <StyleHelpButton onClick={onClick} isChecked={isChecked}>
             도움이 돼요
         </StyleHelpButton>
     );

@@ -110,6 +110,7 @@ const ReviewPage = () => {
             if (toastCnt === 0) {
                 requestPost();
                 setToastCnt(1);
+                clear();
                 toast("후기가 작성되었습니다.", {
                     position: "bottom-center",
                     autoClose: 1000,
