@@ -4,6 +4,7 @@ import colors from "styles/colors";
 import styled from "styled-components";
 
 const MyContentTab = () => {
+
     const [focusTab, setFocusTab] = useState(0);
     const [myPosts, setMyPosts] = useState(
         new Array(30).fill(

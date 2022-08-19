@@ -51,3 +51,4 @@ export const requestAddReviewPlace = (params) => instance.post(`/review/location
 export const requestSearchReviewKeywords = (search) => instance.get(`/review/search?keywordname=${search}`);
 
 export const requestOtherUserpage = (userId) => instance.get(`/mypage/others?userId=${userId}`);
+export const requestMyUserPost = (userId) => instance.get(`/mypage/info?userId=${userId}`);
