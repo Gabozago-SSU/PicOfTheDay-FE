@@ -12,7 +12,6 @@ export const PhotoLayout = styled.div`
     justify-content: left;
     flex-direction: column;
     height: fit-content;
-    align-items: center;
 `;
 
 export const PhotoImg = styled.div`
@@ -40,6 +39,7 @@ export const InfoWrapper = styled.div`
     width: 100%;
     height: fit-content;
     margin-top: 7px;
+    width: 100%;
 `;
 
 export const CategoryText = styled.div`

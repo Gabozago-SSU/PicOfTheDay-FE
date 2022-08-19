@@ -43,7 +43,7 @@ const LoginLoading = () => {
         <DefaultLayout>
             <Layout>
                 <img src={Logo} />
-                <h1>잠시만 기려주세요...</h1>
+                <h1>잠시만 기다려주세요...</h1>
             </Layout>
         </DefaultLayout>
     );
