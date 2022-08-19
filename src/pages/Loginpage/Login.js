@@ -21,7 +21,7 @@ import { userState, userPlatform } from "recoil/userState";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { DecryptAuth } from "utils/ encryption";
-import { requestKakaoLogin } from "../../apis/index";
+import { requestGoogleLogin, requestKakaoLogin } from "../../apis/index";
 
 function Login() {
     const navigate = useNavigate();
@@ -48,7 +48,10 @@ function Login() {
                 return data.platforms === "google";
             }) === undefined
         ) {
-            goGoogleLogin();
+            //goGoogleLogin();
+            requestGoogleLogin().then((res) => {
+                console.log(res);
+            });
         } else navigate("/");
         const google = "google";
         setPlatform(google);
