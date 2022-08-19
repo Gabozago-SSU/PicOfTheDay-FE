@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { requestOtherUserpage } from '../../apis/index';
 import { useLocation } from 'react-router-dom';
 import ProfileCircle from "../../assets/ProfileCircle.svg"
+import { useNavigate } from 'react-router-dom';
 
 function ProfilePage() {
 
@@ -16,6 +17,7 @@ function ProfilePage() {
   const [otherUserName, setOtherUserName] = useState("");
   const [otherReviews, setOtherReviews] =useState([])
   const location = useLocation();
+  const navigate = useNavigate();
 
   const otherId = location.state.id;
 
@@ -32,11 +34,13 @@ function ProfilePage() {
     })
   }, [])
 
-
+  const onClickBackHandler = () => {
+    navigate("/feed/detail");
+  }
 
   return (
     <>
-        <BackHeader title={"프로필"} />
+        <BackHeader title={"프로필"} clickHandler={onClickBackHandler} />
             <StyledProfileimg>
                 <FeedProfileImg img={ otherUserProfile ? otherUserProfile : ProfileCircle} 
                 />
