@@ -17,7 +17,7 @@ const LoginLoading = () => {
         if (params.get("code") !== null) {
             console.log("kakako code : ", params.get("code"));
             try {
-                requestKakaoCode().then((res) => {
+                requestKakaoCode(params.get("code")).then((res) => {
                     console.log(res);
                     if (res.data.isRegistered) {
                         navigate("/");
@@ -25,7 +25,9 @@ const LoginLoading = () => {
                         navigate("/signup", { state: res.data.userId });
                     }
                 });
-            } catch (e) {}
+            } catch (e) {
+                console.log(e);
+            }
         }
     }, []);
     return (
