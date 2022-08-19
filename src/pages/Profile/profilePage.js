@@ -3,17 +3,46 @@ import BackHeader from 'components/commons/BackHeader';
 import ProfilePost from './profilePost';
 import { StyledProfileimg, StyledFeedNikname } from './styleProfile';
 import FeedProfileImg from './feedProfile';
+import { TabListLayout } from 'pages/Feed/feedTab/styleTablist';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { requestOtherUserpage } from '../../apis/index';
+import { useLocation } from 'react-router-dom';
+import ProfileCircle from "../../assets/ProfileCircle.svg"
 
 function ProfilePage() {
+
+  const [otherUserProfile, setOtherUserProfile] = useState("");
+  const [otherUserName, setOtherUserName] = useState("");
+  const [otherReviews, setOtherReviews] =useState([])
+  const location = useLocation();
+
+  const otherId = location.state.id;
+
+  useEffect(() => {
+    requestOtherUserpage(otherId)
+    .then((res) => {
+      setOtherUserProfile(res.data.profileImage);
+      setOtherUserName(res.data.name);
+      setOtherReviews(res.data.userReviews)
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }, [])
+
+
+
   return (
     <>
         <BackHeader title={"프로필"} />
             <StyledProfileimg>
-                <FeedProfileImg img={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLmOQYNXeFqlSq-DIIXj23q2YnEkBpbgIW3w&usqp=CAU"}
+                <FeedProfileImg img={ otherUserProfile ? otherUserProfile : ProfileCircle} 
                 />
-                <StyledFeedNikname>멋사멋사</StyledFeedNikname>
+                <StyledFeedNikname>{otherUserName}</StyledFeedNikname>
             </StyledProfileimg>
-        <ProfilePost />
+        <ProfilePost reviews= {otherReviews}/>
         
     </>
   )

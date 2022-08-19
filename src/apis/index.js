@@ -65,3 +65,5 @@ export const requestDeleteReview = (reviewId) => instance.delete("/review", revi
 export const requestSearchReviewPlace = (search) => instance.get(`/review/search?placename=${search}`);
 export const requestAddReviewPlace = (params) => instance.post(`/review/location`, params);
 export const requestSearchReviewKeywords = (search) => instance.get(`/review/search?keywordname=${search}`);
+
+export const requestOtherUserpage = (userId) => instance.get(`/mypage/others?userId=${userId}`);

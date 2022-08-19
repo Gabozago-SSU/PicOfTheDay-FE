@@ -3,6 +3,9 @@ import MyContentTab from "components/MyContentTab";
 import React from "react";
 import { DefaultLayout } from "styles/layout";
 import * as S from "./styles";
+
+
+
 const MyPage = () => {
     return (
         <S.ScrollDiv>
