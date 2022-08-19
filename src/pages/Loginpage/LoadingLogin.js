@@ -6,10 +6,13 @@ import { DefaultLayout } from "styles/layout";
 import styled from "styled-components";
 import { requestKakaoCode } from "../../apis/index";
 import { useNavigate } from "react-router-dom";
+import Authentication from "utils/ encryption";
+import { userState } from "recoil/userState";
 
 const LoginLoading = () => {
     const [bottom, setBottom] = useRecoilState(bottomState);
     const navigate = useNavigate();
+    const [_userState, setUserState] = useRecoilState(userState);
 
     useEffect(() => {
         setBottom("Notfound");
@@ -17,14 +20,20 @@ const LoginLoading = () => {
         if (params.get("code") !== null) {
             console.log("kakako code : ", params.get("code"));
             try {
-                requestKakaoCode(params.get("code")).then((res) => {
-                    console.log(res);
-                    if (res.data.isRegistered) {
-                        navigate("/");
-                    } else {
-                        navigate("/signup", { state: res.data.userId });
-                    }
-                });
+                requestKakaoCode(params.get("code"))
+                    .then((res) => {
+                        console.log(res.data);
+
+                        const newAuth = Authentication(res.data.userId);
+                        setUserState(newAuth);
+
+                        if (res.data.isRegistered) {
+                            navigate("/");
+                        } else {
+                            navigate("/signup", { state: { userId: res.data.userId } });
+                        }
+                    })
+                    .catch((e) => console.log(e));
             } catch (e) {
                 console.log(e);
             }

@@ -26,13 +26,10 @@ import { requestGoogleLogin, requestKakaoLogin } from "../../apis/index";
 function Login() {
     const navigate = useNavigate();
     const [_userState, setUserState] = useRecoilState(userState);
-    const [platform, setPlatform] = useRecoilState(userPlatform);
 
     const goGoogleLogin = useGoogleLogin({
         onSuccess: (tokenResponse) => {
             console.log(tokenResponse);
-            const google = "google";
-            setPlatform(google);
 
             navigate("/signup");
         },
@@ -42,37 +39,13 @@ function Login() {
     });
 
     const onClickGoogleLogin = () => {
-        const auths = _userState !== null ? _userState.map((a) => DecryptAuth(a)) : [];
-        if (
-            auths.find(function (data) {
-                return data.platforms === "google";
-            }) === undefined
-        ) {
-            //goGoogleLogin();
-            requestGoogleLogin().then((res) => {
-                console.log(res);
-            });
-        } else navigate("/");
-        const google = "google";
-        setPlatform(google);
+        requestGoogleLogin().then((res) => {
+            console.log(res);
+        });
     };
 
     const onClickKaKaoLogin = useCallback(() => {
-        const auths = _userState !== null ? _userState.map((a) => DecryptAuth(a)) : [];
-
-        setPlatform("kakao");
-        if (
-            auths.find(function (data) {
-                return data.platforms === "kakao";
-            }) === undefined
-        ) {
-            window.location.href = KAKAO_AUTH_URL;
-            //AUTH_URL :
-            //KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_KEY.key}&redirect_uri=${KAKAO_REDIRECT_URI.key}&response_type=code`;
-        } else {
-            setPlatform("kakao");
-            navigate("/");
-        }
+        window.location.href = KAKAO_AUTH_URL;
     }, []);
 
     return (

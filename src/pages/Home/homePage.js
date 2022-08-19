@@ -21,6 +21,7 @@ const HomePage = () => {
 
     useEffect(() => {
         initCuration();
+        console.log(user);
     }, []);
 
     const initCuration = () => {

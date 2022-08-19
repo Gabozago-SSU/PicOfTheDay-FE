@@ -14,23 +14,9 @@ function Nikname() {
     const location = useLocation();
     const user = useUserRecoilValue();
 
-    const [platform, setPlatform] = useRecoilState(userPlatform);
-
     const [userName, setUserName] = useState("");
     const [profile, userProfile] = useState("");
     const [imgFile, setImgFile] = useState(null);
-    const [_userState, setUserState] = useRecoilState(userState);
-
-    useEffect(() => {
-        let params = new URL(document.URL).searchParams;
-        if (params.get("code") !== null) {
-            console.log("kakako code : ", params.get("code"));
-            setPlatform("kakao");
-        }
-        console.log("PALTFORM", platform);
-
-        //TODO BE Token 넘기고 로딩 띄우기
-    }, []);
 
     const nameHandler = (e) => {
         setUserName(e.target.value);
@@ -41,12 +27,6 @@ function Nikname() {
     };
 
     const onClickSubmit = () => {
-        console.log(_userState, platform);
-        const newAuth = Authentication(1, userName, platform);
-        const list = Object.assign([], _userState === null ? [] : _userState);
-        list.push(newAuth);
-        setUserState(list);
-
         const formData = new FormData();
         if (imgFile !== null)
             try {
@@ -65,7 +45,7 @@ function Nikname() {
 
         try {
             console.log(userName);
-            requestNickname({ nickName: userName, userId: user.authId }).then((res) => {
+            requestNickname({ nickName: userName, userId: location.state.userId }).then((res) => {
                 console.log(res);
                 navigate("/onboarding", { state: { nickName: userName } });
             });

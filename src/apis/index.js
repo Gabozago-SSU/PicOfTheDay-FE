@@ -2,7 +2,7 @@ import axios from "axios";
 import { BaseUrl } from "privateKey";
 const instance = axios.create({ baseURL: BaseUrl, withCredentials: true });
 
-export const requestKakaoCode = (code) => instance.post("/auth/kakao", { code: code });
+export const requestKakaoCode = (code) => instance.post("/auth/kakao", { code: `${code}` });
 export const requestKakaoLogin = () => instance.get("/auth/kakao");
 export const requestGoogleLogin = () => instance.get("/oauth2/authorization/google");
 export const requestNickname = (params) =>
@@ -18,12 +18,13 @@ export const requestProfile = (formData) => {
         data: formData,
     });
 };
-export const requestLogin = (platform) => instance.post(`/oauth2/authorization/${platform}`, "");
 
 /*홈*/
 export const requestBanner = () => instance.get("/banner");
 export const requestCurations = () => instance.get("/curation");
 export const requestSearchPlace = (search) => instance.get(`/search?search=${search}`);
+export const requestSearchKeyword = (search) => instance.get(`/search/keyword?keyword=${search}`);
+export const requestSearchKeywordResult = (query) => instance.get(`/search/keyword/keyword?keyword=${query}`);
 
 /*장소상세*/
 export const requestPlace = (params) => instance.get(`/place?placeId=${params.placeId}&userId=${params.userId}`);

@@ -12,6 +12,7 @@ export const PhotoLayout = styled.div`
     justify-content: left;
     flex-direction: column;
     height: fit-content;
+    align-items: center;
 `;
 
 export const PhotoImg = styled.div`
@@ -21,8 +22,8 @@ export const PhotoImg = styled.div`
     background-repeat: no-repeat;
     border-radius: 5px;
     background-color: ${colors.black_80};
-    width: ${(props) => (props.bigSize ? "10rem" : "140px")};
-    height: ${(props) => (props.bigSize ? "10rem" : "140px")};
+    width: ${(props) => (props.bigSize ? "40vw" : "140px")};
+    height: ${(props) => (props.bigSize ? "40vw" : "140px")};
     resize: both;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px, rgba(0, 0, 0, 0.05) 0px 2px 2px, rgba(0, 0, 0, 0.05) 0px 4px 4px,
         rgba(0, 0, 0, 0.05) 0px 5px 5px, rgba(0, 0, 0, 0.05) 0px 4px 4px;

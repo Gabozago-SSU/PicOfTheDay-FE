@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import * as S from "./styles";
 import Magnifier from "../../../assets/magnifier.svg";
 import colors from "styles/colors";
-import { requestSearchPlace } from "apis";
+import { requestSearchKeyword, requestSearchPlace } from "apis";
 
 const MultiSearchBar = ({ itemClickHandler, contentHandler, init }) => {
     const [isInit, setInit] = useState(init ? true : false);
@@ -35,15 +35,16 @@ const MultiSearchBar = ({ itemClickHandler, contentHandler, init }) => {
     const searchKeywordQuery = (query) => {
         if (query === "") return;
         try {
-            console.log("keywordSearch");
-            requestSearchPlace(query)
+            console.log("keywordSearch", query.slice(1, query.length));
+            requestSearchKeyword(query.slice(1, query.length))
                 .then((res) => {
                     if (res.data === []) setIsSuccess(false);
                     else setIsSuccess(true);
-
+                    console.log(res.data);
                     setResults(res.data);
                 })
                 .catch((e) => {
+                    console.log(e);
                     setResults([]);
                     setIsSuccess(false);
                 });
@@ -58,7 +59,7 @@ const MultiSearchBar = ({ itemClickHandler, contentHandler, init }) => {
         setTimeout(() => {
             //TODO
             if (e.target.value.includes("#")) {
-                setIsKeyword(false);
+                setIsKeyword(true);
                 searchKeywordQuery(e.target.value);
             } else {
                 setIsKeyword(false);
@@ -114,7 +115,7 @@ const MultiSearchBar = ({ itemClickHandler, contentHandler, init }) => {
                                         setContent("");
                                     }}
                                 >
-                                    {i.placeName}
+                                    {isKeyword ? i.keyword : i.placeName}
                                 </li>
                             );
                         })}
