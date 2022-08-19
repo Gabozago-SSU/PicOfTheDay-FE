@@ -1,10 +1,23 @@
 import axios from "axios";
 import { BaseUrl } from "privateKey";
-const instance = axios.create({ baseURL: BaseUrl });
+const instance = axios.create({ baseURL: BaseUrl, withCredentials: true });
 
+export const requestKakaoCode = (code) => instance.post("/auth/kakao", { code: code });
 export const requestKakaoLogin = () => instance.get("/auth/kakao");
 export const requestGoogleLogin = () => instance.get("/oauth2/authorization/google");
-export const requestSignup = (nickname) => instance.post(`/auth/nickname`, { nickname: nickname });
+export const requestNickname = (params) =>
+    instance.post(`/auth/nickname`, { nickname: params.nickName, userId: params.userId });
+export const requestProfile = (formData) => {
+    return axios({
+        method: "POST",
+        url: `${BaseUrl}/auth/profileimage`,
+        mode: "cors",
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        data: formData,
+    });
+};
 export const requestLogin = (platform) => instance.post(`/oauth2/authorization/${platform}`, "");
 
 /*홈*/

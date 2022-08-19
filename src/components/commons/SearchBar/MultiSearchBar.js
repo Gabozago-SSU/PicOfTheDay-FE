@@ -4,7 +4,8 @@ import Magnifier from "../../../assets/magnifier.svg";
 import colors from "styles/colors";
 import { requestSearchPlace } from "apis";
 
-const MultiSearchBar = ({ itemClickHandler, contentHandler }) => {
+const MultiSearchBar = ({ itemClickHandler, contentHandler, init }) => {
+    const [isInit, setInit] = useState(init ? true : false);
     const [content, setContent] = useState("");
     const [results, setResults] = useState([]);
     const [isSuccess, setIsSuccess] = useState(true);
@@ -53,6 +54,7 @@ const MultiSearchBar = ({ itemClickHandler, contentHandler }) => {
     };
     const onChange = (e) => {
         setContent(e.target.value);
+        setInit(false);
         setTimeout(() => {
             //TODO
             if (e.target.value.includes("#")) {
@@ -78,7 +80,7 @@ const MultiSearchBar = ({ itemClickHandler, contentHandler }) => {
                 ></S.MagnifierIcon>
                 <S.StyleSearchBar
                     ref={input}
-                    value={content}
+                    value={isInit ? init : content}
                     placeholder="검색"
                     onKeyDown={(e) => {
                         if (e.keyCode === 13) {
@@ -106,8 +108,8 @@ const MultiSearchBar = ({ itemClickHandler, contentHandler }) => {
                                         setResults([]);
                                         itemClickHandler(
                                             isKeyword
-                                                ? { type: "keyword", id: null, name: i.keyword }
-                                                : { type: "place", id: i.placeId, name: i.placeName },
+                                                ? { type: "keyword", id: null, name: i.keyword, ...i }
+                                                : { type: "place", id: i.placeId, name: i.placeName, ...i },
                                         );
                                         setContent("");
                                     }}

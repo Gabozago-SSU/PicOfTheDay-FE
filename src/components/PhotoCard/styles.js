@@ -11,7 +11,6 @@ export const PhotoLayout = styled.div`
     display: flex;
     justify-content: left;
     flex-direction: column;
-
     height: fit-content;
 `;
 

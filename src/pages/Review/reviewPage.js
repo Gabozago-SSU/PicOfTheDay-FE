@@ -131,7 +131,7 @@ const ReviewPage = () => {
     const requestPost = () => {
         const formData = new FormData();
         const reqestData = {
-            userId: 1,
+            userId: user.authId,
             placeId: place.placeId,
             content: content,
             rate: rating,

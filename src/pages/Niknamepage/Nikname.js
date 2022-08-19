@@ -3,14 +3,16 @@ import OkButton from "components/commons/Button/okButton";
 import { InputNikname, NiknameDiv, OkNikname, WriteNikname, ProfileDiv, ProfileImgDiv } from "./NiknameStyle";
 import ProfileIc from "../../assets/ProfileCircle.svg";
 import XIc from "../../assets/close.svg";
-import { userState, userPlatform } from "recoil/userState";
+import { userState, userPlatform, useUserRecoilValue } from "recoil/userState";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Authentication, { DecryptAuth } from "utils/ encryption";
 import { useNavigate, useLocation } from "react-router-dom";
+import { requestNickname, requestProfile } from "apis";
 
 function Nikname() {
     const navigate = useNavigate();
     const location = useLocation();
+    const user = useUserRecoilValue();
 
     const [platform, setPlatform] = useRecoilState(userPlatform);
 
@@ -22,6 +24,7 @@ function Nikname() {
     useEffect(() => {
         let params = new URL(document.URL).searchParams;
         if (params.get("code") !== null) {
+            console.log("kakako code : ", params.get("code"));
             setPlatform("kakao");
         }
         console.log("PALTFORM", platform);
@@ -33,18 +36,42 @@ function Nikname() {
         setUserName(e.target.value);
     };
     const saveFileImg = (e) => {
-        const result = [];
-
         setImgFile(URL.createObjectURL(e.target.files[0]));
+        userProfile(e.target.files[0]);
     };
+
     const onClickSubmit = () => {
         console.log(_userState, platform);
         const newAuth = Authentication(1, userName, platform);
         const list = Object.assign([], _userState === null ? [] : _userState);
         list.push(newAuth);
         setUserState(list);
-        console.log(list);
-        navigate("/onboarding", { state: { nickName: userName } });
+
+        const formData = new FormData();
+        if (imgFile !== null)
+            try {
+                formData.append("image", profile);
+                formData.append(
+                    "profileImagePost",
+                    new Blob([JSON.stringify({ userId: user.authId })], { type: "application/json" }),
+                );
+
+                requestProfile(formData).then((res) => {
+                    console.log(res);
+                });
+            } catch (err) {
+                console.log(err);
+            }
+
+        try {
+            console.log(userName);
+            requestNickname({ nickName: userName, userId: user.authId }).then((res) => {
+                console.log(res);
+                navigate("/onboarding", { state: { nickName: userName } });
+            });
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (

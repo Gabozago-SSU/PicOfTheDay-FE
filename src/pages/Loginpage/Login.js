@@ -66,10 +66,7 @@ function Login() {
                 return data.platforms === "kakao";
             }) === undefined
         ) {
-            requestKakaoLogin().then((res) => {
-                console.log(res);
-            });
-            //window.location.href = KAKAO_AUTH_URL;
+            window.location.href = KAKAO_AUTH_URL;
             //AUTH_URL :
             //KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_KEY.key}&redirect_uri=${KAKAO_REDIRECT_URI.key}&response_type=code`;
         } else {
