@@ -18,3 +18,15 @@ export const CardWrapper = styled.div`
     width: 100%;
     margin-top: 5px;
 `;
+
+export const TagLayout = styled.div`
+    width: 100%;
+    padding-left: 7px;
+`;
+
+export const Line = styled.hr`
+    transform: translate(-10px);
+    padding: 0;
+    width: 100%;
+    height: 1px;
+`;

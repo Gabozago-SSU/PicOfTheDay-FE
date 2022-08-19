@@ -3,16 +3,19 @@ import KeyWordTab from "components/KeyWordTab";
 import PhotoCard from "components/PhotoCard";
 import React from "react";
 import colors from "styles/colors";
-import { ScrollDiv } from "./styles";
-import { CardWrapper } from "./styles";
-
+import { ScrollDiv, TagLayout } from "./styles";
+import { CardWrapper, Line } from "./styles";
+import { FeedKeyWord } from "pages/Feed/feedPage";
 const SearchPage = () => {
     const cards = [1, 2, 3, 4, 5];
     return (
         <ScrollDiv>
             <MultiSearchBar></MultiSearchBar>
-            <KeyWordTab keywords={[1, 2, 3, 4]} />
-            <hr style={{ height: "2px", color: `${colors.black_20}`, width: "100%" }} />
+            <TagLayout>
+                <FeedKeyWord keywords={["hi", "help", "me"]} />
+            </TagLayout>
+            <Line></Line>
+
             <CardWrapper>{cards ? cards.map((c) => <PhotoCard bigSize={true} />) : null}</CardWrapper>
         </ScrollDiv>
     );

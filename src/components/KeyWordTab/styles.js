@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import NextIc from "../../assets/NextIc.svg";
-import colors from 'styles/colors';
+import colors from "styles/colors";
 
 export const KeywordLayout = styled.div`
     width: 100%;
@@ -45,7 +45,7 @@ export const KeyWordWrapper = styled.div`
 
 export const KeywordScrollLayout = styled.div`
     padding-bottom: 10px;
-    padding-left: 17px;
+    padding-left: 15px;
     width: 100%;
     max-width: 768px;
     overflow-x: scroll;
@@ -54,17 +54,17 @@ export const KeywordScrollLayout = styled.div`
         display: none;
         width: 0 !important;
     }
-
-
 `;
 
 export const KeywordWhere = styled.div`
     margin-top: 50px;
     background-color: ${colors.bgColor};
+    padding-left: 15px;
+    padding-bottom: 23px;
 `;
 
 export const KeywordTitle = styled.div`
-    font-family: 'Noto Sans KR';
+    font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -73,10 +73,10 @@ export const KeywordTitle = styled.div`
     align-items: center;
     letter-spacing: 0.02em;
 
-    color: #6C6C6C;
+    color: #6c6c6c;
 
     width: 100%;
     display: flex;
-    padding-left: 19px;
+
     margin-top: 15px;
 `;

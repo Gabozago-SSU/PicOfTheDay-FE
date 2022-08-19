@@ -13,6 +13,6 @@ export const TabListLayout = styled.div`
     position: absolute;
     min-height: 100vh;
     top: 0;
-    margin-top: 100px;
+    margin-top: 120px;
     z-index: 0;
 `;

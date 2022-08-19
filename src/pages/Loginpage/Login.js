@@ -21,6 +21,7 @@ import { userState, userPlatform } from "recoil/userState";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { DecryptAuth } from "utils/ encryption";
+import { requestKakaoLogin } from "../../apis/index";
 
 function Login() {
     const navigate = useNavigate();
@@ -62,7 +63,10 @@ function Login() {
                 return data.platforms === "kakao";
             }) === undefined
         ) {
-            window.location.href = KAKAO_AUTH_URL;
+            requestKakaoLogin().then((res) => {
+                console.log(res);
+            });
+            //window.location.href = KAKAO_AUTH_URL;
             //AUTH_URL :
             //KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_KEY.key}&redirect_uri=${KAKAO_REDIRECT_URI.key}&response_type=code`;
         } else {

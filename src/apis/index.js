@@ -2,6 +2,8 @@ import axios from "axios";
 import { BaseUrl } from "privateKey";
 const instance = axios.create({ baseURL: BaseUrl });
 
+export const requestKakaoLogin = () => instance.get("/auth/kakao");
+export const requestGoogleLogin = () => instance.get("/oauth2/authorization/google");
 export const requestSignup = (nickname) => instance.post(`/auth/nickname`, { nickname: nickname });
 export const requestLogin = (platform) => instance.post(`/oauth2/authorization/${platform}`, "");
 
@@ -37,7 +39,7 @@ export const requestDetailFeed = (params) =>
 export const requestPostReview = (formData) => {
     return axios({
         method: "POST",
-        url: "http://13.125.213.188/review",
+        url: `${BaseUrl}/review`,
         mode: "cors",
         headers: {
             "Content-Type": "multipart/form-data",

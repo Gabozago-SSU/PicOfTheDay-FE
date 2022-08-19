@@ -44,7 +44,6 @@ export const SearchHeaderLayout = styled.div`
     }
 `;
 
-
 export const KeywordSearchLayout = styled.div`
     width: 100%;
     height: fit-content;
@@ -52,5 +51,16 @@ export const KeywordSearchLayout = styled.div`
     padding: 6px 0px;
     display: flex;
     line-height: 14px;
-    gap:6px
+    gap: 6px;
+`;
+
+export const KeywordScrollLayout = styled.div`
+    width: 100%;
+    max-width: 768px;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    ::-webkit-scrollbar {
+        display: none;
+        width: 0 !important;
+    }
 `;
