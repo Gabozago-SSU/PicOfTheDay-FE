@@ -3,6 +3,8 @@ import { PostTabLayout, TabButton } from "./styles";
 import PlaceDetail from "components/PlaceDetail";
 import PlusButton from "components/commons/Button/plusButton";
 import { useRecentPlaceRecoilValue, usePoPularPlaceRecoilValue, popularPlaceList } from "../../../recoil/placeState";
+import { requestRecentPlace, requestPopularPlace } from "../../../apis/index";
+import { useUserRecoilValue } from "recoil/userState";
 
 const PostTab = ({ placeId }) => {
     const [focusTab, setFocusTab] = useState(0);
@@ -54,79 +56,63 @@ const PostTab = ({ placeId }) => {
 export default PostTab;
 
 const PostPoPularList = ({ placeId, totPost }) => {
-    const placeLoadable = usePoPularPlaceRecoilValue(placeId);
-    let populars = "";
-
-    switch (placeLoadable.state) {
-        case "hasValue":
-            populars = placeLoadable.contents;
-            console.log("update popular", populars);
-
-            return populars.map((p, index) => {
-                if (index < totPost)
-                    return (
-                        <PlaceDetail
-                            key={"recent" + p.reviewId}
-                            id={p.reviewId}
-                            userId={p.userId}
-                            profile={p.profile}
-                            img={p.img}
-                            nickName={p.userName}
-                            rating={p.rating ? p.rating : 0}
-                            address={null}
-                            content={p.content}
-                            helpNum={p.likeCnt}
-                            like={p.like}
-                            tags={p.keywords}
-                        ></PlaceDetail>
-                    );
+    const user = useUserRecoilValue();
+    const [populars, setPlace] = useState([]);
+    useEffect(() => {
+        if (user !== null)
+            requestPopularPlace({ userId: user.authId, placeId: placeId }).then((res) => {
+                setPlace(res.data);
             });
-        case "hasError":
-            populars = placeLoadable.contents.message;
-            break;
-        case "loading":
-            populars = "Loading...";
-            break;
-        default:
-            populars = "Loading...";
-    }
+    }, []);
+
+    return populars.map((p, index) => {
+        if (index < totPost)
+            return (
+                <PlaceDetail
+                    key={"recent" + p.reviewId}
+                    id={p.reviewId}
+                    userId={p.userId}
+                    profile={p.profile}
+                    img={p.img}
+                    nickName={p.userName}
+                    rating={p.rating ? p.rating : 0}
+                    address={null}
+                    content={p.content}
+                    helpNum={p.likeCnt}
+                    like={p.like}
+                    tags={p.keywords}
+                ></PlaceDetail>
+            );
+    });
 };
 
 const PostRecentList = ({ placeId, totPost }) => {
-    const placeLoadable = useRecentPlaceRecoilValue(placeId);
-
-    let populars = "";
-
-    switch (placeLoadable.state) {
-        case "hasValue":
-            populars = placeLoadable.contents;
-            console.log("update recent", populars);
-            return populars.map((p, index) => {
-                if (index < totPost)
-                    return (
-                        <PlaceDetail
-                            key={"pop" + p.reviewId}
-                            id={p.reviewId}
-                            userId={p.userId}
-                            profile={p.profile}
-                            img={p.img}
-                            nickName={p.userName}
-                            rating={p.rating ? p.rating : 0}
-                            address={null}
-                            content={p.content}
-                            helpNum={p.likeCnt}
-                            like={p.like}
-                            tags={p.keywords}
-                        ></PlaceDetail>
-                    );
+    const user = useUserRecoilValue();
+    const [populars, setPlace] = useState([]);
+    useEffect(() => {
+        if (user !== null)
+            requestRecentPlace({ userId: user.authId, placeId: placeId }).then((res) => {
+                setPlace(res.data);
             });
-        case "hasError":
-            populars = placeLoadable.contents.message;
-            break;
-        case "loading":
-            populars = "Loading...";
-            break;
-        default:
-            populars = "Loading...";
-    }
+    }, []);
+
+    return populars.map((p, index) => {
+        if (index < totPost)
+            return (
+                <PlaceDetail
+                    key={"recent" + p.reviewId}
+                    id={p.reviewId}
+                    userId={p.userId}
+                    profile={p.profile}
+                    img={p.img}
+                    nickName={p.userName}
+                    rating={p.rating ? p.rating : 0}
+                    address={null}
+                    content={p.content}
+                    helpNum={p.likeCnt}
+                    like={p.like}
+                    tags={p.keywords}
+                ></PlaceDetail>
+            );
+    });
 };
