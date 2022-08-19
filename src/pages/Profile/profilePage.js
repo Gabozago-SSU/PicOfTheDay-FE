@@ -52,14 +52,6 @@ function ProfilePage() {
     return (
         <>
             <BackHeader title={"프로필"} clickHandler={onClickBackHandler} />
-            {isAuthModalOpen ? (
-                <DefaultLayout>
-                    <Modal closeModal={onClickAuthModal} buttonText={"로그인 하러가기 "}>
-                        <h1 style={{ marginBottom: "13px" }}> 아직 회원이 아니시군요!</h1>
-                        <p style={{ fontSize: "13px", marginTop: "5px" }}>로그인 후 후기를 작성해 주세요</p>
-                    </Modal>
-                </DefaultLayout>
-            ) : null}
 
             <StyledProfileimg>
                 <FeedProfileImg img={otherUserProfile ? otherUserProfile : ProfileCircle} />
