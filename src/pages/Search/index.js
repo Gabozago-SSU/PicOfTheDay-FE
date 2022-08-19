@@ -34,7 +34,7 @@ const SearchPage = () => {
                 <FeedKeyWord keywords={tags} />
             </TagLayout>
             <Line></Line>
-            <CardWrapper>{cards ? cards.map((c) => <PhotoCard bigSize={true} />) : null}</CardWrapper>
+            <CardWrapper>{cards ? cards.map((c) => <PhotoCard bigSize={true} isAd={true} />) : null}</CardWrapper>
         </ScrollDiv>
     );
 };

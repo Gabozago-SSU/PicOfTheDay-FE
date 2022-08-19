@@ -68,3 +68,19 @@ export const PlaceText = styled.div`
     display: flex;
     color: ${colors.black_80};
 `;
+
+export const AdTag = styled.div`
+    width: 30px;
+    height: 11px;
+    background: rgba(59, 59, 59, 0.3);
+    border: 0.7px solid #ffffff;
+    border-radius: 77.5px;
+    position: absolute;
+    color: white;
+    font-weight: 700;
+    font-size: 8px;
+    align-items: center;
+    text-align: center;
+    margin: 7px;
+    line-height: 11px;
+`;

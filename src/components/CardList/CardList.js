@@ -37,6 +37,7 @@ const CardList = ({ id, title, places }) => {
                             rating={place.rate}
                             placeName={place.title}
                             onClick={onClickHandler}
+                            isAd={index === 1}
                         />
                     );
                 })}

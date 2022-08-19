@@ -63,12 +63,12 @@ function Login() {
 
                 <LoginButtonDiv>
                     <img src={KakaoLogin} className={"buttonImg"} onClick={onClickKaKaoLogin} />
-                    <LoginButton>
+                    {/* <LoginButton>
                         <img src={GoolgleLogin} className={"buttonImg"} onClick={onClickGoogleLogin} />
                     </LoginButton>
                     <LoginButton>
                         <img src={AnotherLogin} className={"buttonImg"} />
-                    </LoginButton>
+                    </LoginButton> */}
                 </LoginButtonDiv>
 
                 <SignUpDiv>
