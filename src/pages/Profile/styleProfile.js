@@ -4,8 +4,9 @@ export const StyledProfileimg = styled.div`
     position: absolute;
     width: 390px;
     height: 156px;
-    left: 0px;
-    top: 52px;
+    left: 50%;
+    top: 150px;
+    transform: translate(-50%, -50%);
 `;
 
 export const StyledFeedProfile = styled.div`

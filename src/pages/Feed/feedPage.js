@@ -7,7 +7,7 @@ import KeywordSearchChip from '../../components/commons/Chip/KeywordSearchChip';
 import { KeywordSearchLayout } from "./styles";
 import { KeywordScrollLayout, KeyWordTabBanner, KeywordTitle, KeywordWhere, KeyWordWrapper } from '../../components/KeyWordTab/styles';
 
-const FeedKeyWord = ({keywords}) => {
+export const FeedKeyWord = ({keywords}) => {
     return (
         <>  
                 <KeywordTitle>
@@ -32,7 +32,7 @@ const FeedKeyWord = ({keywords}) => {
     );
 }
 
-const FeedPage = ({keyword}) => {
+export const FeedPage = ({keyword}) => {
     const onClickSearch = (value) => {
         
     };
