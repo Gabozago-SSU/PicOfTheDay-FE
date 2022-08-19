@@ -28,7 +28,7 @@ export const loginUser = selector({
     key: "filteredUserState",
     get: ({ get }) => {
         const list = get(userState);
-        console.log(list);
+
         if (list === undefined || list === null) return null;
         return DecryptAuth(list);
     },

@@ -37,7 +37,7 @@ export const requestPopularPlace = (params) =>
     instance.get(`/place/popular?placeId=${params.placeId}&userId=${params.userId}`);
 export const requestRecentPlace = (params) =>
     instance.get(`/place/recent?placeId=${params.placeId}&userId=${params.userId}`);
-export const requestSimilarPlace = (placeId) => instance.get(`/place/similar?placeId=${placeId}`);
+export const requestSimilarPlace = (placeId) => instance.get(`/place/similar?category=${placeId}`);
 export const requestLikeReview = (params) => instance.post("/review/like", params);
 export const requestDislikeReview = (params) =>
     instance.delete("/review/unlike", { data: { reviewId: params.reviewId, userId: params.userId } });
@@ -68,4 +68,4 @@ export const requestAddReviewPlace = (params) => instance.post(`/review/location
 export const requestSearchReviewKeywords = (search) => instance.get(`/review/search?keywordname=${search}`);
 
 export const requestOtherUserpage = (userId) => instance.get(`/mypage/others?userId=${userId}`);
-export const requestMyUserPost = (userId) => instance.get(`/mypage/info?userId=${userId}`);
+export const requestMyUserPost = (userId) => instance.post(`/mypage/info`, { userId: userId });

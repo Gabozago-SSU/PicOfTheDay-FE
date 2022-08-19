@@ -6,35 +6,70 @@ import colors from "styles/colors";
 import { ScrollDiv, TagLayout } from "./styles";
 import { CardWrapper, Line } from "./styles";
 import { FeedKeyWord } from "pages/Feed/feedPage";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { requestSearchKeywordResult } from "../../apis/index";
 const SearchPage = () => {
     const [tags, setTags] = useState([]);
-    const [cards, setCards] = useState([1, 2, 3, 4, 5, 7]);
+    const [cards, setCards] = useState([]);
 
     const location = useLocation();
     const query = location.state;
+    const [querySearch, setQuery] = useState(query);
+
+    const navigate = useNavigate();
     const itemClickHandler = (value) => {
-        console.log("search multi  : ", value);
+        if (value.type === "keyword") {
+            requestSearchKeywordResult(querySearch.name)
+                .then((res) => {
+                    console.log(res);
+                    setTags(res.data.keywords);
+                    setCards(res.data.similarDtos);
+                    setQuery(res.data);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        } else {
+            navigate("/place", { state: value.id });
+        }
     };
     useEffect(() => {
-        // requestSearchKeywordResult(query.name)
-        //     .then((res) => {
-        //         console.log(res);
-        //     })
-        //     .catch((e) => {
-        //         console.log(e);
-        //     });
-    }, []);
+        requestSearchKeywordResult(querySearch.name)
+            .then((res) => {
+                console.log(res);
+                setTags(res.data.keywords);
+                setCards(res.data.similarDtos);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }, [querySearch]);
 
     return (
         <ScrollDiv>
-            <MultiSearchBar itemClickHandler={itemClickHandler} init={query ? query.name : null}></MultiSearchBar>
+            <MultiSearchBar
+                itemClickHandler={itemClickHandler}
+                init={querySearch ? querySearch.name : null}
+            ></MultiSearchBar>
             <TagLayout>
                 <FeedKeyWord keywords={tags} />
             </TagLayout>
             <Line></Line>
-            <CardWrapper>{cards ? cards.map((c) => <PhotoCard bigSize={true} isAd={true} />) : null}</CardWrapper>
+            <CardWrapper>
+                {cards
+                    ? cards.map((place, index) => (
+                          <PhotoCard
+                              key={index}
+                              reviewId={place.reviewId}
+                              placeId={place.placeId}
+                              img={place.image}
+                              category={place.category}
+                              rating={place.rate}
+                              placeName={place.title}
+                          />
+                      ))
+                    : null}
+            </CardWrapper>
         </ScrollDiv>
     );
 };

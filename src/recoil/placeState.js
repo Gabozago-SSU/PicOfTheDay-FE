@@ -56,6 +56,8 @@ export const recentPlaceListQuery = selectorFamily({
     get: (id) => async () => {
         try {
             const user = loginUser;
+            console.log(user);
+
             const response = await requestRecentPlace({ placeId: id, userId: user.authId });
             return response.data;
         } catch (error) {

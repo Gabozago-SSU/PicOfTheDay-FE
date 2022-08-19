@@ -10,6 +10,8 @@ import { requestOtherUserpage } from "../../apis/index";
 import { useLocation } from "react-router-dom";
 import ProfileCircle from "../../assets/ProfileCircle.svg";
 import { useNavigate } from "react-router-dom";
+import { DefaultLayout } from "styles/layout";
+import Modal from "components/commons/Modal";
 
 function ProfilePage() {
     const [otherUserProfile, setOtherUserProfile] = useState("");
@@ -17,8 +19,18 @@ function ProfilePage() {
     const [otherReviews, setOtherReviews] = useState([]);
     const location = useLocation();
     const navigate = useNavigate();
+    const [isAuthModalOpen, setAuthtModalOpen] = useState(false);
 
     const otherId = location.state.id;
+
+    const onClickAuthModal = (value) => {
+        if (value) {
+            navigate("/login");
+            setAuthtModalOpen(false);
+        } else {
+            setAuthtModalOpen(false);
+        }
+    };
 
     useEffect(() => {
         requestOtherUserpage(otherId)
@@ -40,6 +52,15 @@ function ProfilePage() {
     return (
         <>
             <BackHeader title={"프로필"} clickHandler={onClickBackHandler} />
+            {isAuthModalOpen ? (
+                <DefaultLayout>
+                    <Modal closeModal={onClickAuthModal} buttonText={"로그인 하러가기 "}>
+                        <h1 style={{ marginBottom: "13px" }}> 아직 회원이 아니시군요!</h1>
+                        <p style={{ fontSize: "13px", marginTop: "5px" }}>로그인 후 후기를 작성해 주세요</p>
+                    </Modal>
+                </DefaultLayout>
+            ) : null}
+
             <StyledProfileimg>
                 <FeedProfileImg img={otherUserProfile ? otherUserProfile : ProfileCircle} />
                 <StyledFeedNikname>{otherUserName}</StyledFeedNikname>

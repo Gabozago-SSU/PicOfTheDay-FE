@@ -8,6 +8,7 @@ export const ScrollDiv = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 17px;
+    min-height: calc(100vh - 53px);
 `;
 
 export const CardWrapper = styled.div`

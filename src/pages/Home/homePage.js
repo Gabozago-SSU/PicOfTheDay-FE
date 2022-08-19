@@ -13,14 +13,17 @@ import Banner4 from "../../assets/bannerImg4.svg";
 import { useUserRecoilValue } from "recoil/userState";
 import { requestCurations } from "apis";
 import { requestSignup } from "../../apis/index";
+import { bottomState } from "recoil/bottom";
+import { useRecoilState } from "recoil";
 
 const HomePage = () => {
     const navigate = useNavigate();
     const user = useUserRecoilValue();
     const [currations, setCurrations] = useState([]);
-
+    const [bottom, setBottom] = useRecoilState(bottomState);
     useEffect(() => {
         initCuration();
+        setBottom("/");
         console.log(user);
     }, []);
 
@@ -53,7 +56,8 @@ const HomePage = () => {
                 <Banner banners={[Banner1, Banner2, Banner3, Banner4]} />
                 {currations
                     ? currations.map((c, index) => {
-                          return <CardList key={index} id={c.id} title={c.subtitle} places={c.places}></CardList>;
+                          if (index !== 3)
+                              return <CardList key={index} id={c.id} title={c.subtitle} places={c.places}></CardList>;
                       })
                     : null}
             </S.ScrollDiv>

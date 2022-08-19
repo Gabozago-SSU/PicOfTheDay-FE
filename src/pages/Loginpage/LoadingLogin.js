@@ -28,6 +28,7 @@ const LoginLoading = () => {
                         setUserState(newAuth);
 
                         if (res.data.isRegistered) {
+                            setBottom("/");
                             navigate("/");
                         } else {
                             navigate("/signup", { state: { userId: res.data.userId } });

@@ -43,6 +43,7 @@ const ReviewPage = () => {
     const user = useUserRecoilValue();
 
     useEffect(() => {
+        console.log(user);
         if (!user) {
             setAuthtModalOpen(true);
         }
@@ -89,11 +90,11 @@ const ReviewPage = () => {
             setPlace("");
         } else {
             setPlace({ placeName: tempPlace, placeId: null });
-            requestAddReviewPlace({ place: tempPlace, userId: user.authId })
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((err) => console.log(err));
+            // requestAddReviewPlace({ place: tempPlace, userId: user.authId })
+            //     .then((res) => {
+            //         console.log(res);
+            //     })
+            //     .catch((err) => console.log(err));
         }
     };
 
@@ -175,6 +176,7 @@ const ReviewPage = () => {
         setTempPlace("");
         setKeywords([]);
         setImgs([]);
+        setRating(0);
     };
 
     return (
@@ -196,7 +198,6 @@ const ReviewPage = () => {
                 </DefaultLayout>
             ) : (
                 <>
-                    {" "}
                     <UploadImg imgHandler={imgHandler} />
                     <SearchWrapper>
                         <div>위치</div>

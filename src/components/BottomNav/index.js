@@ -25,12 +25,7 @@ const BottomNav = () => {
                                 <span>홈</span>
                             </NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink to="/map" className={`nav-link ${location.pathname === "/map" ? "active" : ""}`}>
-                                <S.MapIcon color={location.pathname === "/map" ? colors.red_80 : colors.black_80} />
-                                <span>지도</span>
-                            </NavLink>
-                        </NavItem>
+
                         <NavItem>
                             <NavLink to="/feed" className={`nav-link ${location.pathname === "/feed" ? "active" : ""}`}>
                                 <S.FeedIcon
