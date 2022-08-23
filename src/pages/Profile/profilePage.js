@@ -19,18 +19,9 @@ function ProfilePage() {
     const [otherReviews, setOtherReviews] = useState([]);
     const location = useLocation();
     const navigate = useNavigate();
-    const [isAuthModalOpen, setAuthtModalOpen] = useState(false);
-
+    
     const otherId = location.state.id;
 
-    const onClickAuthModal = (value) => {
-        if (value) {
-            navigate("/login");
-            setAuthtModalOpen(false);
-        } else {
-            setAuthtModalOpen(false);
-        }
-    };
 
     useEffect(() => {
         requestOtherUserpage(otherId)
