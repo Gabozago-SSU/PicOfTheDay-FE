@@ -23,7 +23,7 @@ const PlaceInfo = ({ like, place, placeId, category, phone, name, address, ratin
     const user = useUserRecoilValue();
     const [onClickCopy, setOnClickCopy] = useState(false);
     const [toastCnt, setToastCnt] = useState(0);
-    const [likeState, setLikeState] = useState(place.like);
+    const [likeState, setLikeState] = useState(like);
     const [isAuthModalOpen, setAuthtModalOpen] = useState(user ? false : true);
     const navigate = useNavigate();
 

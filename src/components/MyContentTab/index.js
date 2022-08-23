@@ -46,7 +46,7 @@ const MyContentTab = ({ mypagereviews, myLikes }) => {
                               return (
                                   <PostContent
                                       key={index}
-                                      img={p.reviewImage}
+                                      img={p.image}
                                       onClick={() => {
                                           onClickReview(p.reviewId);
                                       }}

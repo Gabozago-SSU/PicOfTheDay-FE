@@ -35,7 +35,7 @@ const PlaceDetail = ({
     const [helpState, setHelpState] = useState(like);
     const navigate = useNavigate();
     const user = useUserRecoilValue();
-    const [isAuthModalOpen, setAuthtModalOpen] = useState(false);
+    const [isAuthModalOpen, setAuthtModalOpen] = useState(user === null);
 
     const onClickHelpBtn = () => {
         if (!user) {

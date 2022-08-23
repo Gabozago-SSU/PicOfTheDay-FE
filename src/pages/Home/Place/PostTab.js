@@ -62,6 +62,7 @@ const PostPoPularList = ({ placeId, totPost }) => {
         if (user !== null)
             requestPopularPlace({ userId: user.authId, placeId: placeId }).then((res) => {
                 setPlace(res.data);
+                console.log(res.data);
             });
     }, []);
 
@@ -73,7 +74,7 @@ const PostPoPularList = ({ placeId, totPost }) => {
                     id={p.reviewId}
                     userId={p.userId}
                     profile={p.profile}
-                    img={p.img}
+                    img={p.image}
                     nickName={p.userName}
                     rating={p.rating ? p.rating : 0}
                     address={null}
@@ -104,7 +105,7 @@ const PostRecentList = ({ placeId, totPost }) => {
                     id={p.reviewId}
                     userId={p.userId}
                     profile={p.profile}
-                    img={p.img}
+                    img={p.image}
                     nickName={p.userName}
                     rating={p.rating ? p.rating : 0}
                     address={null}

@@ -31,6 +31,7 @@ export const loginUser = selector({
 
         if (list === undefined || list === null) return null;
         return DecryptAuth(list);
+        // return { authId: 7 };
     },
 });
 
