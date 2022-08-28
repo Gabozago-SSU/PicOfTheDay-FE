@@ -6,12 +6,9 @@ const StyleHelpButton = styled.button`
     border-radius: 5px;
     border-style: solid;
     border-color: #e5475a;
-    color: #e5475a;
 
     height: 45px;
     width: 100%;
-
-    background: white;
 
     font-family: "Noto Sans KR";
     font-style: normal;
@@ -22,14 +19,22 @@ const StyleHelpButton = styled.button`
     text-align: center;
     letter-spacing: 0.0125em;
 
-    &:active {
-        background-color: ${colors.red_100};
-        color: white;
-    }
+    ${(props) => setChecked(props.isChecked)}
 `;
 
-function HelpButton({ onClick }) {
-    return <StyleHelpButton onClick={onClick}>도움이 돼요</StyleHelpButton>;
+const setChecked = (isChecked) => {
+    console.log(isChecked);
+    return isChecked
+        ? `background-color : white; color :  ${colors.red_100}`
+        : `background-color : ${colors.red_100} ; color:white`;
+};
+
+function HelpButton({ onClick, isChecked }) {
+    return (
+        <StyleHelpButton onClick={onClick} isChecked={isChecked}>
+            도움이 돼요
+        </StyleHelpButton>
+    );
 }
 
 export default HelpButton;

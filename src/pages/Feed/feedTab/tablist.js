@@ -16,10 +16,10 @@ function Tablist() {
         <TabListLayout>
             <TabDiv>
                 <button className={toggleState === 1 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(1)}>
-                    인기게시물
+                    인기 후기
                 </button>
                 <button className={toggleState === 2 ? "tabs active-tabs" : "tabs"} onClick={() => toggleTab(2)}>
-                    최근게시물
+                    최근 후기
                 </button>
             </TabDiv>
 

@@ -1,90 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import colors from "styles/colors";
-
-export const feedArray2 = [
-    {
-        reviewid: 1,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 2,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 3,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 4,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 5,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 6,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 7,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 8,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 9,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 10,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 11,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 12,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 13,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 14,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 15,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 16,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 17,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 18,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 19,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-    {
-        reviewid: 20,
-        image: "https://i.pinimg.com/originals/a6/3e/ed/a63eedcb9fc3d4f77cfe1f458f9587b5.png",
-    },
-];
+import { requestRecentFeed } from "../../../apis/index";
+import axios from "axios";
 
 export const StyleBox = styled.div`
     width: 100%;
@@ -105,16 +24,31 @@ export const PostlistBox = styled.div`
 
 function LastFeedPost() {
     const navigate = useNavigate();
+
+    const [recentFeed, setRecentFeed] = useState([]);
+    useEffect(() => {
+        try {
+            requestRecentFeed().then((res) => {
+                setRecentFeed(res.data);
+                console.log(res.data);
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }, []);
+
     return (
         <>
             <PostlistBox>
-                {feedArray2.map(({ reviewid, image }) => (
-                    <StyleBox
-                        key={reviewid}
-                        image={image}
-                        onClick={() => navigate("/feed/detail", { state: { id: 1 } })}
-                    ></StyleBox>
-                ))}
+                {recentFeed.map((i, index) => {
+                    return (
+                        <StyleBox
+                            key={index}
+                            image={i.image[0]}
+                            onClick={() => navigate("/feed/detail", { state: { id: i.reviewId } })}
+                        ></StyleBox>
+                    );
+                })}
             </PostlistBox>
         </>
     );

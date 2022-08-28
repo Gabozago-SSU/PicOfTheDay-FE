@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
+import Heart from "../../assets/HeartIc.svg";
 import colors from "styles/colors";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-const MyContentTab = () => {
+const MyContentTab = ({ mypagereviews, myLikes }) => {
     const [focusTab, setFocusTab] = useState(0);
-    const [myPosts, setMyPosts] = useState(
-        new Array(30).fill(
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQxkNZP1lop1e13fU3BrfNDNfbLqJFIQyKSA&usqp=CAU",
-        ),
-    );
-    const [likePosts, setLikePosts] = useState(
-        new Array(30).fill(
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZItLlnz6Iz2tsohVoDPAh1_CIiR7HNvA49g&usqp=CAU",
-        ),
-    );
-    useEffect(() => {}, [focusTab]);
+    const [myPosts, setMyPosts] = useState(mypagereviews ? mypagereviews : []);
+    const [likePosts, setLikePosts] = useState(myLikes ? myLikes : []);
+    const navigate = useNavigate();
+    useEffect(() => {
+        console.log(mypagereviews);
+    }, [focusTab]);
+
+    const onClickReview = (id) => {
+        navigate("/feed/detail", { state: { id: id } });
+    };
 
     return (
         <div>
@@ -26,15 +27,36 @@ const MyContentTab = () => {
                     좋아요한 리뷰
                 </TabButton>
             </PostTabLayout>
-            <PostListWrapper>
-                {focusTab === 0
-                    ? myPosts.map((p, index) => {
-                          return <PostContent key={index} img={p}></PostContent>;
-                      })
-                    : likePosts.map((p, index) => {
-                          return <PostContent key={index} img={p}></PostContent>;
-                      })}
-            </PostListWrapper>
+            {(mypagereviews !== undefined && mypagereviews.length > 0) ||
+            (myLikes !== undefined && likePosts.length > 0) ? (
+                <PostListWrapper>
+                    {focusTab === 0
+                        ? mypagereviews.map((p, index) => {
+                              return (
+                                  <PostContent
+                                      key={index}
+                                      img={p.reviewImage}
+                                      onClick={() => {
+                                          onClickReview(p.reviewId);
+                                      }}
+                                  ></PostContent>
+                              );
+                          })
+                        : myLikes.map((p, index) => {
+                              return (
+                                  <PostContent
+                                      key={index}
+                                      img={p.image}
+                                      onClick={() => {
+                                          onClickReview(p.reviewId);
+                                      }}
+                                  >
+                                      <HeartIcon onClick={() => {}} />
+                                  </PostContent>
+                              );
+                          })}
+                </PostListWrapper>
+            ) : null}
         </div>
     );
 };
@@ -80,8 +102,19 @@ const PostListWrapper = styled.div`
 const PostContent = styled.div`
     width: 100;
     padding-top: 100%;
-
+    background-position: center;
+    position: relative;
     ${(props) => setImg(props.img)}
+`;
+
+const HeartIcon = styled.div`
+    width: 28px;
+    height: 28px;
+    background-image: url(${Heart});
+    background-size: cover;
+    right: 10px;
+    bottom: 10px;
+    position: absolute;
 `;
 const getTextColor = (focused) => {
     return focused ? `${colors.black_80}` : `${colors.black_40}`;

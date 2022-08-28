@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { HeaderLayout, SearchHeaderLayout } from "./styles";
 import { SearchIc } from "./styles";
 import Back from "../../../assets/PinkXIc.svg";
-import ResultSearchBar from "../SearchBar/ResultSearchBar";
+import MultiSearchBar from "../SearchBar/MultiSearchBar";
 
 const Header = ({ searchHandler }) => {
     const [isDefault, setDefault] = useState(true);
@@ -21,7 +21,7 @@ const Header = ({ searchHandler }) => {
                 </HeaderLayout>
             ) : (
                 <SearchHeaderLayout>
-                    <ResultSearchBar itemClickHandler={onClickSearch} contentHandler={contentHandler} />
+                    <MultiSearchBar itemClickHandler={onClickSearch} contentHandler={contentHandler} />
                     {/* <p onClick={() => setDefault((prev) => !prev)}>cancel</p> */}
                     <img src={Back} onClick={() => setDefault((prev) => !prev)} className={"header-back"}></img>
                 </SearchHeaderLayout>

@@ -1,9 +1,8 @@
 import CryptoJS from "crypto-js";
 
-export default function Authentication(id, nickName, platform) {
-    const data = { authId: id, authNickname: nickName, platforms: platform };
+export default function Authentication(id) {
+    const data = { authId: id };
     const encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), process.env.REACT_APP_SECRET_KEY).toString();
-
     return encrypted;
 }
 

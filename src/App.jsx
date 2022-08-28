@@ -16,6 +16,8 @@ import ProfilePage from "./pages/Profile/profilePage";
 import NotFound from "pages/NotFound";
 import SearchNotFoundPage from "pages/SearchNotFound";
 import FeedDetailPage from "pages/Feed/feedDetailPage";
+import SearchPage from "./pages/Search/index";
+import LoginLoading from "pages/Loginpage/LoadingLogin";
 
 function App() {
     return (
@@ -28,12 +30,14 @@ function App() {
                     <Route exact={true} path="/onboarding" element={<SelectChip />}></Route>
                     <Route exact={true} path="/place" element={<PlacePage />}></Route>
                     <Route exact={true} path="/search/notfound" element={<SearchNotFoundPage />}></Route>
+                    <Route exact={true} path="/search" element={<SearchPage />}></Route>
                     <Route exact={true} path="/map" element={<MapPage />}></Route>
                     <Route exact={true} path="/feed" element={<FeedPage />}></Route>
                     <Route exact={true} path="/feed/detail" element={<FeedDetailPage />}></Route>
                     <Route exact={true} path="/review" element={<ReviewPage />}></Route>
                     <Route exact={true} path="/mypage" element={<MyPage />}></Route>
                     <Route exact={true} path="/login" element={<Login />}></Route>
+                    <Route exact={true} path="/loading" element={<LoginLoading />}></Route>
                     <Route exact={true} path="/signup" element={<Nikname />}></Route>
                     <Route path="/*" element={<NotFound />} />
                 </Routes>

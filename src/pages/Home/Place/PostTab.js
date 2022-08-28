@@ -3,6 +3,8 @@ import { PostTabLayout, TabButton } from "./styles";
 import PlaceDetail from "components/PlaceDetail";
 import PlusButton from "components/commons/Button/plusButton";
 import { useRecentPlaceRecoilValue, usePoPularPlaceRecoilValue, popularPlaceList } from "../../../recoil/placeState";
+import { requestRecentPlace, requestPopularPlace } from "../../../apis/index";
+import { useUserRecoilValue } from "recoil/userState";
 
 const PostTab = ({ placeId }) => {
     const [focusTab, setFocusTab] = useState(0);
@@ -54,81 +56,64 @@ const PostTab = ({ placeId }) => {
 export default PostTab;
 
 const PostPoPularList = ({ placeId, totPost }) => {
-    const placeLoadable = usePoPularPlaceRecoilValue(placeId);
-    let populars = "";
-
-    switch (placeLoadable.state) {
-        case "hasValue":
-            populars = placeLoadable.contents;
-            console.log("update popular", populars);
-
-            return populars.map((p, index) => {
-                if (index < totPost)
-                    return (
-                        <PlaceDetail
-                            key={index}
-                            id={index}
-                            userId={p.userId}
-                            profile={
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLmOQYNXeFqlSq-DIIXj23q2YnEkBpbgIW3w&usqp=CAU"
-                            }
-                            img={
-                                "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/3d281f7d-6b44-4550-ab20-856a1a8e0fc1.jpeg"
-                            }
-                            nickName={p.userName}
-                            rating={p.rating ? p.rating : 0}
-                            address={null}
-                            content={p.content}
-                            helpNum={p.likeCnt}
-                        ></PlaceDetail>
-                    );
+    const user = useUserRecoilValue();
+    const [populars, setPlace] = useState([]);
+    useEffect(() => {
+        if (user !== null)
+            requestPopularPlace({ userId: user.authId, placeId: placeId }).then((res) => {
+                setPlace(res.data);
+                console.log(res.data);
             });
-        case "hasError":
-            populars = placeLoadable.contents.message;
-            break;
-        case "loading":
-            populars = "Loading...";
-            break;
-        default:
-            populars = "Loading...";
-    }
+    }, []);
+
+    return populars.map((p, index) => {
+        if (index < totPost)
+            return (
+                <PlaceDetail
+                    key={"recent" + p.reviewId}
+                    id={p.reviewId}
+                    userId={p.userId}
+                    profile={p.profile}
+                    img={p.image}
+                    nickName={p.userName}
+                    rating={p.rating ? p.rating : 0}
+                    address={null}
+                    content={p.content}
+                    helpNum={p.likeCnt}
+                    like={p.like}
+                    tags={p.keywords}
+                ></PlaceDetail>
+            );
+    });
 };
 
 const PostRecentList = ({ placeId, totPost }) => {
-    const placeLoadable = useRecentPlaceRecoilValue(placeId);
-
-    let populars = "";
-
-    switch (placeLoadable.state) {
-        case "hasValue":
-            populars = placeLoadable.contents;
-            console.log("update recent", populars);
-            return populars.map((p, index) => {
-                if (index < totPost)
-                    return (
-                        <PlaceDetail
-                            key={index}
-                            profile={
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLmOQYNXeFqlSq-DIIXj23q2YnEkBpbgIW3w&usqp=CAU"
-                            }
-                            img={
-                                "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/3d281f7d-6b44-4550-ab20-856a1a8e0fc1.jpeg"
-                            }
-                            nickName={p.userName}
-                            rating={p.rating ? p.rating : 0}
-                            address={null}
-                            content={"어디든 사실 가고 싶어요"}
-                            helpNum={p.likeCnt}
-                        ></PlaceDetail>
-                    );
+    const user = useUserRecoilValue();
+    const [populars, setPlace] = useState([]);
+    useEffect(() => {
+        if (user !== null)
+            requestRecentPlace({ userId: user.authId, placeId: placeId }).then((res) => {
+                setPlace(res.data);
             });
-        case "hasError":
-            populars = placeLoadable.contents.message;
-            break;
-        case "loading":
-            populars = "Loading...";
-            break;
-        default:
-            populars = "Loading...";
-    }
+    }, []);
+
+    return populars.map((p, index) => {
+        if (index < totPost)
+            return (
+                <PlaceDetail
+                    key={"recent" + p.reviewId}
+                    id={p.reviewId}
+                    userId={p.userId}
+                    profile={p.profile}
+                    img={p.image}
+                    nickName={p.userName}
+                    rating={p.rating ? p.rating : 0}
+                    address={null}
+                    content={p.content}
+                    helpNum={p.likeCnt}
+                    like={p.like}
+                    tags={p.keywords}
+                ></PlaceDetail>
+            );
+    });
 };

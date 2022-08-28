@@ -35,8 +35,16 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
     const onChange = (e) => {
         setContent(e.target.value);
         setTimeout(() => {
-            searchQuery(e.target.value);
-            contentHandler(e.target.value);
+            searchQuery(e.target.value); //api
+
+            //TODO
+            if (e.target.value.include("#")) {
+                //searchKeyword
+            } else {
+                //searchPlace
+            }
+
+            contentHandler(e.target.value); //text 보내기용
         }, 200);
     };
     return (
@@ -80,7 +88,9 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
                                     key={index}
                                     onClick={() => {
                                         setResults([]);
+                                        setHideTip(false);
                                         itemClickHandler(i);
+                                        setContent("");
                                     }}
                                 >
                                     {i.placeName}
@@ -106,6 +116,7 @@ const ResultSearchBar = ({ itemClickHandler, contentHandler, type, requestHandle
                     <h1>등록되지 않은 장소입니다! </h1>
                     <p
                         onClick={() => {
+                            input.current.blur();
                             setHideTip(true);
                             requestHandler();
                             setContent("");

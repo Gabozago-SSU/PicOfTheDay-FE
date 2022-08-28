@@ -12,25 +12,37 @@ import PlaceIc from "../../assets/PlaceIc.svg";
 import CopyIc from "../../assets/copyIc.svg";
 import CategoryChip from "../commons/Chip/CategoryChip";
 import StarIc from "../../assets/SmallStarIc.svg";
-import { requestLikePlace, requestDisikePlace } from "../../apis/index";
+import { requestLikePlace, requestDisikePlace, requestDeleteReview } from "../../apis/index";
 import useCopyClipBoard from "utils/useCopyClipBoard";
-
-const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum, isLike }) => {
+import { PropTypes } from "prop-types";
+import { useUserRecoilValue } from "recoil/userState";
+import Modal from "components/commons/Modal";
+import { DefaultLayout } from "styles/layout";
+import { useNavigate } from "react-router-dom";
+const PlaceInfo = ({ like, place, placeId, category, phone, name, address, rating, reviewNum }) => {
+    const user = useUserRecoilValue();
     const [onClickCopy, setOnClickCopy] = useState(false);
     const [toastCnt, setToastCnt] = useState(0);
-    const [likeState, setLikeState] = useState(isLike ? true : false);
+    const [likeState, setLikeState] = useState(like);
+    const [isAuthModalOpen, setAuthtModalOpen] = useState(user ? false : true);
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        console.log(user);
+    }, []);
     const [isCopy, onCopy] = useCopyClipBoard();
 
     const onClickHeartHandler = () => {
         try {
             if (likeState) {
-                requestDisikePlace({ userId: 1, placeId: placeId }).then((res) => {
+                requestDisikePlace({ userId: user.authId, placeId: placeId }).then((res) => {
                     console.log(res);
                     setLikeState(false);
                 });
+                // requestDeleteReview(31).then((res) => console.log(res));
             } else {
-                requestLikePlace({ userId: 1, placeId: placeId }).then((res) => {
+                requestLikePlace({ userId: user.authId, placeId: placeId }).then((res) => {
+                    console.log(res);
                     setLikeState(true);
                 });
             }
@@ -39,6 +51,18 @@ const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum,
             console.log(err);
         }
     };
+    const onClickAuthModal = (value) => {
+        if (value) {
+            setAuthtModalOpen(false);
+            navigate("/login");
+        } else {
+            setAuthtModalOpen(false);
+            navigate("/");
+        }
+    };
+    useEffect(() => {
+        console.log("rend", place);
+    }, [likeState]);
 
     useEffect(() => {
         // eslint-disable-next-line no-lone-blocks
@@ -66,6 +90,14 @@ const PlaceInfo = ({ placeId, category, phone, name, address, rating, reviewNum,
     }, [onClickCopy]);
     return (
         <S.PlaceinfoLayout>
+            {isAuthModalOpen ? (
+                <DefaultLayout>
+                    <Modal closeModal={onClickAuthModal} buttonText={"로그인 하러가기 "}>
+                        <h1 style={{ marginBottom: "13px" }}> 아직 회원이 아니시군요!</h1>
+                        <p style={{ fontSize: "13px", marginTop: "5px" }}>로그인 후 후기를 작성해 주세요</p>
+                    </Modal>
+                </DefaultLayout>
+            ) : null}
             <S.StyledToastContainer
                 position="bottom-center"
                 autoClose={1000}
@@ -129,3 +161,7 @@ function success(nodeOrMsg) {
     );
 }
 export default PlaceInfo;
+
+PlaceInfo.propTypes = {
+    like: PropTypes.bool.isRequired,
+};

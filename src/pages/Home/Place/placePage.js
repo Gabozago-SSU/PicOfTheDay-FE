@@ -16,27 +16,15 @@ import { usePlaceRecoilValue } from "recoil/placeState";
 import { useLocation, useNavigate } from "react-router-dom";
 import BackHeader from "components/commons/BackHeader";
 import { useUserRecoilValue } from "recoil/userState";
+import { requestSimilarPlace, requestPlace } from "../../../apis/index";
 
 const PlacePage = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
-    const placeId = state;
+    const [placeId, setPlaceId] = useState(state);
+    const [similar, setSimilar] = useState([]);
+    const [placed, setPlaced] = useState(null);
     const user = useUserRecoilValue();
-
-    const places = [1, 2, 3, 4, 5, 6, 7, 8];
-    const keywords = [
-        "감성이 넘치는",
-        "서울핫플",
-        "자연친화적인",
-        "초록색",
-        "감성이 넘치는",
-        "서울핫플",
-        "자연친화적인",
-        "초록색",
-        "서울핫플",
-        "자연친화적인",
-        "초록색",
-    ];
 
     const placeLoadable = usePlaceRecoilValue(placeId);
     let place = "";
@@ -44,7 +32,6 @@ const PlacePage = () => {
     switch (placeLoadable.state) {
         case "hasValue":
             place = placeLoadable.contents;
-
             break;
         case "hasError":
             place = placeLoadable.contents.message;
@@ -60,23 +47,46 @@ const PlacePage = () => {
         navigate("/");
     };
 
+    useEffect(() => {
+        try {
+            requestPlace({ placeId: placeId, userId: user.authId })
+                .then((res) => {
+                    console.log(res);
+                    setPlaced(res.data);
+                    return res.data;
+                })
+                .then((r) => {
+                    requestSimilarPlace(r.category).then((res) => {
+                        console.log(res);
+                        setSimilar(res.data);
+                    });
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    }, []);
+
     return (
         <ScrollDiv>
             <BackHeader clickHandler={onClickBackHandler} />
 
             <PlaceBanner banners={place.images} />
+            {place !== "Loading..." ? (
+                <PlaceInfo
+                    like={place.like}
+                    place={place}
+                    placeId={placeId}
+                    category={place.category}
+                    phone={place.phoneNumber}
+                    name={place.name}
+                    address={place.address}
+                    rating={place.rate}
+                    reviewNum={place.reviewCnt}
+                />
+            ) : null}
 
-            <PlaceInfo
-                placeId={placeId}
-                category={place.category}
-                phone={place.phoneNumber}
-                name={place.name}
-                address={place.address}
-                rating={place.rate}
-                reviewNum={99}
-            />
             <hr style={{ height: "0.5px", border: `0.5px solid ${colors.black_30}` }} />
-            <KeyWordTab keywords={keywords} />
+            <KeyWordTab keywords={place.keywords} />
             <hr style={{ height: "0.5px", border: `0.5px solid ${colors.black_30}`, margin: 0 }} />
 
             <PostTab placeId={placeId} />
@@ -86,11 +96,28 @@ const PlacePage = () => {
                     <h1>{place.name}</h1>
                     <p>과 비슷한 포토존</p>
                 </div>
-                <CardWrapper>
-                    {places.map((place, index) => {
-                        return <PhotoCard key={index} category={"자연"} rating={5} placeName={"장소 이름"} />;
-                    })}
-                </CardWrapper>
+                {place !== "Loading..." ? (
+                    <CardWrapper>
+                        {similar
+                            ? similar.map((place, index) => {
+                                  return (
+                                      <PhotoCard
+                                          reviewId={place.reviewId}
+                                          placeId={place.place_id}
+                                          img={place.image}
+                                          category={place.category}
+                                          rating={place.rate}
+                                          key={index}
+                                          placeName={place.title}
+                                          //   onClick={() => {
+                                          //       if (placeId !== place.place_id) setPlaceId(place.place_id);
+                                          //   }}
+                                      />
+                                  );
+                              })
+                            : null}
+                    </CardWrapper>
+                ) : null}
             </RecomandBox>
         </ScrollDiv>
     );

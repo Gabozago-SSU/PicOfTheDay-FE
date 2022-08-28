@@ -28,12 +28,10 @@ export const loginUser = selector({
     key: "filteredUserState",
     get: ({ get }) => {
         const list = get(userState);
-        if (list === null) return null;
-        const platform = get(userPlatform);
-        const auths = list.map((a) => DecryptAuth(a));
 
-        if (platform === "google") return auths.filter((i) => i.platforms === "google")[0];
-        else return auths.filter((i) => i.platforms === "kakao")[0];
+        if (list === undefined || list === null) return null;
+        return DecryptAuth(list);
+        // return { authId: 7 };
     },
 });
 

@@ -11,7 +11,6 @@ export const PhotoLayout = styled.div`
     display: flex;
     justify-content: left;
     flex-direction: column;
-    width: 140px;
     height: fit-content;
 `;
 
@@ -22,8 +21,8 @@ export const PhotoImg = styled.div`
     background-repeat: no-repeat;
     border-radius: 5px;
     background-color: ${colors.black_80};
-    width: 140px;
-    height: 140px;
+    width: ${(props) => (props.bigSize ? "40vw" : "140px")};
+    height: ${(props) => (props.bigSize ? "40vw" : "140px")};
     resize: both;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 1px, rgba(0, 0, 0, 0.05) 0px 2px 2px, rgba(0, 0, 0, 0.05) 0px 4px 4px,
         rgba(0, 0, 0, 0.05) 0px 5px 5px, rgba(0, 0, 0, 0.05) 0px 4px 4px;
@@ -40,6 +39,7 @@ export const InfoWrapper = styled.div`
     width: 100%;
     height: fit-content;
     margin-top: 7px;
+    width: 100%;
 `;
 
 export const CategoryText = styled.div`
@@ -67,4 +67,20 @@ export const PlaceText = styled.div`
     text-align: start;
     display: flex;
     color: ${colors.black_80};
+`;
+
+export const AdTag = styled.div`
+    width: 30px;
+    height: 11px;
+    background: rgba(59, 59, 59, 0.3);
+    border: 0.7px solid #ffffff;
+    border-radius: 77.5px;
+    position: absolute;
+    color: white;
+    font-weight: 700;
+    font-size: 8px;
+    align-items: center;
+    text-align: center;
+    margin: 7px;
+    line-height: 11px;
 `;

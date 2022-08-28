@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollDiv, FeedLayout } from "./styles";
 import PlaceDetail from "components/PlaceDetail";
 import BackHeader from "components/commons/BackHeader";
 import { useLocation, useNavigate } from "react-router-dom";
+import { requestDetailFeed } from "apis";
+import { useUserRecoilValue } from "recoil/userState";
 
 const FeedDetailPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [feedDetail, setFeedDetail] = useState(null);
 
     const feedId = location.state.id;
-    console.log(feedId);
+    const user = useUserRecoilValue();
+
+    useEffect(() => {
+        requestDetailFeed({ reviewId: feedId, userId: user.authId })
+            .then((res) => {
+                setFeedDetail(res.data);
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
     return (
         <>
             <BackHeader
@@ -19,22 +34,22 @@ const FeedDetailPage = () => {
                 }}
             />
             <FeedLayout>
-                <PlaceDetail
-                    id={1}
-                    userId={1}
-                    profile={
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMHd_nGKN8u9YW9VXJ1BvAmkEmQLzKse4SsQ&usqp=CAU"
-                    }
-                    nickName={"살려주세요"}
-                    rating={1}
-                    address={"어디 where"}
-                    img={
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs0DJGUs616moJROuUonY9HUAf1wPaCjOSWg&usqp=CAU"
-                    }
-                    content={"내용임다"}
-                    tags={["wow", "yeah"]}
-                    helpNum={17171}
-                ></PlaceDetail>
+                {feedDetail ? (
+                    <PlaceDetail
+                        id={feedId}
+                        userId={feedDetail.userId}
+                        profile={feedDetail.profile}
+                        nickName={feedDetail.userName}
+                        rating={feedDetail.rate ? feedDetail.rate : 0}
+                        address={feedDetail.address}
+                        img={feedDetail.image === null || feedDetail.image.length === 0 ? null : feedDetail.image[0]}
+                        content={feedDetail.content}
+                        tags={feedDetail.keywords}
+                        helpNum={feedDetail.reviewLikeCnt}
+                        like={feedDetail.like}
+                        placeId={feedDetail.placeId}
+                    ></PlaceDetail>
+                ) : null}
             </FeedLayout>
         </>
     );

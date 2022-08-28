@@ -2,6 +2,7 @@ import UploadBanner from "components/UploadBanner";
 import React, { useState } from "react";
 import colors from "styles/colors";
 import { ImgLayout, ImgWrapper, PhotoImg, ImguploadIcon } from "./styles";
+import axios from "axios";
 
 const UploadImg = ({ imgHandler }) => {
     const [imgFile, setImgFile] = useState([]);
@@ -12,9 +13,11 @@ const UploadImg = ({ imgHandler }) => {
             console.log(file);
             result.push(URL.createObjectURL(e.target.files[file]));
         }
-        console.log(result);
+
+        let files = e.target.files; // Form의 input을 들고온다.
+
         setImgFile(result);
-        imgHandler(result);
+        imgHandler(files);
     };
     return (
         <ImgLayout>
