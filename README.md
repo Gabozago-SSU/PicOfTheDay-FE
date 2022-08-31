@@ -1,6 +1,8 @@
 # 🦁 Likelion-Hackathon 🦁
 ## 네인생컷
 ![74](https://user-images.githubusercontent.com/78139690/187717369-b6b657a4-3e8c-4043-ad9f-93d882e0ce57.png)
+![73](https://user-images.githubusercontent.com/78139690/187719128-6d578a3a-412a-4e5d-a9b7-98ccc20a733c.png)
+![75](https://user-images.githubusercontent.com/78139690/187719166-aa7c9ec6-ee17-425e-b4df-310680f340dc.png)
 ![77](https://user-images.githubusercontent.com/78139690/187717493-1751ad9e-1db0-491b-86fc-a8af6f09075a.png)
 ![78](https://user-images.githubusercontent.com/78139690/187717514-bd85a641-bb93-4c63-b5d9-21e69a8a2b91.png)
 
